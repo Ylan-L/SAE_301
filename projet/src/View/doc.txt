@@ -1,0 +1,1 @@
+c'est ici qu'il y aura toutes nos pages html qui seront non pas en html mais en php, mais par contre on va pas y toucher maintenant car je dois vérifié la méthode
