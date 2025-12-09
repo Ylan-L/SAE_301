@@ -1,5 +1,5 @@
 <?php 
-namespace App\Covoiturage\Config;
+namespace App\Sae\Config;
 
 class Conf { 
     static private array $databases = array( 
@@ -33,3 +33,4 @@ class Conf {
     
 } 
 ?>
+
