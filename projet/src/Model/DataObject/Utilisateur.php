@@ -4,6 +4,9 @@ namespace App\Covoiturage\Model\DataObject;
 class Utilisateur extends AbstractDataObject{
 
      // Propriétés
+
+    private ?int $user_id;
+
     private $username;
     private $email;
     private $password_hash;
@@ -12,7 +15,9 @@ class Utilisateur extends AbstractDataObject{
     private $date_creation;
 
     // le constructeur
-     public function __construct($username, $email, $password_hash, $role, $date_creation) {
+     public function __construct($user_id,$username, $email, $password_hash, $role, $date_creation) {
+
+        $this->user_id=$user_id;
         $this->username= $username;
         $this->email = $email;
         $this->password_hash = $password_hash;
@@ -22,6 +27,10 @@ class Utilisateur extends AbstractDataObject{
     }
 
     //les getter de chaque attribut 
+
+    public function getUser_id() {
+        return $this->user_id;
+    }
 
 
     public function getUsername() {
@@ -47,6 +56,9 @@ class Utilisateur extends AbstractDataObject{
 
     // les setter de chaque attribut 
 
+    public function setUser_id($user_id){
+        $this->user_id= $user_id;
+    }
   
     public function setUsername($username){
         $this->username= $username;
@@ -70,8 +82,7 @@ class Utilisateur extends AbstractDataObject{
 
     public function formatTableau(): array{
     return [
-    
-        "username"    => $this->getUsername(),
+        "username"=> $this->getUsername(),
         "email" => $this->getEmail(),
         "password_hash" => $this->getPassword_hash(),
         "role" => $this->getRole(),
