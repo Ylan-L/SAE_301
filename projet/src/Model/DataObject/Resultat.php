@@ -1,8 +1,7 @@
 <?php
 namespace App\Covoiturage\Model\DataObject;
 
-class Resultat extends AbstractDataObject
-{
+class Resultat extends AbstractDataObject{
     private int $idResultat;
     private string $serviceAnalyste;
     private string $libelleParametre;
