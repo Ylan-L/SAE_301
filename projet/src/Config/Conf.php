@@ -10,7 +10,7 @@ class Conf {
         // Sur votre machine, vous avez surement un compte 'root'
         'login' => 'root',
         // CHANGEZ AVEC VOTRE MDP A VOUS 
-        'password' => '' );
+        'password' => 'vitrygtr' );
 static private array $configs = array();
         static public function getLogin() : string { 
             // L'attribut statique $databases s'obtient 
@@ -31,5 +31,6 @@ static private array $configs = array();
             }
 
     
+            
 } 
 ?>
