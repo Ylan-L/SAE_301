@@ -8,12 +8,12 @@ class UtilisateurRepository extends AbstractRepository{
 
     
      public function construire(array $utilisateurFormatTableau) : Utilisateur {
-            $user_id = $utilisateurFormatTableau["User_ID"];
-            $username = $utilisateurFormatTableau["Username"];
-            $email = $utilisateurFormatTableau["Email"] ;
-            $password_hash = $utilisateurFormatTableau["Password_Hash"];
-            $role = $utilisateurFormatTableau["Role"];
-            $date_creation = $utilisateurFormatTableau["Date_Creation"];
+            $user_id = $utilisateurFormatTableau["id_utilisateur"];
+            $username = $utilisateurFormatTableau["username"];
+            $email = $utilisateurFormatTableau["email"] ;
+            $password_hash = $utilisateurFormatTableau["password_hash"];
+            $role = $utilisateurFormatTableau["role"];
+            $date_creation = $utilisateurFormatTableau["date_creation"];
 
             
 
@@ -28,11 +28,11 @@ class UtilisateurRepository extends AbstractRepository{
     }
 
     protected function getNomClePrimaire(): string{
-       return "User_ID";
+       return "id_utilisateur";
     }
 
     protected function getNomsColonnes(): array{
-       return ["Username","Email","Password_Hash","Role","Date_Creation"];
+       return ["id_utilisateur","username","email","password_hash","role","date_creation"];
     }
 
 
