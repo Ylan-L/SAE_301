@@ -55,7 +55,7 @@ class Resultat extends AbstractDataObject
 
     public function setValeur(float $valeur): void
     {
-        $this->valeur = $valeur;
+        return $this->valeur = $valeur;
     }
 
     public function getQualiteResultat(): string

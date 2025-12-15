@@ -28,7 +28,7 @@ class ZoneRepository extends AbstractRepository{
 
     protected function getNomsColonnes(): array{
        return ["id_zone","nom_zone"];
-    }
+   }
 
 
 
