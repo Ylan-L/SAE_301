@@ -1,8 +1,7 @@
 <?php
 namespace App\Covoiturage\Model\DataObject;
 
-class Resultat extends AbstractDataObject
-{
+class Resultat extends AbstractDataObject{
     private int $idResultat;
     private string $serviceAnalyste;
     private string $libelleParametre;
@@ -55,7 +54,7 @@ class Resultat extends AbstractDataObject
 
     public function setValeur(float $valeur): void
     {
-        return $this->valeur = $valeur;
+        $this->valeur = $valeur;
     }
 
     public function getQualiteResultat(): string
