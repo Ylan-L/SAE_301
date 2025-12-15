@@ -11,7 +11,7 @@ class Conf {
         'login' => 'root',
         // CHANGEZ AVEC VOTRE MDP A VOUS 
         'password' => '' );
-
+static private array $configs = array();
         static public function getLogin() : string { 
             // L'attribut statique $databases s'obtient 
             // avec la syntaxe static::$databases 
