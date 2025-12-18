@@ -116,15 +116,6 @@ abstract class AbstractRepository {
 
     protected abstract function getNomsColonnes(): array;
 
-
-    
-
-    
-
-
-    
-    
-
     
 }
 

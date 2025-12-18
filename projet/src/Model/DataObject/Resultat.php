@@ -1,8 +1,7 @@
 <?php
 namespace App\Covoiturage\Model\DataObject;
 
-class Resultat extends AbstractDataObject
-{
+class Resultat extends AbstractDataObject{
     private int $idResultat;
     private string $serviceAnalyste;
     private string $libelleParametre;
@@ -55,7 +54,7 @@ class Resultat extends AbstractDataObject
 
     public function setValeur(float $valeur): void
     {
-        return $this->valeur = $valeur;
+        $this->valeur = $valeur;
     }
 
     public function getQualiteResultat(): string
@@ -67,5 +66,17 @@ class Resultat extends AbstractDataObject
     {
         return $this->idEchantillon;
     }
+
+    public function formatTableau(): array{
+    return [
+        "id_resultat"=> $this->getIdResultat(),
+        "service_analyste" => $this->getServiceAnalyste(),
+        "libelle_parametre" => $this->getLibelleParametre(),
+        "unite_symbole" => $this->getUniteSymbole(),
+        "unite_libelle" => $this->getUniteLibelle(),
+        "valeur" => $this->getValeur(),
+        "qualite_resultat" => $this->getQualiteResultat(),
+        "id_echantillon" => $this->getIdEchantillon(),
+    ];}
 
 }
