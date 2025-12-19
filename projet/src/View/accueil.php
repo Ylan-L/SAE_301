@@ -5,10 +5,10 @@
         <meta charset="utf-8" />
     </head>
     <body>
-        <h1>Bienvenue sur notre site !</h1>
+        <h1>Bienvenue sur "le nom de notre site" !</h1>
         
         <p>
-            Un premier petit paragraphe.
+            Sur ce site, vous pouvez observer des données océanographiques 
         </p>
         
         <h2>Les enjeux sur le  réchauffement climatique </h2>
