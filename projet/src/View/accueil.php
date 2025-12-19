@@ -8,7 +8,7 @@
         <h1>Bienvenue sur "le nom de notre site" !</h1>
         
         <p>
-            Sur ce site, vous pouvez observer des données océanographiques 
+            Sur ce site, vous pouvez observer des données océanographiques concernant la salinité, la biomasse des phytoplanctons et la température.
         </p>
         
         <h2>Les enjeux sur le  réchauffement climatique </h2>
