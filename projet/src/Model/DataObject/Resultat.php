@@ -12,7 +12,7 @@ class Resultat extends AbstractDataObject
     private float $valeur;
     private string $qualiteResultat;
 
-    // 🔗 relation
+    // Relation
     private Echantillon $echantillon;
 
     public function __construct(
