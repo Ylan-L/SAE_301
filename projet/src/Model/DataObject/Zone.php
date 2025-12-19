@@ -1,54 +1,45 @@
-<?php 
+<?php
+
 namespace App\Covoiturage\Model\DataObject;
 
-class Zone extends AbstractDataObject{
+class Zone extends AbstractDataObject
+{
+    private int $idZone;
+    private string $nomZone;
+    private string $typeZone;
 
-     // Propriétés
-
-    private int $id_zone;
-
-    private string $nom_zone;
-
-    // le constructeur
-     public function __construct($id_zone, $nom_zone) {
-
-        $this->id_zone=$id_zone;
-        $this->nom_zone= $nom_zone;
-
+    public function __construct(
+        int $idZone,
+        string $nomZone,
+        string $typeZone
+    ) {
+        $this->idZone = $idZone;
+        $this->nomZone = $nomZone;
+        $this->typeZone = $typeZone;
     }
 
-    //les getter de chaque attribut 
+    /* ================= formatTableau ================= */
 
-    public function getId_zone() {
-        return $this->id_zone;
+    public function formatTableau(): array
+    {
+        return [
+            'id_zone' => $this->idZone,
+            'nom_zone' => $this->nomZone,
+            'type_zone' => $this->typeZone
+        ];
     }
 
+    /* ================= GETTERS ================= */
 
-    public function getNom_zone() {
-        return $this->nom_zone;
+    public function getIdZone(): int {
+        return $this->idZone;
     }
 
-
-
-    // les setter de chaque attribut 
-
-    public function setId_zone($id_zone){
-        $this->id_zone= $id_zone;
-    }
-  
-    public function setNom_zone($nom_zone){
-        $this->nom_zone= $nom_zone;
+    public function getNomZone(): string {
+        return $this->nomZone;
     }
 
-
-
-    public function formatTableau(): array{
-    return [
-        "id_zone"=> $this->getId_zone(),
-        "nom_zone" => $this->getNom_zone()
-    ];}
-
-
+    public function getTypeZone(): string {
+        return $this->typeZone;
+    }
 }
-
-?>

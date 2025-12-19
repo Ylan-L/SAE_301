@@ -1,40 +1,41 @@
-<?php 
+<?php
+
 namespace App\Covoiturage\Model\Repository;
-use App\Covoiturage\Model\Repository\DatabaseConnection ;
-use App\Covoiturage\Model\DataObject\Zone ;
 
+use App\Covoiturage\Model\DataObject\Zone;
+use App\Covoiturage\Model\DataObject\AbstractDataObject;
 
-class ZoneRepository extends AbstractRepository{
+class ZoneRepository extends AbstractRepository
+{
+    /* ================= HERITAGE ================= */
 
-    
-     public function construire(array $zoneFormatTableau) : Zone {
-            $id_zone = $zoneFormatTableau["id_zone"];
-            $nom_zone = $zoneFormatTableau["nom_zone"];
-         
-            
-            $zone = new Zone($id_zone,$nom_zone);
-
-            return $zone;
-
+    protected function getNomTable(): string
+    {
+        return 'zone';
     }
 
-    protected function getNomTable():string{
-      return "zone";
+    protected function getNomClePrimaire(): string
+    {
+        return 'id_zone';
     }
 
-    protected function getNomClePrimaire(): string{
-       return "id_zone";
+    protected function getNomsColonnes(): array
+    {
+        return [
+            'id_zone',
+            'nom_zone',
+            'type_zone'
+        ];
     }
 
-    protected function getNomsColonnes(): array{
-       return ["id_zone","nom_zone"];
-   }
+    /* ================= CONSTRUCTION OBJET ================= */
 
-
-
-
-
-
+    protected function construire(array $objetFormatTableau): AbstractDataObject
+    {
+        return new Zone(
+            $objetFormatTableau['id_zone'],
+            $objetFormatTableau['nom_zone'],
+            $objetFormatTableau['type_zone']
+        );
+    }
 }
-
-?>
