@@ -20,8 +20,6 @@
        <!--Test pour les vidéos -->
         <div class="videos">
         <iframe 
-        width="560" 
-        height="315" 
         src="https://www.youtube.com/embed/KCScTgtajhs"
         title="YouTube video player"
         frameborder="0"
@@ -30,8 +28,6 @@
         </iframe>
 
         <iframe 
-        width="560" 
-        height="315" 
         src="https://www.youtube.com/embed/KCScTgtajhs"
         title="YouTube video player"
         frameborder="0"
@@ -40,8 +36,6 @@
         </iframe>
 
         <iframe 
-        width="560" 
-        height="315" 
         src="https://www.youtube.com/embed/KCScTgtajhs"
         title="YouTube video player"
         frameborder="0"
