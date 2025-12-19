@@ -26,11 +26,11 @@ class Echantillon extends AbstractDataObject{
     }
     
     #------------Setter---------------
-    public function setIdEchantillon(float $idEchantillon): int {
+    public function setIdEchantillon(int $idEchantillon): void {
         $this->idEchantillon = $idEchantillon;
     }
 
-    public function setQualiteEchantillon(string $qualiteEchantillon): string {
+    public function setQualiteEchantillon(string $qualiteEchantillon): void {
         $this->qualiteEchantillon = $qualiteEchantillon;
     }
 
