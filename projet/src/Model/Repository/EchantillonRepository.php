@@ -1,29 +1,46 @@
-<?php 
+<?php
+
 namespace App\Covoiturage\Model\Repository;
-use App\Covoiturage\Model\Repository\DatabaseConnection ;
-use App\Covoiturage\Model\DataObject\Resultat ;
 
+use App\Covoiturage\Model\DataObject\Echantillon;
+use App\Covoiturage\Model\DataObject\AbstractDataObject;
+use App\Covoiturage\Model\Repository\PrelevementRepository;
 
-class EchantillonRepository extends AbstractRepository{
+class EchantillonRepository extends AbstractRepository
+{
+    /* ================= HERITAGE ================= */
 
-    
-     public function construire(array $zoneFormatTableau) : Echantillon {
-            $id_echantillon = $zoneFormatTableau["id_echantillon"];
-            $qualite_echantillon = $zoneFormatTableau["qualite_echantillon"];
-            $prelevement = $zoneFormatTableau["prelevement"];
-         
-            
-            $echantillon = new Echantillon($id_echantillon,$qualite_echantillon,$prelevement);
-
-            return $echantillon;
+    protected function getNomTable(): string
+    {
+        return 'echantillon';
     }
-    protected function getNomTable():string{
-      return "echantillon";
+
+    protected function getNomClePrimaire(): string
+    {
+        return 'id_echantillon';
     }
-    protected function getNomClePrimaire(): string{
-       return "id_echantillon";
+
+    protected function getNomsColonnes(): array
+    {
+        return [
+            'id_echantillon',
+            'qualite_echantillon',
+            'id_prelevement'
+        ];
     }
-    protected function getNomsColonnes(): array{
-       return ["id_echantillon","qualite_echantillon","prelevement"];
+
+    /* ================= CONSTRUCTION OBJET ================= */
+
+    protected function construire(array $objetFormatTableau): AbstractDataObject
+    {
+        // 🔗 récupération du prélèvement
+        $prelevementRepository = new PrelevementRepository();
+        $prelevement = $prelevementRepository->select($objetFormatTableau['id_prelevement']);
+
+        return new Echantillon(
+            $objetFormatTableau['id_echantillon'],
+            $objetFormatTableau['qualite_echantillon'],
+            $prelevement
+        );
     }
 }
