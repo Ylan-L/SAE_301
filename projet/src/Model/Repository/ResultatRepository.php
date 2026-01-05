@@ -1,41 +1,56 @@
-<?php 
+<?php
+
 namespace App\Covoiturage\Model\Repository;
-use App\Covoiturage\Model\Repository\DatabaseConnection ;
-use App\Covoiturage\Model\DataObject\Resultat ;
 
+use App\Covoiturage\Model\DataObject\Resultat;
+use App\Covoiturage\Model\DataObject\AbstractDataObject;
+use App\Covoiturage\Model\Repository\EchantillonRepository;
 
-class ResultatRepository extends AbstractRepository{
+class ResultatRepository extends AbstractRepository
+{
+    /* ================= HERITAGE ================= */
 
-    
-     public function construire(array $zoneFormatTableau) : Resultat {
-            $id_resultat = $zoneFormatTableau["id_resultat"];
-            $service_analyste = $zoneFormatTableau["service_analyste"];
-            $libelle_parametre = $zoneFormatTableau["libelle_parametre"];
-            $unite_symbole = $zoneFormatTableau["unite_symbole"];
-            $unite_libelle = $zoneFormatTableau["unite_libelle"];
-            $valeur = $zoneFormatTableau["valeur"];
-            $qualite_resultat = $zoneFormatTableau["qualite_resultat"];
-            $id_echantillon = $zoneFormatTableau["id_echantillon"];
-         
-            
-            $resultat = new Resultat($id_resultat,$service_analyste,$libelle_parametre,$unite_symbole,$unite_libelle,$valeur,$qualite_resultat,$id_echantillon);
-
-            return $resultat;
-
+    protected function getNomTable(): string
+    {
+        return 'resultat';
     }
 
-    protected function getNomTable():string{
-      return "resultat";
+    protected function getNomClePrimaire(): string
+    {
+        return 'id_resultat';
     }
 
-    protected function getNomClePrimaire(): string{
-       return "id_ resultat";
+    protected function getNomsColonnes(): array
+    {
+        return [
+            'id_resultat',
+            'service_analyste',
+            'libelle_parametre',
+            'unite_symbole',
+            'unite_libelle',
+            'valeur',
+            'qualite_resultat',
+            'id_echantillon'
+        ];
     }
 
-    protected function getNomsColonnes(): array{
-       return ["id_resultat","service_analyste","libelle_parametre","unite_symbole","unite_libelle","valeur","qualite_resultat","id_echantillon"];
-    }
+    /* ================= CONSTRUCTION OBJET ================= */
 
+    protected function construire(array $objetFormatTableau): AbstractDataObject
+    {
+        // Récupération de l’échantillon
+        $echantillonRepository = new EchantillonRepository();
+        $echantillon = $echantillonRepository->select($objetFormatTableau['id_echantillon']);
+
+        return new Resultat(
+            $objetFormatTableau['id_resultat'],
+            $objetFormatTableau['service_analyste'],
+            $objetFormatTableau['libelle_parametre'],
+            $objetFormatTableau['unite_symbole'],
+            $objetFormatTableau['unite_libelle'],
+            (float)$objetFormatTableau['valeur'],
+            $objetFormatTableau['qualite_resultat'],
+            $echantillon
+        );
+    }
 }
-
-?>

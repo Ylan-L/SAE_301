@@ -8,7 +8,7 @@ use App\Covoiturage\Model\DataObject\AbstractDataObject;
 
 class PrelevementRepository extends AbstractRepository
 {
-    /* ================= META ================= */
+    /* ================= HERITAGE ================= */
 
     protected function getNomTable(): string { 
         return 'prelevement';

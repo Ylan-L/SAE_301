@@ -1,7 +1,9 @@
 <?php
+
 namespace App\Covoiturage\Model\DataObject;
 
-class Resultat extends AbstractDataObject{
+class Resultat extends AbstractDataObject
+{
     private int $idResultat;
     private string $serviceAnalyste;
     private string $libelleParametre;
@@ -9,74 +11,54 @@ class Resultat extends AbstractDataObject{
     private string $uniteLibelle;
     private float $valeur;
     private string $qualiteResultat;
-    private int $idEchantillon;
 
+    // Relation
+    private Echantillon $echantillon;
 
-    public function getIdResultat(): int
+    public function __construct(
+        int $idResultat,
+        string $serviceAnalyste,
+        string $libelleParametre,
+        string $uniteSymbole,
+        string $uniteLibelle,
+        float $valeur,
+        string $qualiteResultat,
+        Echantillon $echantillon
+    ) {
+        $this->idResultat = $idResultat;
+        $this->serviceAnalyste = $serviceAnalyste;
+        $this->libelleParametre = $libelleParametre;
+        $this->uniteSymbole = $uniteSymbole;
+        $this->uniteLibelle = $uniteLibelle;
+        $this->valeur = $valeur;
+        $this->qualiteResultat = $qualiteResultat;
+        $this->echantillon = $echantillon;
+    }
+
+    /* ================= formatTableau ================= */
+
+    public function formatTableau(): array
     {
+        return [
+            'id_resultat' => $this->idResultat,
+            'service_analyste' => $this->serviceAnalyste,
+            'libelle_parametre' => $this->libelleParametre,
+            'unite_symbole' => $this->uniteSymbole,
+            'unite_libelle' => $this->uniteLibelle,
+            'valeur' => $this->valeur,
+            'qualite_resultat' => $this->qualiteResultat,
+            // FK
+            'id_echantillon' => $this->echantillon->getIdEchantillon()
+        ];
+    }
+
+    /* ================= GETTERS ================= */
+
+    public function getIdResultat(): int {
         return $this->idResultat;
     }
 
-    public function getServiceAnalyste(): string
-    {
-        return $this->serviceAnalyste;
+    public function getEchantillon(): Echantillon {
+        return $this->echantillon;
     }
-
-    public function setServiceAnalyste(string $serviceAnalyste): void
-    {
-        $this->serviceAnalyste = $serviceAnalyste;
-    }
-
-    public function getLibelleParametre(): string
-    {
-        return $this->libelleParametre;
-    }
-
-    public function setLibelleParametre(string $libelleParametre): void
-    {
-        $this->libelleParametre = $libelleParametre;
-    }
-
-    public function getUniteSymbole(): string
-    {
-        return $this->uniteSymbole;
-    }
-
-    public function getUniteLibelle(): string
-    {
-        return $this->uniteLibelle;
-    }
-
-    public function getValeur(): float
-    {
-        return $this->valeur;
-    }
-
-    public function setValeur(float $valeur): void
-    {
-        $this->valeur = $valeur;
-    }
-
-    public function getQualiteResultat(): string
-    {
-        return $this->qualiteResultat;
-    }
-
-    public function getIdEchantillon(): int
-    {
-        return $this->idEchantillon;
-    }
-
-    public function formatTableau(): array{
-    return [
-        "id_resultat"=> $this->getIdResultat(),
-        "service_analyste" => $this->getServiceAnalyste(),
-        "libelle_parametre" => $this->getLibelleParametre(),
-        "unite_symbole" => $this->getUniteSymbole(),
-        "unite_libelle" => $this->getUniteLibelle(),
-        "valeur" => $this->getValeur(),
-        "qualite_resultat" => $this->getQualiteResultat(),
-        "id_echantillon" => $this->getIdEchantillon(),
-    ];}
-
 }

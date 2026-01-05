@@ -6,10 +6,10 @@ class Echantillon extends AbstractDataObject{
     private string $qualiteEchantillon;
     private Prelevement $prelevement;
 
-    public function __construct(int $idEchantillon, string $qualiteEchantillon, Prelevement $Prelevement) {
+    public function __construct(int $idEchantillon, string $qualiteEchantillon, Prelevement $prelevement) {
         $this->idEchantillon = $idEchantillon;
         $this->qualiteEchantillon = $qualiteEchantillon;
-        $this->Prelevement = $prelevement;
+        $this->prelevement = $prelevement;
     }
 
     #------------Getter---------------
