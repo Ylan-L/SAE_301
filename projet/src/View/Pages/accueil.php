@@ -14,8 +14,10 @@
         <h2>L'impact du réchauffement climatique </h2>
         
         <p>
-             <a href="http://koor.fr">KooR.fr</a>.
+        Le réchauffement climatique est l’augmentation de la température de la Terre due aux gaz à effet de serre produits par les activités humaines. Il provoque la fonte des glaces, la disparition d’espèces et la sécheresse dans certaines régions. À l’avenir, il pourrait entraîner des inondations, de fortes vagues de chaleur et un manque d’eau. Comprendre ces effets est important pour mieux agir.
         </p>
+        
+        <p>Grâce aux différentes vidéos, vous pourrez comprendre ses impacts sur la salinité, la biomasse du phytoplancton et la température.</p>
 
        <!--Test pour les vidéos -->
         <div class="videos">
