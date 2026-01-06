@@ -9,7 +9,7 @@
         <header>
             <nav>
                 <ul><!-- exemple d'utilisation à modifier -->
-                    <li><a href="/SAE301/web/frontController.php?action=readAll">Accueil voitures</a></li>
+                    <a href="frontController.php?action=accueil">Accueil</a>
                     <li><a href="chemin">nom du truc</a></li>
                     <li><a href="chemin">nom du truc</a></li>
                 </ul>
