@@ -35,6 +35,8 @@ class UtilisateurRepository extends AbstractRepository{
        return ["id_utilisateur","username","email","password_hash","role","date_creation"];
     }
 
+    
+
 
 
 
