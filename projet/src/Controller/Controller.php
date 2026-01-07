@@ -127,7 +127,7 @@ class Controller {
         session_destroy();
         session_start();
         $_SESSION['message_flash'] = "Vous avez été déconnecté.";
-        header("Location: FrontController.php?action=accueil");
+        header("Location: frontController.php?action=accueil");
         exit();
     }
     
@@ -201,7 +201,7 @@ class Controller {
     }
 
     $_SESSION['message_flash'] = $okMsg;
-    header("Location: FrontController.php?action=forgot_password");
+    header("Location: frontController.php?action=forgot_password");
     exit();
 }
 
@@ -219,39 +219,39 @@ class Controller {
 
         if (!filter_var($email, FILTER_VALIDATE_EMAIL) || empty($token)) {
             $_SESSION['message_erreur'] = "Lien invalide.";
-            header("Location: FrontController.php?action=forgot_password");
+            header("Location: frontController.php?action=forgot_password");
             exit();
         }
 
         if ($password !== $password_confirm || strlen($password) < 8) {
             $_SESSION['message_erreur'] = "Mot de passe invalide (min 8 caractères) ou confirmation différente.";
-            header("Location: FrontController.php?action=reset_password&email=" . urlencode($email) . "&token=" . urlencode($token));
+            header("Location: frontController.php?action=reset_password&email=" . urlencode($email) . "&token=" . urlencode($token));
             exit();
         }
 
         $user = UtilisateurRepository::getByEmail($email);
         if (!$user) {
             $_SESSION['message_erreur'] = "Lien invalide.";
-            header("Location: FrontController.php?action=forgot_password");
+            header("Location: frontController.php?action=forgot_password");
             exit();
         }
 
         $reset = UtilisateurRepository::getDernierResetValide((int)$user['id_utilisateur']);
         if (!$reset) {
             $_SESSION['message_erreur'] = "Lien expiré ou déjà utilisé.";
-            header("Location: FrontController.php?action=forgot_password");
+            header("Location: frontController.php?action=forgot_password");
             exit();
         }
 
         if (new DateTime() > new DateTime($reset['expires_at'])) {
             $_SESSION['message_erreur'] = "Lien expiré.";
-            header("Location: FrontController.php?action=forgot_password");
+            header("Location: frontController.php?action=forgot_password");
             exit();
         }
 
         if (!password_verify($token, $reset['token_hash'])) {
             $_SESSION['message_erreur'] = "Lien invalide.";
-            header("Location: FrontController.php?action=forgot_password");
+            header("Location: frontController.php?action=forgot_password");
             exit();
         }
 
@@ -263,7 +263,7 @@ class Controller {
         UtilisateurRepository::marquerResetUtilise((int)$reset['id']);
 
         $_SESSION['message_flash'] = "Mot de passe modifié. Vous pouvez vous connecter.";
-        header("Location: FrontController.php?action=connexion");
+        header("Location: frontController.php?action=connexion");
         exit();
     }
 
