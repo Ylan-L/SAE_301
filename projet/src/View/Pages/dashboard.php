@@ -37,12 +37,12 @@
             </a>
 
             <?php if (isset($_SESSION['user_role']) && $_SESSION['user_role'] === 'admin'): ?>
-                <a href="FrontController.php?action=admin_users" class="button btn-admin">
+                <a href="frontController.php?action=admin_users" class="button btn-admin">
                     <i class="fas fa-users-cog"></i> Administration
                 </a>
             <?php endif; ?>
 
-            <a href="FrontController.php?action=deconnexion" class="button btn-danger">
+            <a href="frontController.php?action=deconnexion" class="button btn-danger">
                 <i class="fas fa-sign-out-alt"></i> Déconnexion
             </a>
         </div>

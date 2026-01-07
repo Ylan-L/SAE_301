@@ -4,7 +4,7 @@
         <p class="subtitle">Rejoignez.</p>
     </div>
 
-    <form action="FrontController.php?action=validerInscription" method="POST" id="form">
+    <form action="frontController.php?action=validerInscription" method="POST" id="form">
         <div id="error"></div>
 
         <div class="form-group">
@@ -46,6 +46,6 @@
     </form>
 
     <div class="auth-footer-simple">
-        <p>Déjà inscrit ? <a href="FrontController.php?action=connexion">Se connecter ici</a></p>
+        <p>Déjà inscrit ? <a href="frontController.php?action=connexion">Se connecter ici</a></p>
     </div>
 </div>

@@ -3,7 +3,7 @@
         <h2>Paramètres du Profil</h2>
         <p>Gérez vos informations personnelles et la sécurité de votre compte.</p>
 
-        <form action="FrontController.php?action=modifierProfil" method="POST">
+        <form action="frontController.php?action=modifierProfil" method="POST">
             
             <div>
                 <label for="username">Nom d'utilisateur</label>
@@ -37,7 +37,7 @@
                 <button type="submit">
                     Enregistrer les modifications
                 </button>
-                <a href="FrontController.php?action=dashboard">
+                <a href="frontController.php?action=dashboard">
                     Annuler
                 </a>
             </div>

@@ -5,11 +5,11 @@
         
         <div class="action-area">
             <?php if(!isset($_SESSION['user_id'])): ?>
-                <a href="FrontController.php?action=inscription" class="btn-main">
+                <a href="frontController.php?action=inscription" class="btn-main">
                     Démarrer l'expérience
                 </a>
             <?php else: ?>
-                <a href="FrontController.php?action=dashboard" class="btn-main">
+                <a href="frontController.php?action=dashboard" class="btn-main">
                     Aller au Tableau de Bord
                 </a>
             <?php endif; ?>

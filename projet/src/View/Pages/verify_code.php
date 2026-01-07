@@ -2,7 +2,7 @@
     <h2>Vérification du code</h2>
     <p>Un code de validation vous a été envoyé par e-mail. Veuillez le saisir ci-dessous avec votre nouveau mot de passe.</p>
 
-    <form action="FrontController.php?action=validerReset" method="POST">
+    <form action="frontController.php?action=validerReset" method="POST">
         
         <div>
             <label for="code">Code de récupération (6 chiffres) :</label>
@@ -33,7 +33,7 @@
     <hr>
 
     <div>
-        <p>Code non reçu ? <a href="FrontController.php?action=forgot_password">Renvoyer une demande</a></p>
-        <p><a href="FrontController.php?action=connexion">Annuler et revenir à la connexion</a></p>
+        <p>Code non reçu ? <a href="frontController.php?action=forgot_password">Renvoyer une demande</a></p>
+        <p><a href="frontController.php?action=connexion">Annuler et revenir à la connexion</a></p>
     </div>
 </div>

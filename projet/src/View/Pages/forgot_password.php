@@ -6,7 +6,7 @@
         de réinitialiser votre mot de passe.
     </p>
 
-    <form method="POST" action="/sae3_auth/web/FrontController.php?action=send_reset_link">
+    <form method="POST" action="frontController.php?action=send_reset_link">
         <div>
             <label for="email">Votre adresse email :</label>
             <input type="email" 
@@ -31,7 +31,7 @@
 
     <div>
         <p>
-            <a href="FrontController.php?action=connexion">
+            <a href="frontController.php?action=connexion">
                 Retour à la connexion
             </a>
         </p>

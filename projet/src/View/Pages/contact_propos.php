@@ -5,8 +5,7 @@
     </div>
 
     <div>
-        <form action="/sae3_auth/web/FrontController.php?action=envoyerContact" method="POST"> 
-            <div>
+        <form action="frontController.php?action=envoyerContact" method="POST">
                 <label for="nom">Nom complet :</label>
                 <input type="text" name="nom" id="nom" placeholder="Ex: Camille Martin" required>
             </div>

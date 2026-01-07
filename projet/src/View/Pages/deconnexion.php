@@ -3,11 +3,11 @@
     <p>Voulez-vous vraiment quitter votre session ?</p>
 
     <div>
-        <button onclick="window.location.href='FrontController.php?action=deconnexion'">
+        <button onclick="window.location.href='frontController.php?action=deconnexion'">
             Oui, me déconnecter
         </button>
         
-        <a href="FrontController.php?action=dashboard">
+        <a href="frontController.php?action=dashboard">
             Non, rester
         </a>
     </div>

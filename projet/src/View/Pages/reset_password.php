@@ -4,7 +4,7 @@
     <p class="subtitle">Choisissez un nouveau mot de passe.</p>
   </div>
 
-  <form action="/sae3_auth/web/FrontController.php?action=update_password" method="POST" id="form">
+  <form action="frontController.php?action=update_password" method="POST">
     <div id="error"></div>
 
     <input type="hidden" name="email" value="<?= htmlspecialchars($_GET['email'] ?? '', ENT_QUOTES, 'UTF-8') ?>">
@@ -24,6 +24,7 @@
   </form>
 
   <div class="auth-footer-simple">
-    <p>Retour : <a href="/sae3_auth/web/FrontController.php?action=connexion">Connexion</a></p>
+    <p>Retour :<a href="frontController.php?action=connexion">Connexion</a>
+</p>
   </div>
 </div>
