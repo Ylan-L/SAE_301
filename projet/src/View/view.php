@@ -17,7 +17,12 @@
         </header>
     <main>
         <?php
-        require __DIR__ . "/{$cheminVueBody}";
+            $pagePath = __DIR__ . '/Pages/' . $view . '.php';
+
+            if (!file_exists($pagePath)) {
+                die("Vue introuvable : " . htmlspecialchars($pagePath));
+            }
+            require $pagePath;
         ?>
     </main>
     <footer>
