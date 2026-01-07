@@ -246,25 +246,37 @@ td {
 
 tr:last-child td { border-bottom: none; }
 
+/* ACCUEIL : texte à gauche, vidéos à droite */
 .accueil-layout{
-  display: flex;
-  gap: 30px;
+  display: flex !important;
+  justify-content: space-between;
   align-items: flex-start;
+  gap: 30px;
 }
 
 .accueil-texte{
-  flex: 1;
+  flex: 1 1 auto;
+  min-width: 0;
 }
 
-.videos{
-  width: 360px;
-  display: flex;
-  flex-direction: column;
+.accueil-layout .videos{
+  flex: 0 0 360px;     
+  display: flex !important;
+  flex-direction: column !important;
   gap: 15px;
 }
 
-.videos iframe{
+
+.accueil-layout .videos iframe{
   width: 100%;
   aspect-ratio: 16 / 9;
-  border: none;
+  border: 0;
+  border-radius: 8px;
 }
+
+
+@media (max-width: 900px){
+  .accueil-layout{ flex-direction: column !important; }
+  .accueil-layout .videos{ flex-basis: auto; width: 100%; }
+}
+
