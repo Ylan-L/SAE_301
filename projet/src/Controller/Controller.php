@@ -2,7 +2,7 @@
 session_start();
 
 // Autoload Composer (PHPMailer)
-require_once __DIR__ . '/../../vendor/autoload.php';
+//require_once __DIR__ . '/../../vendor/autoload.php';
 
 // Chargement des classes du projet
 require_once __DIR__ . '/../Model/Repository/DatabaseConnection.php';
