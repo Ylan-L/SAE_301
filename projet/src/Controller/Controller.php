@@ -5,6 +5,8 @@
 
 // Chargement des classes du projet
 require_once __DIR__ . '/../Model/Repository/DatabaseConnection.php';
+require_once __DIR__ . '/../Model/DataObject/AbstractDataObject.php';
+require_once __DIR__ . '/../Model/DataObject/Utilisateur.php';
 require_once __DIR__ . '/../Model/Repository/AbstractRepository.php';
 require_once __DIR__ . '/../Model/Repository/UtilisateurRepository.php';
 require_once __DIR__ . '/../Config/Conf.php';
@@ -27,7 +29,7 @@ class Controller {
     public static function connexion() { $view = 'connexion'; $pagetitle = 'Connexion'; require_once __DIR__ . '/../View/view.php'; }
     public static function inscription() { $view = 'inscription'; $pagetitle = 'Inscription'; require_once __DIR__ . '/../View/view.php'; }
     public static function contact_propos() { $view = 'contact_propos'; $pagetitle = 'À Propos & Contact'; require_once __DIR__ . '/../View/view.php'; }
-
+    public static function quizz() { $view = 'quizz'; $pagetitle = 'Quizz'; require_once __DIR__ . '/../View/view.php'; }
     public static function dashboard() {
         if (!isset($_SESSION['user_id'])) { header("Location: FrontController.php?action=connexion"); exit(); }
         $view = 'dashboard'; $pagetitle = 'Tableau de Bord'; require_once __DIR__ . '/../View/view.php';

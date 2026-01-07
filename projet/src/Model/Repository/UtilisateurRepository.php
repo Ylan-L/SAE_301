@@ -2,6 +2,7 @@
 namespace App\Covoiturage\Model\Repository;
 use App\Covoiturage\Model\Repository\DatabaseConnection ;
 use App\Covoiturage\Model\DataObject\Utilisateur ;
+use App\Covoiturage\Model\DataObject\AbstractDataObject;
 
 use PDO;
 use PDOException;
@@ -11,7 +12,7 @@ use PDOException;
 class UtilisateurRepository extends AbstractRepository{
 
     
-     public function construire(array $utilisateurFormatTableau) : Utilisateur {
+    public function construire(array $utilisateurFormatTableau): AbstractDataObject {
             $user_id = $utilisateurFormatTableau["id_utilisateur"];
             $username = $utilisateurFormatTableau["username"];
             $email = $utilisateurFormatTableau["email"] ;
