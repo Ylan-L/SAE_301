@@ -4,7 +4,7 @@
             <h2>Gestion des Utilisateurs</h2>
             <p>Interface de modération sécurisée pour les administrateurs.</p>
         </div>
-        <a href="FrontController.php?action=dashboard">
+        <a href="frontController.php?action=dashboard">
             Retour au Dashboard
         </a>
     </header>
@@ -44,7 +44,7 @@
                             <?php 
                             $current_user_id = $_SESSION['user_id'] ?? null;
                             if ($u['id_utilisateur'] != $current_user_id): ?>
-                                <a href="FrontController.php?action=supprimerUser&id=<?= $u['id_utilisateur'] ?>" 
+                                <a href="frontController.php?action=supprimerUser&id=<?= $u['id_utilisateur'] ?>" 
                                    onclick="return confirm('Confirmer la suppression de <?= addslashes(htmlspecialchars($u['username'])) ?> ?')">
                                     Supprimer
                                 </a>

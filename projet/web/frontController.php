@@ -2,8 +2,12 @@
 session_start();
 
 $ds = DIRECTORY_SEPARATOR;
-$root = __DIR__ . $ds . '..';
+$root = realpath(__DIR__ . $ds . '..') ?: (__DIR__ . $ds . '..');
 
+// Composer (PHPMailer, etc.)
+require_once $root . $ds . 'vendor' . $ds . 'autoload.php';
+
+// Projet
 require_once $root . $ds . 'src' . $ds . 'Model' . $ds . 'Repository' . $ds . 'DatabaseConnection.php';
 require_once $root . $ds . 'src' . $ds . 'Controller' . $ds . 'Controller.php';
 
@@ -14,3 +18,5 @@ if (method_exists('Controller', $action)) {
 } else {
     Controller::accueil();
 }
+
+?>
