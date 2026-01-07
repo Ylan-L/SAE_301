@@ -3,15 +3,21 @@
     <head>
         <meta charset="UTF-8">
         <title><?php echo $pagetitle; ?></title>
-        <link rel="nom du fichier css" href="chemin du fichier css">
+        <link rel="stylesheet" href="../assets/css/style.css">
+
     </head>
     <body>
         <header>
             <nav>
                 <ul><!-- exemple d'utilisation à modifier -->
-                    <a href="frontController.php?action=accueil">Accueil</a>
-                    <li><a href="chemin">nom du truc</a></li>
-                    <li><a href="chemin">nom du truc</a></li>
+                  <nav>
+                    <li><a href="frontController.php?action=accueil">Accueil</a></li>
+                    <li><a href="frontController.php?action=connexion">Connexion</a></li>
+                    <li><a href="frontController.php?action=inscription">Inscription</a></li>
+                    <li><a href="frontController.php?action=contact_propos">Contact</a></li>
+                
+                </nav>
+
                 </ul>
             </nav>
         </header>
