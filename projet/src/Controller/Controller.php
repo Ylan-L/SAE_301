@@ -31,12 +31,12 @@ class Controller {
     public static function contact_propos() { $view = 'contact_propos'; $pagetitle = 'À Propos & Contact'; require_once __DIR__ . '/../View/view.php'; }
     public static function quizz() { $view = 'quizz'; $pagetitle = 'Quizz'; require_once __DIR__ . '/../View/view.php'; }
     public static function dashboard() {
-        if (!isset($_SESSION['user_id'])) { header("Location: FrontController.php?action=connexion"); exit(); }
+        if (!isset($_SESSION['user_id'])) { header("Location: frontController.php?action=connexion"); exit(); }
         $view = 'dashboard'; $pagetitle = 'Tableau de Bord'; require_once __DIR__ . '/../View/view.php';
     }
 
     public static function profil() {
-        if (!isset($_SESSION['user_id'])) { header("Location: FrontController.php?action=connexion"); exit(); }
+        if (!isset($_SESSION['user_id'])) { header("Location: frontController.php?action=connexion"); exit(); }
         $view = 'profil'; $pagetitle = 'Mon Profil'; require_once __DIR__ . '/../View/view.php';
     }
 
@@ -53,7 +53,7 @@ class Controller {
             $hash = password_hash($password, PASSWORD_BCRYPT);
             if (UtilisateurRepository::inscrire($username, $email, $hash)) {
                 $_SESSION['message_flash'] = "Compte créé avec succès ! Connectez-vous.";
-                header("Location: FrontController.php?action=connexion");
+                header("Location: frontController.php?action=connexion");
                 exit();
             } else {
                 $message_erreur = "Erreur : cet email est déjà utilisé.";
