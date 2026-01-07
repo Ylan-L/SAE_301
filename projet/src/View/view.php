@@ -14,6 +14,7 @@
                     <li><a href="frontController.php?action=accueil">Accueil</a></li>
                     <li><a href="frontController.php?action=connexion">Connexion</a></li>
                     <li><a href="frontController.php?action=inscription">Inscription</a></li>
+                    <li><a href="frontController.php?action=quizz">Quizz</a></li>
                     <li><a href="frontController.php?action=contact_propos">Contact</a></li>
                 
                 </nav>
