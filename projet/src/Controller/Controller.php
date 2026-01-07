@@ -1,13 +1,14 @@
 <?php
-session_start();
 
 // Autoload Composer (PHPMailer)
 //require_once __DIR__ . '/../../vendor/autoload.php';
 
 // Chargement des classes du projet
 require_once __DIR__ . '/../Model/Repository/DatabaseConnection.php';
+require_once __DIR__ . '/../Model/Repository/AbstractRepository.php';
 require_once __DIR__ . '/../Model/Repository/UtilisateurRepository.php';
 require_once __DIR__ . '/../Config/Conf.php';
+
 
 
 use App\Covoiturage\Model\Repository\UtilisateurRepository;
