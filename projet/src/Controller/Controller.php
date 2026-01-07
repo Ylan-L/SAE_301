@@ -107,7 +107,7 @@ class Controller {
                 UtilisateurRepository::enregistrerLog($user['id_utilisateur'], $email, $ip, true);
             } catch (Exception $e) { }
 
-            header("Location: FrontController.php?action=dashboard");
+            header("Location: frontController.php?action=dashboard");
             exit();
         } else {
             try {
