@@ -4,6 +4,7 @@
         <p>Heureux de vous revoir ! Connectez-vous pour accéder à votre espace.</p>
     </div>
     
+    
     <form action="frontController.php?action=validerConnexion" method="POST" class="auth-form">
         <div class="form-group">
             <label for="email">Adresse Email</label>
