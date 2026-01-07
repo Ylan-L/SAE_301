@@ -168,9 +168,9 @@ class Controller {
             $expires_at
         );
 
-        $resetLink = "http://localhost/sae3_auth/web/FrontController.php?action=reset_password"
-            . "&email=" . urlencode($email)
-            . "&token=" . urlencode($token);
+        $resetLink = "http://localhost/SAE_301/projet/web/frontController.php?action=reset_password"
+        . "&email=" . urlencode($email)
+        . "&token=" . urlencode($token);
 
         $mail = new PHPMailer(true);
         try {
