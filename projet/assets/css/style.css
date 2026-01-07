@@ -245,3 +245,26 @@ td {
 }
 
 tr:last-child td { border-bottom: none; }
+
+.accueil-layout{
+  display: flex;
+  gap: 30px;
+  align-items: flex-start;
+}
+
+.accueil-texte{
+  flex: 1;
+}
+
+.videos{
+  width: 360px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.videos iframe{
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  border: none;
+}

@@ -33,7 +33,7 @@
         ?>
     </main>
     <footer>
-        <p>Site de moi, je suis trop fort, et vive Gizzini et Delechel</p>
+        <p>Site du Groupe 3 pour la SAE 3_01</p>
     </footer>
     </body>
 </html>
