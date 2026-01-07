@@ -18,7 +18,7 @@
         <div class="form-group">
             <div style="display: flex; justify-content: space-between; align-items: center;">
                 <label for="password">Mot de passe</label>
-                <a href="/sae3_auth/web/frontController.php?action=forgot_password">Oublié ?</a>
+                <a href="frontController.php?action=forgot_password">Oublié ?</a>
 
 
             </div>
