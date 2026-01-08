@@ -14,10 +14,11 @@
                     <li><a href="frontController.php?action=accueil">Accueil</a></li>
                     <li><a href="frontController.php?action=connexion">Connexion</a></li>
                     <li><a href="frontController.php?action=inscription">Inscription</a></li>
+                    <!-- Ajout de sections quand l'utilisateur est connecté-->
                     <?php if (!empty($_SESSION['user_id'])): ?>
                         <li><a href="frontController.php?action=deconnexion">Quitter</a></li>
+                        <li><a href="frontController.php?action=quizz">Quizz</a></li>
                     <?php endif; ?>
-                    <li><a href="frontController.php?action=quizz">Quizz</a></li>
                     <li><a href="frontController.php?action=graphique">Graphiques</a></li>
                     <!-- Ajout de sections quand l'utilisateur est connecté-->
                     <?php if (!empty($_SESSION['user_id'])): ?>
