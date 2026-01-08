@@ -7,6 +7,7 @@
 
     </head>
     <body>
+<<<<<<< HEAD
        <header>
     <nav>
         <ul>
@@ -18,6 +19,32 @@
         </ul>
     </nav>
 </header>
+=======
+        <header>
+            <nav>
+                <ul>
+                  <nav>
+                    <li><a href="frontController.php?action=accueil">Accueil</a></li>
+                    <li><a href="frontController.php?action=connexion">Connexion</a></li>
+                    <li><a href="frontController.php?action=inscription">Inscription</a></li>
+                    <?php if (!empty($_SESSION['user_id'])): ?>
+                        <li><a href="frontController.php?action=deconnexion">Quitter</a></li>
+                    <?php endif; ?>
+                    <li><a href="frontController.php?action=quizz">Quizz</a></li>
+                    <li><a href="frontController.php?action=graphique">Graphiques</a></li>
+                    <!-- Ajout de sections quand l'utilisateur est connecté-->
+                    <?php if (!empty($_SESSION['user_id'])): ?>
+                        <li><a href="frontController.php?action=dashboard">Dashboard</a></li>
+                        <li><a href="frontController.php?action=profil">Mon Profil</a></li>
+                    <?php endif; ?>
+                    <li><a href="frontController.php?action=contact_propos">Contact</a></li>
+                
+                </nav>
+
+                </ul>
+            </nav>
+        </header>
+>>>>>>> ea19ecd9c10bb459b8745d5f577a81f38e8877ce
     <main>
         <?php
             $pagePath = __DIR__ . '/Pages/' . $view . '.php';

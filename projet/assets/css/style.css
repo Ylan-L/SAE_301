@@ -104,6 +104,7 @@ h1 {
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
+
 /* Header de l'admin */
 .admin-header {
     display: flex;
@@ -1552,4 +1553,330 @@ footer p {
     nav li {
         margin: 10px 0;
     }
+}
+/* --- Style de la Page Contact --- */
+
+.contact-container {
+    max-width: 600px;
+    margin: 40px auto;
+    background: #ffffff;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.05);
+}
+
+.contact-header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.contact-header h2 {
+    color: #0077b6;
+    font-size: 2rem;
+    margin-bottom: 10px;
+}
+
+.contact-header p {
+    color: #64748b;
+    font-size: 1rem;
+}
+
+/* Groupes de champs */
+.form-group {
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+.form-group label {
+    font-weight: 600;
+    margin-bottom: 8px;
+    color: #1e293b;
+    font-size: 0.95rem;
+}
+
+.form-group input, 
+.form-group textarea {
+    padding: 12px 15px;
+    border: 1.5px solid #d1d9e0;
+    border-radius: 8px;
+    font-family: inherit;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+}
+
+.form-group textarea {
+    resize: vertical; /* Permet d'agrandir en hauteur mais pas en largeur */
+}
+
+/* État au clic (focus) */
+.form-group input:focus, 
+.form-group textarea:focus {
+    outline: none;
+    border-color: #00b4d8;
+    box-shadow: 0 0 0 3px rgba(0, 180, 216, 0.1);
+}
+
+/* Bouton d'envoi */
+.btn-contact {
+    width: 100%;
+    background-color: #0077b6;
+    color: white;
+    padding: 15px;
+    border: none;
+    border-radius: 8px;
+    font-size: 1.1rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background 0.3s ease;
+    margin-top: 10px;
+}
+
+.btn-contact:hover {
+    background-color: #023e8a;
+}
+
+/* Petit texte de bas de page */
+.test-footer {
+    text-align: center;
+    margin-top: 25px;
+    color: #94a3b8;
+    font-size: 0.85rem;
+    font-style: italic;
+}
+
+
+/* ==========================================================================
+   1. VARIABLES & RESET
+   ========================================================================== */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700&family=Inter:wght@400;500;600&display=swap');
+
+:root {
+    --primary: #0077b6;
+    --primary-light: #00b4d8;
+    --primary-dark: #023e8a;
+    --secondary: #f59e0b;
+    --danger: #ef4444;
+    --success: #22c55e;
+    --bg-body: #f8fafc;
+    --text-main: #1e293b;
+    --text-light: #64748b;
+    --white: #ffffff;
+    --shadow-sm: 0 1px 3px rgba(0,0,0,0.1);
+    --shadow-md: 0 10px 25px -5px rgba(0,0,0,0.05), 0 8px 10px -6px rgba(0,0,0,0.05);
+    --radius: 12px;
+    --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+* { box-sizing: border-box; }
+
+body {
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    background-color: var(--bg-body);
+    color: var(--text-main);
+    margin: 0;
+    line-height: 1.6;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+h1, h2, h3 {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+}
+
+/* ==========================================================================
+   2. LAYOUT & NAVIGATION
+   ========================================================================== */
+header {
+    background: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(0,0,0,0.05);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    height: 70px;
+}
+
+nav li { display: flex; align-items: center; margin: 0 12px; }
+
+nav a {
+    text-decoration: none;
+    color: var(--text-main);
+    font-weight: 600;
+    font-size: 0.95rem;
+    padding: 8px 12px;
+    border-radius: 8px;
+    transition: var(--transition);
+}
+
+nav a:hover {
+    color: var(--primary);
+    background: rgba(0, 119, 182, 0.05);
+}
+
+main {
+    flex: 1;
+    padding: 40px 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+    width: 100%;
+}
+
+/* ==========================================================================
+   3. COMPOSANTS RÉUTILISABLES (BOUTONS, CARDS, INPUTS)
+   ========================================================================== */
+
+/* Containers Blancs Universels */
+.container-blanc, .auth-container, .contact-container, .dashboard-card, .profile-container, .admin-container {
+    background: var(--white);
+    border-radius: var(--radius);
+    padding: 40px;
+    box-shadow: var(--shadow-md);
+    border: 1px solid rgba(0,0,0,0.03);
+    margin-bottom: 30px;
+}
+
+/* Inputs Modernes */
+input[type="text"], input[type="email"], input[type="password"], textarea {
+    width: 100%;
+    padding: 12px 16px;
+    border: 1.5px solid #e2e8f0;
+    border-radius: 8px;
+    font-size: 1rem;
+    transition: var(--transition);
+    background: #fcfcfd;
+}
+
+input:focus, textarea:focus {
+    outline: none;
+    border-color: var(--primary-light);
+    box-shadow: 0 0 0 4px rgba(0, 180, 216, 0.1);
+    background: var(--white);
+}
+
+/* Bouton Premium */
+.btn-main, .btn-submit, .btn-send, .btn-verify, .btn-save {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--primary);
+    color: var(--white);
+    padding: 14px 28px;
+    border: none;
+    border-radius: 8px;
+    font-weight: 700;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: var(--transition);
+    text-decoration: none;
+}
+
+.btn-main:hover {
+    background-color: var(--primary-dark);
+    transform: translateY(-2px);
+    box-shadow: 0 10px 15px -3px rgba(0, 119, 182, 0.25);
+}
+
+/* ==========================================================================
+   4. PAGES SPÉCIFIQUES
+   ========================================================================== */
+
+/* Accueil & Hero */
+.hero {
+    text-align: center;
+    padding: 60px 20px;
+    background: radial-gradient(circle at top right, #e1f5fe, var(--white));
+    border-radius: var(--radius);
+    margin-bottom: 40px;
+}
+
+.hero h1 { font-size: 3rem; color: var(--primary-dark); margin-bottom: 1rem; }
+
+/* Grid Features */
+.features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 25px;
+}
+
+.feature-card {
+    background: var(--white);
+    padding: 30px;
+    border-radius: var(--radius);
+    transition: var(--transition);
+    border-bottom: 4px solid transparent;
+}
+
+.feature-card:hover {
+    transform: translateY(-5px);
+    border-bottom-color: var(--primary-light);
+    box-shadow: var(--shadow-md);
+}
+
+/* Dashboard Info Boxes */
+.info-box {
+    background: #f1f5f9;
+    padding: 1.5rem;
+    border-radius: 10px;
+    border-left: 4px solid var(--primary);
+}
+
+/* Tableaux Admin */
+table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0 8px;
+}
+
+th { color: var(--text-light); text-transform: uppercase; font-size: 0.8rem; letter-spacing: 0.05em; padding: 15px; }
+
+td { background: #fafafa; padding: 15px; }
+
+tr:hover td { background: #f1f7ff; }
+
+footer {
+    background-color: var(--dark-blue); /* Ta variable de bleu foncé */
+    color: var(--white);
+    text-align: center;
+    padding: 30px 0;
+    margin-top: 40px;
+    
+    /* Propriétés pour toute la largeur */
+    width: 100%;
+    left: 0;
+    right: 0;
+    
+    /* Si le footer est coincé dans un container, ajoute ceci : */
+    margin-left: calc(-50vw + 50%);
+    margin-right: calc(-50vw + 50%);
+    width: vw;
+    position: relative;
+}
+
+/* ==========================================================================
+   5. FOOTER & RESPONSIVE
+   ========================================================================== */
+footer {
+    background: var(--primary-dark);
+    color: var(--white);
+    text-align: center;
+    padding: 40px 20px;
+    margin-top: auto;
+}
+
+@media (max-width: 768px) {
+    .hero h1 { font-size: 2rem; }
+    nav ul { flex-direction: column; height: auto; padding: 20px; }
+    main { padding: 20px 15px; }
+    .container-blanc { padding: 25px; }
 }
