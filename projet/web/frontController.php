@@ -8,14 +8,26 @@ $root = realpath(__DIR__ . $ds . '..' . $ds . '..') ?: (__DIR__ . $ds . '..' . $
 
 // Composer
 require_once $root . $ds . 'vendor' . $ds . 'autoload.php';
+// On charge le parent AbstractRepository
+require_once $root . $ds . 'projet' . $ds . 'src' . $ds . 'Model' . $ds . 'Repository' . $ds . 'AbstractRepository.php';
+// On charge ResultatRepository
+require_once $root . $ds . 'projet' . $ds . 'src' . $ds . 'Model' . $ds . 'Repository' . $ds . 'ResultatRepository.php';
 
 // Projet
 require_once $root . $ds . 'projet' . $ds . 'src' . $ds . 'Model' . $ds . 'Repository' . $ds . 'DatabaseConnection.php';
+
 require_once $root . $ds . 'projet' . $ds . 'src' . $ds . 'Controller' . $ds . 'Controller.php';
+require_once $root . $ds . 'projet' . $ds . 'src' . $ds . 'Controller' . $ds . 'ControllerGraphique.php';
+
+use App\Covoiturage\Controller\ControllerGraphique;
 
 $action = $_GET['action'] ?? 'accueil';
 
-if (method_exists('Controller', $action)) {
+if ($action === 'graphique') {
+    // Appel du nouveau contrôleur pour les graphiques
+    ControllerGraphique::afficher();
+} 
+elseif (method_exists('Controller', $action)) {
     Controller::$action();
 } else {
     Controller::accueil();

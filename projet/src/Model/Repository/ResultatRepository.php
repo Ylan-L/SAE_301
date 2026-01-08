@@ -53,4 +53,31 @@ class ResultatRepository extends AbstractRepository
             $echantillon
         );
     }
+
+    /* =================METHODE GRAPHIQUE ================= */
+    public function selectDonneesGraphique(string $libelleParametre, string $dateDebut, string $dateFin): array
+    {
+        // Jointure : Resultat -> Echantillon -> Prelevement -> Passage (Date) -> Lieu -> Zone
+        $sql = "SELECT p.date_passage as date, r.valeur, z.nom_zone
+                FROM resultat r
+                JOIN echantillon e ON r.id_echantillon = e.id_echantillon
+                JOIN prelevement pr ON e.id_prelevement = pr.id_prelevement
+                JOIN passage p ON pr.id_passage = p.id_passage
+                JOIN lieu_surveillance ls ON p.id_lieu = ls.id_lieu
+                JOIN zone z ON ls.id_zone = z.id_zone
+                WHERE r.libelle_parametre = :libelle
+                AND p.date_passage >= :dateDebut 
+                AND p.date_passage <= :dateFin
+                ORDER BY p.date_passage ASC";
+        
+        $pdo = DatabaseConnection::getPdo(); 
+        $pdoStatement = $pdo->prepare($sql);
+        $pdoStatement->execute([
+            'libelle' => $libelleParametre,
+            'dateDebut' => $dateDebut,
+            'dateFin' => $dateFin
+        ]);
+
+        return $pdoStatement->fetchAll();
+    }
 }
