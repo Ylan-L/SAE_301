@@ -9,7 +9,7 @@
         <form action="frontController.php?action=envoyerContact" method="POST" class="contact-form">
             <div class="form-group">
                 <label for="nom">Nom complet</label>
-                <input type="text" name="nom" id="nom" placeholder="Ex: Camille Martin" required>
+                <input type="text" name="nom" id="nom" placeholder="Ex: Johan Liebert" required>
             </div>
             
             <div class="form-group">
