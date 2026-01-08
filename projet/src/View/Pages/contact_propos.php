@@ -2,7 +2,7 @@
     <div class="contact-container">
         
         <header class="contact-header">
-            <h2>Contactez-nous</h2>
+            <h2><i class="fas fa-envelope-open-text"></i> Contactez-nous</h2>
             <p>Une question ou un projet ? Notre équipe vous répondra dans les plus brefs délais.</p>
         </header>
 
@@ -27,9 +27,29 @@
             </button>
         </form>
 
-        <footer class="test-footer">
-            <p>Page de contact</p>
-        </footer>
+        <div class="about-section">
+            <div class="separator"></div>
+            
+            <h3>À propos du projet</h3>
+            <p class="mission-text">
+                Ce site a été réalisé afin de <strong>sensibiliser les utilisateurs aux enjeux du réchauffement climatique dans l'océan</strong>. 
+                À travers nos outils et nos données, nous espérons informer sur l'urgence de la situation marine.
+            </p>
+
+            <div class="team-box">
+                <h4>L'équipe de développement</h4>
+                <ul class="team-list">
+                    <li>Mélanie Mohamed</li>
+                    <li>Ilyas Lahlou</li>
+                    <li>Leang Ylan</li>
+                    <li>Dabo Aïcha</li>
+                    <li>Thera Mariam</li>
+                    <li>Moussa Toimaya</li>
+                </ul>
+            </div>
+            
+            <p class="sae-mention">Projet développé dans le cadre de la <strong>SAE 301</strong></p>
+        </div>
 
     </div>
 </div>

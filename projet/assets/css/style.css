@@ -1450,3 +1450,63 @@ footer p {
         margin: 5px;
     }
 }
+
+
+/* --- SECTION À PROPOS DANS CONTACT --- */
+
+.about-section {
+    margin-top: 40px;
+    text-align: center;
+}
+
+.about-section h3 {
+    color: var(--primary-dark);
+    font-size: 1.5rem;
+    margin-bottom: 15px;
+}
+
+.mission-text {
+    color: var(--text-main);
+    font-size: 1rem;
+    line-height: 1.6;
+    margin-bottom: 30px;
+    padding: 0 10px;
+}
+
+.team-box {
+    background: #f0f9ff;
+    padding: 25px;
+    border-radius: var(--radius-md);
+    border: 1px dashed var(--primary-light);
+}
+
+.team-box h4 {
+    color: var(--primary);
+    margin-bottom: 15px;
+    text-transform: uppercase;
+    font-size: 0.85rem;
+    letter-spacing: 1px;
+}
+
+.team-list {
+    list-style: none;
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* Noms sur deux colonnes */
+    gap: 10px;
+    font-weight: 600;
+    color: var(--primary-dark);
+}
+
+.sae-mention {
+    margin-top: 25px;
+    font-size: 0.85rem;
+    color: var(--text-light);
+    font-style: italic;
+}
+
+/* Adaptabilité mobile pour la liste des noms */
+@media (max-width: 480px) {
+    .team-list {
+        grid-template-columns: 1fr;
+    }
+}
