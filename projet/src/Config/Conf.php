@@ -1,12 +1,11 @@
-<?php 
+<?php
 namespace App\Covoiturage\Config;
-
-class Conf { 
-    static private array $databases = array( 
-        // Le nom d'hote est localhost sur votre machine
-        'hostname' => 'localhost', 
-        // Sur votre machine, vous devrez creer une BDD 
+class Conf {
+    // Configuration de la base de données
+    private static $databases = array(
+        'hostname' => 'localhost',
         'database' => 'sae3_01', 
+<<<<<<< HEAD
         // Sur votre machine, vous avez surement un compte 'root'
         'login' => 'root',
         // CHANGEZ AVEC VOTRE MDP A VOUS 
@@ -25,12 +24,52 @@ static private array $configs = array();
         static public function getDatabase() : string { 
             return static::$databases['database']; 
             } 
+=======
+        'login'    => 'root',
+        'password' => 'julia' 
+    );
+>>>>>>> 77ae15043430bf22001b87dcda7d993417d65956
 
-        static public function getPassword() : string { 
-            return static::$databases['password']; 
-            }
+    // Ajout pour le mail
+    private static $mail = array(
+        'host' => 'smtp.gmail.com',
+        'port' => 587,
+        'username' => 'contactsae301@gmail.com',
+        'password' => 'xsdr rjrp mpjf xrtb',
+        'secure' => 'tls' // tls = STARTTLS
+    );
 
+<<<<<<< HEAD
     
             
 } 
+=======
+    // Paramètres de l'application
+    private static $debug = true; 
+
+    public static function getLogin() { 
+        return self::$databases['login']; 
+    }
+
+    public static function getHostname() { 
+        return self::$databases['hostname']; 
+    }
+
+    public static function getDatabase() { 
+        return self::$databases['database']; 
+    }
+
+    public static function getPassword() { 
+        return self::$databases['password']; 
+    }
+
+    public static function getDebug() {
+        return self::$debug;
+    }
+     public static function getMailHost() { return self::$mail['host']; }
+    public static function getMailPort() { return self::$mail['port']; }
+    public static function getMailUsername() { return self::$mail['username']; }
+    public static function getMailPassword() { return self::$mail['password']; }
+}
+>>>>>>> 77ae15043430bf22001b87dcda7d993417d65956
 ?>
