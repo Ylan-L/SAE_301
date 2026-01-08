@@ -1861,103 +1861,7 @@ footer {
     width: vw;
     position: relative;
 }
-/* Style général du conteneur */
-.contact-section {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    max-width: 600px;
-    margin: 40px auto;
-    padding: 20px;
-    color: #333;
-}
 
-/* En-tête */
-.contact-header {
-    text-align: center;
-    margin-bottom: 30px;
-}
-
-.contact-header h2 {
-    color: #2c3e50;
-    font-size: 2rem;
-    margin-bottom: 10px;
-}
-
-.contact-header p {
-    color: #7f8c8d;
-}
-
-/* Carte du formulaire */
-.contact-card {
-    background: #ffffff;
-    padding: 30px;
-    border-radius: 12px;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-}
-
-/* Espacement des champs */
-.form-group {
-    margin-bottom: 20px;
-}
-
-.form-group label {
-    display: block;
-    margin-bottom: 8px;
-    font-weight: 600;
-    font-size: 0.9rem;
-}
-
-/* Inputs et Textarea */
-input[type="text"],
-input[type="email"],
-textarea {
-    width: 100%;
-    padding: 12px 15px;
-    border: 2px solid #eaeeef;
-    border-radius: 8px;
-    font-size: 1rem;
-    transition: border-color 0.3s ease;
-    box-sizing: border-box; /* Important pour le padding */
-}
-
-input:focus,
-textarea:focus {
-    outline: none;
-    border-color: #3498db;
-}
-
-textarea {
-    resize: vertical; /* Permet de redimensionner seulement en hauteur */
-}
-
-/* Bouton Envoyer */
-.submit-btn {
-    width: 100%;
-    background-color: #3498db;
-    color: white;
-    padding: 14px;
-    border: none;
-    border-radius: 8px;
-    font-size: 1rem;
-    font-weight: bold;
-    cursor: pointer;
-    transition: background 0.3s ease, transform 0.1s ease;
-}
-
-.submit-btn:hover {
-    background-color: #2980b9;
-}
-
-.submit-btn:active {
-    transform: scale(0.98);
-}
-
-/* Petit texte de test en bas */
-.footer-test {
-    text-align: center;
-    margin-top: 20px;
-    font-size: 0.8rem;
-    color: #bdc3c7;
-}
 /* ==========================================================================
    5. FOOTER & RESPONSIVE
    ========================================================================== */
@@ -1974,4 +1878,79 @@ footer {
     nav ul { flex-direction: column; height: auto; padding: 20px; }
     main { padding: 20px 15px; }
     .container-blanc { padding: 25px; }
+}
+
+/*contact propos*/
+/* --- Style de la Page Contact (Harmonisé) --- */
+
+/* On utilise le padding interne pour que le formulaire ne colle pas aux bords du container-blanc */
+.contact-card {
+    padding: 0 40px 40px 40px;
+    max-width: 700px;
+    margin: 0 auto;
+}
+
+/* On réutilise tes styles de form-group existants */
+.form-group {
+    margin-bottom: 25px;
+}
+
+.form-group label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 8px;
+    color: #1e293b; /* Ton --text-main */
+}
+
+/* Inputs et Textarea avec ton style d'auth/profil */
+.contact-form input, 
+.contact-form textarea {
+    width: 100%;
+    padding: 12px 15px;
+    border: 1.5px solid #d1d9e0;
+    border-radius: 8px;
+    font-family: inherit;
+    font-size: 1rem;
+    box-sizing: border-box;
+    transition: all 0.3s ease;
+}
+
+.contact-form input:focus, 
+.contact-form textarea:focus {
+    outline: none;
+    border-color: #00b4d8; /* Ton --secondary-color */
+    box-shadow: 0 0 0 3px rgba(0, 180, 216, 0.1);
+}
+
+/* Redimensionnement propre du message */
+.contact-form textarea {
+    resize: vertical;
+    min-height: 120px;
+}
+
+/* Bouton : on utilise déjà ta classe .btn-main, 
+   on s'assure juste qu'il prend toute la largeur ici */
+.contact-form .btn-main {
+    width: 100%;
+    border: none;
+    cursor: pointer;
+    display: block;
+}
+
+/* Footer de la page de test */
+.test-footer {
+    text-align: center;
+    padding: 20px;
+    background: #f8fafc;
+    color: #94a3b8;
+    font-size: 0.85rem;
+    font-style: italic;
+    border-top: 1px solid #edf2f7;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+    .contact-card {
+        padding: 20px;
+    }
 }

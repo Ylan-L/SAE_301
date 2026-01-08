@@ -1,6 +1,4 @@
-<div class="contact-section">
-    <div class="contact-header">
-        <h2>Contactez-nous</h2>
+<div class="container-blanc"> <div class="contact-header hero"> <h2>Contactez-nous</h2>
         <p>Une question ou un projet ? Notre équipe vous répondra dans les plus brefs délais.</p>
     </div>
 
@@ -21,13 +19,12 @@
                 <textarea name="message" id="message" placeholder="Comment pouvons-nous vous aider ?" rows="6" required></textarea>
             </div>
             
-            <button type="submit" class="submit-btn">
-                Envoyer le message
+            <button type="submit" class="btn-main"> Envoyer le message
             </button>
         </form>
     </div>
 
-    <div class="footer-test">
+    <div class="test-footer">
         <p>page test</p>
     </div>
 </div>
