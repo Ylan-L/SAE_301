@@ -7,19 +7,6 @@
 
     </head>
     <body>
-<<<<<<< HEAD
-       <header>
-    <nav>
-        <ul>
-            <li><a href="frontController.php?action=accueil">Accueil</a></li>
-            <li><a href="frontController.php?action=connexion">Connexion</a></li>
-            <li><a href="frontController.php?action=inscription">Inscription</a></li>
-            <li><a href="frontController.php?action=quizz">Quizz</a></li>
-            <li><a href="frontController.php?action=contact_propos">Contact</a></li>
-        </ul>
-    </nav>
-</header>
-=======
         <header>
             <nav>
                 <ul>
@@ -45,7 +32,6 @@
                 </ul>
             </nav>
         </header>
->>>>>>> ea19ecd9c10bb459b8745d5f577a81f38e8877ce
     <main>
         <?php
             $pagePath = __DIR__ . '/Pages/' . $view . '.php';
