@@ -58,7 +58,8 @@ class ResultatRepository extends AbstractRepository
     public function selectDonneesGraphique(string $libelleParametre, string $dateDebut, string $dateFin): array
     {
         // Jointure : Resultat -> Echantillon -> Prelevement -> Passage (Date) -> Lieu -> Zone
-        $sql = "SELECT p.date_passage as date, r.valeur, z.nom_zone
+        $sql = "SELECT p.id_passage, p.date_passage as date, r.valeur, z.nom_zone,
+                       p.minx, p.maxx, p.miny, p.maxy, ls.libelle_lieu
                 FROM resultat r
                 JOIN echantillon e ON r.id_echantillon = e.id_echantillon
                 JOIN prelevement pr ON e.id_prelevement = pr.id_prelevement

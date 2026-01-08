@@ -41,6 +41,7 @@ class ControllerGraphique
         // 4. Tri des données
         $dataAtl = [];
         $dataMed = [];
+        $passages = [];
 
         foreach ($donneesBrutes as $ligne) {
             $point = ['x' => $ligne['date'], 'y' => $ligne['valeur']];
@@ -53,11 +54,36 @@ class ControllerGraphique
                 // Tout le reste, c'est la Méditerranée
                 $dataMed[] = $point;
             }
+
+            $idPassage = $ligne['id_passage'];
+            if (!isset($passages[$idPassage])) {
+                $minx = (float)$ligne['minx'];
+                $maxx = (float)$ligne['maxx'];
+                $miny = (float)$ligne['miny'];
+                $maxy = (float)$ligne['maxy'];
+                $centerX = ($minx + $maxx) / 2;
+                $centerY = ($miny + $maxy) / 2;
+
+                $labelParts = [];
+                if (!empty($ligne['libelle_lieu'])) {
+                    $labelParts[] = $ligne['libelle_lieu'];
+                }
+                if (!empty($ligne['nom_zone'])) {
+                    $labelParts[] = $ligne['nom_zone'];
+                }
+
+                $passages[$idPassage] = [
+                    'lat' => $centerY,
+                    'lng' => $centerX,
+                    'label' => implode(' - ', $labelParts)
+                ];
+            }
         }
 
         // 5. Envoi à la vue
         $jsonAtl = json_encode($dataAtl);
         $jsonMed = json_encode($dataMed);
+        $jsonPassages = json_encode(array_values($passages));
         
         $pagetitle = "Graphique - " . $titreGraphique;
         $view = "graphique"; 
