@@ -24,7 +24,6 @@
             <li><a href="frontController.php?action=deconnexion">Quitter</a></li>
         <?php endif; ?>
             <li><a href="frontController.php?action=graphique">Graphiques</a></li>
-             <li><a href="frontController.php?action=graphique">Carte</a></li>
             <li><a href="frontController.php?action=contact_propos">Contact</a></li>
         </ul>
 
