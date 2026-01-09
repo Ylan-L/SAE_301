@@ -64,26 +64,46 @@ class ControllerGraphique
                 $centerX = ($minx + $maxx) / 2;
                 $centerY = ($miny + $maxy) / 2;
 
-                $labelParts = [];
-                if (!empty($ligne['libelle_lieu'])) {
-                    $labelParts[] = $ligne['libelle_lieu'];
-                }
-                if (!empty($ligne['nom_zone'])) {
-                    $labelParts[] = $ligne['nom_zone'];
-                }
-
                 $passages[$idPassage] = [
                     'lat' => $centerY,
                     'lng' => $centerX,
-                    'label' => implode(' - ', $labelParts)
+                    'lieu' => $ligne['libelle_lieu'] ?? '',
+                    'zone' => $ligne['nom_zone'] ?? '',
+                    'sum' => (float)$ligne['valeur'],
+                    'count' => 1
                 ];
+            } else {
+                $passages[$idPassage]['sum'] += (float)$ligne['valeur'];
+                $passages[$idPassage]['count'] += 1;
             }
         }
 
         // 5. Envoi à la vue
         $jsonAtl = json_encode($dataAtl);
         $jsonMed = json_encode($dataMed);
-        $jsonPassages = json_encode(array_values($passages));
+
+        $passagesForJson = [];
+        foreach ($passages as $passage) {
+            $labelParts = [];
+            if (!empty($passage['lieu'])) {
+                $labelParts[] = $passage['lieu'];
+            }
+            if (!empty($passage['zone'])) {
+                $labelParts[] = $passage['zone'];
+            }
+            if ($passage['count'] > 0) {
+                $average = $passage['sum'] / $passage['count'];
+                $labelParts[] = 'Valeur: ' . round($average, 2);
+            }
+
+            $passagesForJson[] = [
+                'lat' => $passage['lat'],
+                'lng' => $passage['lng'],
+                'label' => implode(' - ', $labelParts)
+            ];
+        }
+
+        $jsonPassages = json_encode($passagesForJson);
         
         $pagetitle = "Graphique - " . $titreGraphique;
         $view = "graphique"; 
