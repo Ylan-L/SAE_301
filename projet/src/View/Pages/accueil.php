@@ -1,4 +1,4 @@
-<h1>Bienvenue sur "le nom de notre site" !</h1>
+<h1>Bienvenue sur OcéanScope !</h1>
 
 <div class="accueil-layout">
     <div class="accueil-texte">
