@@ -22,7 +22,7 @@
             <li><a href="frontController.php?action=dashboard">Dashboard</a></li>
             <li><a href="frontController.php?action=profil">Mon Profil</a></li>
             <li><a href="frontController.php?action=deconnexion">Quitter</a></li>
-             <li><a href="frontController.php?action=deconnexion">Bilan Carbone</a></li>
+             <li><a href="frontController.php?action=bilan_carbone">Bilan Carbone</a></li>
         <?php endif; ?>
             <li><a href="frontController.php?action=graphique">Graphique</a></li>
             <li><a href="frontController.php?action=station">Stations</a></li>
