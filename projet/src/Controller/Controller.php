@@ -27,6 +27,7 @@ class Controller {
     public static function accueil() { $view = 'accueil'; $pagetitle = 'Accueil'; require_once __DIR__ . '/../View/view.php'; }
     public static function connexion() { $view = 'connexion'; $pagetitle = 'Connexion'; require_once __DIR__ . '/../View/view.php'; }
     public static function inscription() { $view = 'inscription'; $pagetitle = 'Inscription'; require_once __DIR__ . '/../View/view.php'; }
+    public static function station() {$view = 'station'; $pagetitle = 'Stations'; require_once __DIR__ . '/../View/view.php';}
     public static function contact_propos() { $view = 'contact_propos'; $pagetitle = 'À Propos & Contact'; require_once __DIR__ . '/../View/view.php'; }
     public static function quizz() { $view = 'quizz'; $pagetitle = 'Quizz'; require_once __DIR__ . '/../View/view.php'; }
     public static function graphique() { $view = 'graphique'; $pagetitle = 'Graphique'; require_once __DIR__ . '/../View/view.php'; }
