@@ -50,8 +50,6 @@
                                     <span class="me-label">(Moi)</span>
                                 <?php endif; ?>
                             </td>
-
-                            
                                 <?php if (($u['role'] ?? 'user') === 'admin'): ?>
                             <a href="frontController.php?action=changerRole&id=<?= $u['id_utilisateur'] ?>&role=admin"
                             class="btn-role"
