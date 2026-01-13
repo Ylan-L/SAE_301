@@ -1523,24 +1523,5 @@ footer p {
 
 /* Colonne actions centrée */
 td {
-    text-align: center;
-}
-
-/* Boutons actions (Supprimer + Rendre Admin) */
-.btn-delete,
-.btn-role-danger {
-    display: block;          /* empilés */
-    margin: 4px auto;        /* centrés */
-    width: fit-content;
-    color: #e53935;          /* ROUGE */
-    font-weight: 600;
-    text-decoration: none;
-    cursor: pointer;
-}
-
-/* Hover */
-.btn-delete:hover,
-.btn-role-danger:hover {
-    color: #c62828;
-    text-decoration: underline;
+    text-align: left;
 }
