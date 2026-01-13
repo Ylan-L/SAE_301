@@ -304,9 +304,30 @@ class Controller {
         exit();
     }
 
-    public static function changerRole($id, $role) {
-        
+    public static function changerRole(): void {
+    // Sécurité: admin only
+    if (!isset($_SESSION['user_role']) || $_SESSION['user_role'] !== 'admin') {
+        header("Location: frontController.php?action=accueil");
+        exit();
     }
+
+    $id = $_GET['id'] ?? null;
+    if ((int)$id === (int)$_SESSION['user_id']) {
+        $_SESSION['message_flash'] = "Vous ne pouvez pas modifier votre propre rôle.";
+        header("Location: frontController.php?action=admin_users");
+        exit();
+    }
+
+    if (UtilisateurRepository::changeRole($id)) {
+        $_SESSION['message_flash'] = "Rôle mis à jour.";
+    } else {
+        $_SESSION['message_flash'] = "Erreur lors du changement de rôle.";
+    }
+
+    header("Location: frontController.php?action=admin_users");
+    exit();
+}
+
 
     // ==========================================
     //             LOGIQUE CONTACT
