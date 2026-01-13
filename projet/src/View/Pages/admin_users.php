@@ -50,14 +50,19 @@
                                     <span class="me-label">(Moi)</span>
                                 <?php endif; ?>
                             </td>
-                                <?php if (($u['role'] ?? 'user') === 'admin'): ?>
+
+                             <?php 
+                                $current_user_id = $_SESSION['user_id'] ?? null;
+                                ?>
+                            <td>
+                                <?php if (($u['role'] ?? 'user') === 'admin' && $u['id_utilisateur'] != $current_user_id): ?>
                             <a href="frontController.php?action=changerRole&id=<?= $u['id_utilisateur'] ?>&role=admin"
                             class="btn-role"
                             onclick="return confirm('Rendre <?= addslashes(htmlspecialchars($u['username'])) ?> administrateur ?')">
                                 Rendre Admin
                             </a>
                         <?php endif; ?>
-
+                                </td>
                         </tr>
                         <?php endforeach; ?>
                     <?php else: ?>
