@@ -5,7 +5,18 @@
             <h2><i class="fas fa-sign-in-alt"></i> Connexion</h2>
             <p>Heureux de vous revoir ! Connectez-vous pour accéder à votre espace.</p>
         </header>
-        
+        <?php if (!empty($message_erreur)) : ?>
+            <div class="alert alert-error">
+                <?= htmlspecialchars($message_erreur) ?>
+            </div>
+            <?php endif; ?>
+
+            <?php if (!empty($_SESSION['message_flash'])) : ?>
+            <div class="alert alert-success">
+                <?= htmlspecialchars($_SESSION['message_flash']) ?>
+            </div>
+            <?php unset($_SESSION['message_flash']); ?>
+        <?php endif; ?>
         <form action="frontController.php?action=validerConnexion" method="POST" class="auth-form">
             
             <div class="form-group">
