@@ -303,18 +303,10 @@ class Controller {
         header("Location: FrontController.php?action=admin_users");
         exit();
     }
+
     public static function changerRole($id, $role) {
-        $db = Database::getConnection();
-        $stmt = $db->prepare(
-            "UPDATE utilisateur SET role = :role WHERE id_utilisateur = :id"
-        );
-        $stmt->execute([
-            'role' => $role,
-            'id' => $id
-        ]);
+        
     }
-
-
 
     // ==========================================
     //             LOGIQUE CONTACT
