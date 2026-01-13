@@ -303,7 +303,6 @@ class Controller {
         header("Location: FrontController.php?action=admin_users");
         exit();
     }
-
     public static function changerRole($id, $role) {
         $db = Database::getConnection();
         $stmt = $db->prepare(
