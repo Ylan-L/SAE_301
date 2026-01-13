@@ -305,14 +305,7 @@ class Controller {
     }
 
     public static function changerRole($id, $role) {
-        $db = Database::getConnection();
-        $stmt = $db->prepare(
-            "UPDATE utilisateur SET role = :role WHERE id_utilisateur = :id"
-        );
-        $stmt->execute([
-            'role' => $role,
-            'id' => $id
-        ]);
+        
     }
 
     // ==========================================
