@@ -304,8 +304,21 @@ class Controller {
         exit();
     }
 
-    public static function changerRole($id, $role) {
+    public static function changerRole($id) {
+         // Vérification sécurité Admin
+        if (!isset($_SESSION['user_role']) || $_SESSION['user_role'] !== 'admin') {
+            header("Location: FrontController.php?action=accueil");
+            exit();
+        }
+
+        $id = $_GET['id'] ?? null;
+        if ($id && $id != $_SESSION['user_id']) { 
+            UtilisateurRepository::changerole($id);
+            $_SESSION['message_flash'] = "Changement de rôle.";
+        }
         
+        header("Location: FrontController.php?action=admin_users");
+        exit();
     }
 
     // ==========================================
