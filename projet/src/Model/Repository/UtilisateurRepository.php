@@ -104,7 +104,7 @@ class UtilisateurRepository extends AbstractRepository{
     }
 
    public static function changeRole($id_utilisateur) {
-    $sql = "UPDATE utilisateur SET role = 'admin' WHERE id_utilisateur = ?";
+    $sql = "UPDATE utilisateurs SET role = 'admin' WHERE id_utilisateur = ?";
     return DatabaseConnection::getPdo()->prepare($sql)->execute([$id_utilisateur]);
     }
 
