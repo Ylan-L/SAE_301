@@ -44,15 +44,8 @@
                                        onclick="return confirm('Supprimer l\'utilisateur <?= addslashes(htmlspecialchars($u['username'])) ?> ?')">
                                         Supprimer
                                     </a>
-                                <?php else: ?>
-                                    
 
-                                    
-                                    <span class="me-label">(Moi)</span>
-                                <?php endif; ?>
-                            </td>
-
-                             <?php 
+                                <?php 
                                 $current_user_id = $_SESSION['user_id'] ?? null;
                                 ?>
                            
@@ -63,6 +56,15 @@
                                 Rendre Admin
                             </a>
                         <?php endif; ?>
+                                <?php else: ?>
+                                    
+
+                                    
+                                    <span class="me-label">(Moi)</span>
+                                <?php endif; ?>
+                            </td>
+
+                                
                               
                         </tr>
                         <?php endforeach; ?>
