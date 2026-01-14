@@ -18,17 +18,20 @@
                        autofocus>
             </div>
 
-            <div class="form-group">
-                <div class="label-row">
-                    <label for="password">Mot de passe</label>
-                    <a href="frontController.php?action=forgot_password" class="link-forgot">Oublié ?</a>
-                </div>
-                <input type="password" 
-                       id="password" 
-                       name="password" 
-                       placeholder="********" 
-                       required>
-            </div>
+           <div class="form-group">
+    <div class="label-row">
+        <label for="password">Mot de passe</label>
+        <a href="frontController.php?action=forgot_password" class="link-forgot">Oublié ?</a>
+    </div>
+    <div class="password-container">
+        <input type="password" 
+               id="password" 
+               name="password" 
+               placeholder="********" 
+               required>
+        <i class="fas fa-eye" id="togglePassword"></i>
+    </div>
+</div>
 
             <button type="submit" class="btn-submit">
                 Se connecter

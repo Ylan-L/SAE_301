@@ -1510,3 +1510,30 @@ footer p {
         grid-template-columns: 1fr;
     }
 }
+
+/* Conteneur pour positionner l'icône */
+.password-container {
+    position: relative;
+    width: 100%;
+}
+
+/* Style de l'input pour laisser de la place à l'icône */
+.password-container input {
+    width: 100%;
+    padding-right: 40px; /* Évite que le texte passe sous l'œil */
+}
+
+/* Style de l'icône */
+#togglePassword {
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    color: #6c757d;
+    transition: color 0.2s;
+}
+
+#togglePassword:hover {
+    color: #333;
+}
