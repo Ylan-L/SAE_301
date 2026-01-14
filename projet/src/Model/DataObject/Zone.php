@@ -6,16 +6,13 @@ class Zone extends AbstractDataObject
 {
     private int $idZone;
     private string $nomZone;
-    private string $typeZone;
 
     public function __construct(
         int $idZone,
-        string $nomZone,
-        string $typeZone
+        string $nomZone
     ) {
         $this->idZone = $idZone;
         $this->nomZone = $nomZone;
-        $this->typeZone = $typeZone;
     }
 
     /* ================= formatTableau ================= */
@@ -24,8 +21,7 @@ class Zone extends AbstractDataObject
     {
         return [
             'id_zone' => $this->idZone,
-            'nom_zone' => $this->nomZone,
-            'type_zone' => $this->typeZone
+            'nom_zone' => $this->nomZone
         ];
     }
 
@@ -37,9 +33,5 @@ class Zone extends AbstractDataObject
 
     public function getNomZone(): string {
         return $this->nomZone;
-    }
-
-    public function getTypeZone(): string {
-        return $this->typeZone;
     }
 }

@@ -5,6 +5,7 @@ namespace App\Covoiturage\Model\Repository;
 use App\Covoiturage\Model\DataObject\LieuSurveillance;
 use App\Covoiturage\Model\DataObject\AbstractDataObject;
 use App\Covoiturage\Model\Repository\ZoneRepository;
+use PDO;
 
 class LieuSurveillanceRepository extends AbstractRepository
 {
@@ -45,4 +46,45 @@ class LieuSurveillanceRepository extends AbstractRepository
             $zone
         );
     }
+
+
+    /* ================= PAGE STATION ================= */
+
+    public function rechercherParNom(string $nom): ?LieuSurveillance {
+        $sql = "
+            SELECT *
+            FROM lieu_surveillance
+            WHERE libelle_lieu LIKE :nom
+            LIMIT 1
+        ";
+
+        $pdo = DatabaseConnection::getPdo();
+        $stmt = $pdo->prepare($sql);
+        $stmt->execute(['nom' => "%$nom%"]);
+
+        $row = $stmt->fetch(PDO::FETCH_ASSOC);
+        if (!$row) return null;
+
+        return $this->construire($row);
+    }
+
+    public function getStationsAvecCoordonnees(): array {
+        $sql = "
+            SELECT DISTINCT
+                l.id_lieu,
+                l.libelle_lieu,
+                (p.minx + p.maxx) / 2 AS lng,
+                (p.miny + p.maxy) / 2 AS lat
+            FROM lieu_surveillance l
+            JOIN passage p ON l.id_lieu = p.id_lieu
+        ";
+
+        $pdo = DatabaseConnection::getPdo();
+        $stmt = $pdo->query($sql);
+
+        return $stmt->fetchAll(\PDO::FETCH_ASSOC);
+    }
+
+
+
 }

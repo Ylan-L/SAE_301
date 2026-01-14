@@ -23,8 +23,7 @@ class ZoneRepository extends AbstractRepository
     {
         return [
             'id_zone',
-            'nom_zone',
-            'type_zone'
+            'nom_zone'
         ];
     }
 
@@ -34,8 +33,7 @@ class ZoneRepository extends AbstractRepository
     {
         return new Zone(
             $objetFormatTableau['id_zone'],
-            $objetFormatTableau['nom_zone'],
-            $objetFormatTableau['type_zone']
+            $objetFormatTableau['nom_zone']
         );
     }
 }

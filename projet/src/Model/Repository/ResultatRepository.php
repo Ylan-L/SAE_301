@@ -5,6 +5,7 @@ namespace App\Covoiturage\Model\Repository;
 use App\Covoiturage\Model\DataObject\Resultat;
 use App\Covoiturage\Model\DataObject\AbstractDataObject;
 use App\Covoiturage\Model\Repository\EchantillonRepository;
+use PDO;
 
 class ResultatRepository extends AbstractRepository
 {
@@ -54,7 +55,8 @@ class ResultatRepository extends AbstractRepository
         );
     }
 
-    /* =================METHODE GRAPHIQUE ================= */
+    /* ================= METHODE GRAPHIQUE ================= */
+
     public function selectDonneesGraphique(string $libelleParametre, string $dateDebut, string $dateFin): array
     {
         // Jointure : Resultat -> Echantillon -> Prelevement -> Passage (Date) -> Lieu -> Zone
@@ -81,4 +83,37 @@ class ResultatRepository extends AbstractRepository
 
         return $pdoStatement->fetchAll();
     }
+
+    public function getDonneesStation(
+        int $idLieu,
+        string $parametre,
+        string $dateDebut,
+        string $dateFin
+    ): array {
+        $sql = "
+            SELECT 
+                p.date_passage AS x,
+                r.valeur AS y
+            FROM resultat r
+            JOIN echantillon e ON r.id_echantillon = e.id_echantillon
+            JOIN prelevement pr ON e.id_prelevement = pr.id_prelevement
+            JOIN passage p ON pr.id_passage = p.id_passage
+            WHERE p.id_lieu = :idLieu
+            AND r.libelle_parametre = :param
+            AND p.date_passage BETWEEN :debut AND :fin
+            ORDER BY p.date_passage
+        ";
+
+        $pdo = DatabaseConnection::getPdo();
+        $stmt = $pdo->prepare($sql);
+        $stmt->execute([
+            'idLieu' => $idLieu,
+            'param'  => ucfirst($parametre),
+            'debut'  => $dateDebut,
+            'fin'    => $dateFin
+        ]);
+
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
 }
