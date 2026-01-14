@@ -10,12 +10,9 @@ class ControllerStation
 {
     public static function station(): void
     {
-        // --------------------
-        // Repositories
-        // --------------------
-        $lieuRepo = new LieuSurveillanceRepository();
-        $passageRepo = new PassageRepository();
-        $resultatRepo = new ResultatRepository();
+        $lieuRepo = new \App\Covoiturage\Model\Repository\LieuSurveillanceRepository();
+        $passageRepo = new \App\Covoiturage\Model\Repository\PassageRepository();
+        $resultatRepo = new \App\Covoiturage\Model\Repository\ResultatRepository();
 
         // --------------------
         // Paramètres GET
@@ -26,19 +23,19 @@ class ControllerStation
         $dateFin = $_GET['dateFin'] ?? '2022-01-01';
 
         // --------------------
-        // CAS 1 : aucune station recherchée
+        // CAS 1 : aucune recherche
         // --------------------
         if ($stationRecherchee === null || trim($stationRecherchee) === '') {
 
             $stations = $lieuRepo->getStationsAvecCoordonnees();
-
             $jsonStations = json_encode($stations);
 
-            // variables utilisées dans la vue
             $stationDetails = null;
             $jsonStationData = null;
 
-            require __DIR__ . '/../View/station.php';
+            $view = 'station'; 
+            $pagetitle = 'Station';
+            require __DIR__ . '/../View/view.php';
             return;
         }
 
@@ -47,27 +44,27 @@ class ControllerStation
         // --------------------
         $station = $lieuRepo->rechercherParNom($stationRecherchee);
 
-        // Si aucune station trouvée
         if ($station === null) {
-
             $stations = $lieuRepo->getStationsAvecCoordonnees();
             $jsonStations = json_encode($stations);
 
             $stationDetails = null;
             $jsonStationData = null;
 
-            require __DIR__ . '/../View/station.php';
+            $view = 'station'; 
+            $pagetitle = 'Station';
+            require __DIR__ . '/../View/view.php';
             return;
         }
 
         // --------------------
-        // Coordonnées de la station
+        // Carte (station seule)
         // --------------------
         $coords = $passageRepo->getCoordonneesPourLieu($station->getIdLieu());
         $jsonStations = json_encode($coords);
 
         // --------------------
-        // Données du graphique
+        // Graphique
         // --------------------
         $donneesGraph = $resultatRepo->getDonneesStation(
             $station->getIdLieu(),
@@ -79,15 +76,16 @@ class ControllerStation
         $jsonStationData = json_encode($donneesGraph);
 
         // --------------------
-        // Détails station (pour la vue)
+        // Infos station
         // --------------------
-
         $stationDetails = [
-            'nom' => $station->getNomLieu(),
+            'nom'  => $station->getNomLieu(),
             'zone' => $station->getZone()->getNomZone(),
             'type' => $station->getTypeLieu()
         ];
 
-        require __DIR__ . '/../View/station.php';
+        $view = 'station'; 
+        $pagetitle = 'Station';
+        require __DIR__ . '/../View/view.php';
     }
 }
