@@ -2,7 +2,10 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <title>Inscription</title>
+    <title>Connexion</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <!-- CSS -->
+    <link rel="stylesheet" href="assets/css/style.css">
 </head>
 
 <body>
@@ -11,35 +14,32 @@
     <div class="auth-container">
 
         <header class="auth-header">
-            <h2><i class="fas fa-user-plus"></i> Inscription</h2>
-            <p>Rejoignez l'aventure SAE 301 et accédez à vos données.</p>
+            <h2><i class="fas fa-sign-in-alt"></i> Connexion</h2>
+            <p>Heureux de vous revoir, connectez-vous pour accéder à votre espace.</p>
         </header>
 
-        <form action="frontController.php?action=validerInscription"
+        <?php if (!empty($message_erreur)) : ?>
+            <div class="alert alert-error"><?= htmlspecialchars($message_erreur) ?></div>
+        <?php endif; ?>
+
+        <?php if (!empty($_SESSION['message_flash'])) : ?>
+            <div class="alert alert-success"><?= htmlspecialchars($_SESSION['message_flash']) ?></div>
+            <?php unset($_SESSION['message_flash']); ?>
+        <?php endif; ?>
+
+        <form action="frontController.php?action=validerConnexion"
               method="POST"
               id="form"
               class="auth-form">
 
-            <div id="error"></div>
-
-            <div class="form-group">
-                <label for="username">Nom d'utilisateur</label>
-                <input type="text"
-                       name="username"
-                       id="username"
-                       placeholder="Ex: SebastienCartier"
-                       minlength="3"
-                       maxlength="25"
-                       required>
-            </div>
-
             <div class="form-group">
                 <label for="email">Adresse email</label>
                 <input type="email"
-                       name="email"
                        id="email"
+                       name="email"
                        placeholder="votre@email.com"
-                       required>
+                       required
+                       autofocus>
             </div>
 
             <div class="form-group">
@@ -47,10 +47,9 @@
 
                 <div class="password-wrapper">
                     <input type="password"
-                           name="password"
                            id="password"
-                           placeholder="Minimum 8 caractères"
-                           minlength="8"
+                           name="password"
+                           placeholder="********"
                            required>
 
                     <button type="button"
@@ -59,23 +58,17 @@
                         Afficher
                     </button>
                 </div>
-
-                <small class="helper-text">
-                    Conseil : Utilisez des lettres, chiffres et symboles.
-                </small>
             </div>
 
             <button type="submit" class="btn-submit">
-                Créer mon compte
+                Se connecter
             </button>
         </form>
 
         <footer class="auth-footer">
             <p>
-                Déjà inscrit ?
-                <a href="frontController.php?action=connexion">
-                    Se connecter ici
-                </a>
+                Pas encore de compte ?
+                <a href="frontController.php?action=inscription">S'inscrire gratuitement</a>
             </p>
         </footer>
 
@@ -83,18 +76,17 @@
 </div>
 
 <script>
-    document.getElementById('togglePassword').addEventListener('click', function () {
-        const passwordInput = document.getElementById('password');
-        
-        // Bascule entre 'password' et 'text'
-        if (passwordInput.type === 'password') {
-            passwordInput.type = 'text';
-            this.textContent = 'Masquer';
-        } else {
-            passwordInput.type = 'password';
-            this.textContent = 'Afficher';
-        }
-    });
+document.getElementById('togglePassword').addEventListener('click', function () {
+    const passwordInput = document.getElementById('password');
+
+    if (passwordInput.type === 'password') {
+        passwordInput.type = 'text';
+        this.textContent = 'Masquer';
+    } else {
+        passwordInput.type = 'password';
+        this.textContent = 'Afficher';
+    }
+});
 </script>
 
 </body>
