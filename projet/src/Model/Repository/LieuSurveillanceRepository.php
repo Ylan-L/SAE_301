@@ -47,7 +47,6 @@ class LieuSurveillanceRepository extends AbstractRepository
         );
     }
 
-
     /* ================= PAGE STATION ================= */
 
     public function rechercherParNom(string $nom): ?LieuSurveillance {
@@ -84,7 +83,4 @@ class LieuSurveillanceRepository extends AbstractRepository
 
         return $stmt->fetchAll(\PDO::FETCH_ASSOC);
     }
-
-
-
 }
