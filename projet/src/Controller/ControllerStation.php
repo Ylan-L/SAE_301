@@ -82,11 +82,10 @@ class ControllerStation
         // Détails station (pour la vue)
         // --------------------
 
-        // REPRENDRE ICI MARIAM
         $stationDetails = [
-            //'nom' => $station->getNomLieu(),
+            'nom' => $station->getNomLieu(),
             'zone' => $station->getZone()->getNomZone(),
-            //'type' => $station->getTypeLieu()
+            'type' => $station->getTypeLieu()
         ];
 
         require __DIR__ . '/../View/station.php';

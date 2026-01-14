@@ -29,8 +29,8 @@ class LieuSurveillance extends AbstractDataObject
     {
         return [
             'id_lieu' => $this->idLieu,
-            'nom_lieu' => $this->nomLieu,
-            'type_lieu' => $this->typeLieu,
+            'libelle_lieu' => $this->nomLieu,
+            'entite_classement' => $this->typeLieu,
             // FK
             'id_zone' => $this->zone->getIdZone()
         ];
@@ -45,4 +45,13 @@ class LieuSurveillance extends AbstractDataObject
     public function getZone(): Zone {
         return $this->zone;
     }
+
+    public function getNomLieu(): string {
+        return $this->nomLieu;
+    }
+
+    public function getTypeLieu(): string {
+        return $this->typeLieu;
+    }
+
 }

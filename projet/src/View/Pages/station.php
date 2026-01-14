@@ -1,15 +1,26 @@
-<div class="station-container" style="max-width: 1000px; margin: 20px auto; text-align: center;">
+<?php
+/** @var string|null $jsonStations */
+/** @var array|null $stationDetails */
+/** @var string|null $jsonStationData */
+/** @var string|null $stationRecherchee */
+/** @var string $filtre */
+/** @var string $dateDebut */
+/** @var string $dateFin */
+?>
 
-    <h2>&#128269; Rechercher une station </h2>
+<div class="station-container" style="max-width: 1000px; margin: 20px auto;">
+
+    <!-- ================= RECHERCHE ================= -->
+    <h2>&#128269; Rechercher une station</h2>
 
     <form method="GET" action="frontController.php" style="margin-bottom: 20px;">
         <input type="hidden" name="action" value="station">
 
-        <input 
-            type="text" 
+        <input
+            type="text"
             name="station"
-            placeholder="Nom ou code de la station"
-            value="<?php echo htmlspecialchars($stationRecherchee ?? ''); ?>"
+            placeholder="Nom de la station"
+            value="<?= htmlspecialchars($stationRecherchee ?? '') ?>"
             required
             style="padding: 8px; width: 60%;"
         >
@@ -17,99 +28,145 @@
         <button type="submit" style="padding: 8px 15px;">Rechercher</button>
     </form>
 
+    <!-- ================= CARTE ================= -->
     <div class="map-container">
-        <div id="stationMap">
-            <script>
-                const stations = <?php echo $jsonStations; ?>;
-
-                const franceBounds = L.latLngBounds([41.2, -5.3], [51.5, 9.7]);
-                const map = L.map('stationMap', {
-                    maxBounds: franceBounds,
-                    maxBoundsViscosity: 1.0,
-                    minZoom: 5
-                });
-
-                L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-                    maxZoom: 19,
-                    attribution: '&copy; OpenStreetMap contributors'
-                }).addTo(map);
-
-                const bounds = [];
-
-                stations.forEach(station => {
-                    if (!Number.isFinite(station.lat) || !Number.isFinite(station.lng)) return;
-
-                    const marker = L.marker([station.lat, station.lng]).addTo(map);
-                    marker.bindPopup(station.nom);
-                    bounds.push([station.lat, station.lng]);
-                });
-
-                if (bounds.length > 0) {
-                    map.fitBounds(bounds, { padding: [20, 20], maxZoom: 7 });
-                } else {
-                    map.setView([46.5, 2.5], 5);
-                }
-
-                window.addEventListener('load', () => {
-                    map.invalidateSize();
-                });
-            </script>
-        </div>
+        <div id="stationMap"></div>
     </div>
 
-    <?php if (!empty($stationDetails)) : ?>
-        <h3><?php echo htmlspecialchars($stationDetails['nom']); ?></h3>
+    <!-- ================= INFOS STATION ================= -->
+    <?php if ($stationDetails !== null): ?>
+        <h3><?= htmlspecialchars($stationDetails['nom']) ?></h3>
 
-        <ul style="list-style: none; padding: 0;">
-            <li><strong>Lieu :</strong> <?php echo htmlspecialchars($stationDetails['libelle_lieu']); ?></li>
-            <li><strong>Zone :</strong> <?php echo htmlspecialchars($stationDetails['zone']); ?></li>
-            <li><strong>Entité :</strong> <?php echo htmlspecialchars($stationDetails['entite']); ?></li>
-            <li><strong>Classement :</strong> <?php echo htmlspecialchars($stationDetails['classement']); ?></li>
+        <ul style="list-style: none; padding: 0; margin-bottom: 30px;">
+            <li><strong>Zone :</strong> <?= htmlspecialchars($stationDetails['zone']) ?></li>
+            <li><strong>Type :</strong> <?= htmlspecialchars($stationDetails['type']) ?></li>
         </ul>
     <?php endif; ?>
 
-    <?php if (!empty($jsonStationData)) : ?>
-    <div style="position: relative; height: 50vh; width: 100%;">
-        <canvas id="stationGraphique"></canvas>
-    </div>
+    <!-- ================= FILTRES GRAPHIQUE ================= -->
+    <?php if ($stationDetails !== null): ?>
+        <form method="GET" action="frontController.php"
+              style="background: #f8f9fa; padding: 15px; border-radius: 8px; margin-bottom: 20px;">
+
+            <input type="hidden" name="action" value="station">
+            <input type="hidden" name="station" value="<?= htmlspecialchars($stationRecherchee) ?>">
+
+            <div style="margin-bottom: 10px;">
+                <label>Indicateur :</label>
+                <button type="submit" name="filtre" value="temperature">Température</button>
+                <button type="submit" name="filtre" value="salinite">Salinité</button>
+                <button type="submit" name="filtre" value="phytoplanctons">Phytoplanctons</button>
+            </div>
+
+            <div>
+                <label>
+                    Du :
+                    <input type="date" name="dateDebut" value="<?= $dateDebut ?>" required>
+                </label>
+                <label>
+                    au :
+                    <input type="date" name="dateFin" value="<?= $dateFin ?>" required>
+                </label>
+
+                <button type="submit">Actualiser</button>
+            </div>
+        </form>
     <?php endif; ?>
 
-    
-    <script>
-        <?php if (!empty($jsonStationData)) : ?>
-        const ctx = document.getElementById('stationGraphique').getContext('2d');
+    <!-- ================= GRAPHIQUE ================= -->
+    <?php if ($jsonStationData !== null): ?>
+        <div style="position: relative; height: 50vh; width: 100%;">
+            <canvas id="stationGraphique"></canvas>
+        </div>
+    <?php endif; ?>
+</div>
 
-        new Chart(ctx, {
-            type: 'line',
-            data: {
-                datasets: [{
-                    label: '<?php echo addslashes($stationDetails["nom"]); ?>',
-                    data: <?php echo $jsonStationData; ?>,
-                    borderColor: '#3498db',
-                    backgroundColor: '#3498db',
-                    pointRadius: 2,
-                    borderWidth: 2,
-                    tension: 0.2
-                }]
-            },
-            options: {
-                responsive: true,
-                maintainAspectRatio: false,
-                scales: {
-                    x: {
-                        type: 'time',
-                        time: { unit: 'month' },
-                        title: { display: true, text: 'Date' }
-                    },
-                    y: {
-                        title: { display: true, text: 'Valeur' }
-                    }
+<!-- ================= LIBRAIRIES ================= -->
+<link rel="stylesheet"
+      href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns/dist/chartjs-adapter-date-fns.bundle.min.js"></script>
+
+<!-- ================= CARTE ================= -->
+<script>
+    const stations = <?= $jsonStations ?? '[]' ?>;
+
+    const map = L.map('stationMap').setView([46.5, 2.5], 5);
+
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        maxZoom: 19,
+        attribution: '&copy; OpenStreetMap contributors'
+    }).addTo(map);
+
+    const bounds = [];
+
+    stations.forEach(s => {
+        if (!s.lat || !s.lng) return;
+
+        const marker = L.marker([s.lat, s.lng]).addTo(map);
+        bounds.push([s.lat, s.lng]);
+    });
+
+    if (bounds.length > 0) {
+        map.fitBounds(bounds, {padding: [20, 20], maxZoom: 7});
+    }
+
+    window.addEventListener('load', () => map.invalidateSize());
+</script>
+
+<!-- ================= GRAPHIQUE ================= -->
+<?php if ($jsonStationData !== null): ?>
+<script>
+    const ctx = document.getElementById('stationGraphique').getContext('2d');
+
+    new Chart(ctx, {
+        type: 'line',
+        data: {
+            datasets: [{
+                label: "<?= addslashes($stationDetails['nom']) ?>",
+                data: <?= $jsonStationData ?>,
+                borderWidth: 2,
+                pointRadius: 2,
+                tension: 0.2
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            scales: {
+                x: {
+                    type: 'time',
+                    time: {unit: 'month'},
+                    title: {display: true, text: 'Date'}
+                },
+                y: {
+                    title: {display: true, text: 'Valeur'}
                 }
             }
-        });
-        <?php endif; ?>
-    </script>
+        }
+    });
+</script>
+<?php endif; ?>
 
-    
+<!-- ================= STYLE ================= -->
+<style>
+    .map-container {
+        height: 360px;
+        margin-bottom: 20px;
+    }
 
-</div>
+    #stationMap {
+        height: 100%;
+        width: 100%;
+        border-radius: 8px;
+        border: 1px solid #ddd;
+    }
+
+    button {
+        padding: 6px 12px;
+        margin: 0 5px;
+        cursor: pointer;
+    }
+</style>
