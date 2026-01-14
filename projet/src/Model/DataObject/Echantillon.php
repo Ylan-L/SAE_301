@@ -40,8 +40,8 @@ class Echantillon extends AbstractDataObject{
 
     public function formatTableau(): array{
     return [
-        "id_Echantillon"=> $this->getIdEchantillon(),
-        "qualite_Echantillon" => $this->getQualiteEchantillon(),
-        "prelevement" => $this->getPrelevement(),
+        "id_echantillon"=> $this->getIdEchantillon(),
+        "qualite_echantillon" => $this->getQualiteEchantillon(),
+        "id_prelevement" => $this->getPrelevement(),
     ];}
 }
