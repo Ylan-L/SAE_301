@@ -35,14 +35,13 @@
                     <label for="password">Mot de passe</label>
                     <a href="frontController.php?action=forgot_password" class="link-forgot">Oublié ?</a>
                 </div>
-                <div class="password-container" style="position: relative; display: flex; align-items: center;">
+                <div class="password-container">
                     <input type="password" 
                            id="password" 
                            name="password" 
                            placeholder="********" 
-                           style="width: 100%; padding-right: 40px;"
                            required>
-                    <i class="fas fa-eye" id="togglePassword" style="position: absolute; right: 10px; cursor: pointer;"></i>
+                    <i class="fas fa-eye" id="togglePassword"></i>
                 </div>
             </div>
 

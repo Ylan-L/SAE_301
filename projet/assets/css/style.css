@@ -1537,3 +1537,169 @@ footer p {
 #togglePassword:hover {
     color: #333;
 }
+
+/* --- VARIABLES DE COULEURS --- */
+:root {
+    --primary-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    --primary-dark: #2d3436;
+    --bg-body: #f4f7f6;
+    --text-main: #2d3436;
+    --text-light: #636e72;
+    --radius-md: 12px;
+    --radius-lg: 20px;
+    --shadow-sm: 0 4px 6px rgba(0,0,0,0.05);
+    --shadow-md: 0 10px 15px rgba(0,0,0,0.1);
+    --white: #ffffff;
+}
+
+/* --- MISE EN PAGE AUTHENTIFICATION --- */
+.auth-page-wrapper {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    background-color: var(--bg-body);
+}
+
+.auth-container {
+    background: var(--white);
+    width: 100%;
+    max-width: 450px;
+    padding: 40px;
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-md);
+    border: 1px solid rgba(0,0,0,0.05);
+}
+
+.auth-header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.auth-header h2 {
+    font-size: 1.8rem;
+    color: var(--primary-dark);
+    margin-bottom: 10px;
+}
+
+.auth-header p {
+    color: var(--text-light);
+    font-size: 0.95rem;
+}
+
+/* --- FORMULAIRE --- */
+.auth-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.form-group label {
+    font-weight: 600;
+    font-size: 0.9rem;
+    color: var(--primary-dark);
+}
+
+.form-group input {
+    padding: 12px 16px;
+    border: 2px solid #e0e0e0;
+    border-radius: var(--radius-md);
+    font-size: 1rem;
+    transition: border-color 0.3s ease;
+}
+
+.form-group input:focus {
+    outline: none;
+    border-color: #667eea;
+}
+
+/* --- WRAPPER MOT DE PASSE (AFFICHER/CACHER) --- */
+.password-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.password-wrapper input {
+    width: 100%;
+    padding-right: 100px; /* Espace pour le bouton */
+}
+
+.toggle-password {
+    position: absolute;
+    right: 10px;
+    background: #f0f2f5;
+    border: none;
+    padding: 6px 12px;
+    border-radius: 8px;
+    font-size: 0.8rem;
+    font-weight: bold;
+    color: var(--primary-dark);
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.toggle-password:hover {
+    background: #e4e6e9;
+}
+
+.helper-text {
+    font-size: 0.8rem;
+    color: var(--text-light);
+    margin-top: 4px;
+}
+
+/* --- BOUTON VALIDER --- */
+.btn-submit {
+    margin-top: 10px;
+    padding: 14px;
+    background: var(--primary-gradient);
+    color: white;
+    border: none;
+    border-radius: var(--radius-md);
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.btn-submit:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(118, 75, 162, 0.3);
+}
+
+/* --- FOOTER --- */
+.auth-footer {
+    margin-top: 25px;
+    text-align: center;
+    font-size: 0.9rem;
+    color: var(--text-light);
+}
+
+.auth-footer a {
+    color: #667eea;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.auth-footer a:hover {
+    text-decoration: underline;
+}
+
+/* --- ALERTES ERREUR --- */
+#error {
+    color: #d63031;
+    background: #fab1a044;
+    padding: 10px;
+    border-radius: 8px;
+    font-size: 0.85rem;
+    display: none; /* Caché par défaut */
+}
+
