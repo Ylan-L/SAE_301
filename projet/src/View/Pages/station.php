@@ -7,6 +7,14 @@
 /** @var string $dateDebut */
 /** @var string $dateFin */
 ?>
+<!-- CHOSES A AMELIORER MARIAM
+ - mettre le nom des stations sur la carte comme dans graphique
+ - avoir une partie qui montre directement les données disponibles pour une station donnée 
+    pour ne pas que ça n'affiche rien
+ - modifier "type" sur la page 
+ - faire en sorte que lorsque l'on fait une recherche pour graphique ça ne monte pas tout en haut
+ - proposition de stations lorsque l'on fait une recherche 
+ -->
 
 <div class="station-container" style="max-width: 1000px; margin: 20px auto;">
 
