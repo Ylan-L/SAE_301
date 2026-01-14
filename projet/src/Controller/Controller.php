@@ -36,6 +36,8 @@ class Controller {
         $view = 'dashboard'; $pagetitle = 'Tableau de Bord'; require_once __DIR__ . '/../View/view.php';
     }
 
+    public static function bilan_carbone(){ $view = 'bilan_carbone'; $pagetitle = 'Bilan Carbone'; require_once __DIR__ . '/../View/view.php';}
+
     public static function profil() {
         if (!isset($_SESSION['user_id'])) { header("Location: frontController.php?action=connexion"); exit(); }
         $view = 'profil'; $pagetitle = 'Mon Profil'; require_once __DIR__ . '/../View/view.php';
