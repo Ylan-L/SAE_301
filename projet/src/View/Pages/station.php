@@ -11,7 +11,7 @@
  - mettre le nom des stations sur la carte comme dans graphique
  - avoir une partie qui montre directement les données disponibles pour une station donnée 
     pour ne pas que ça n'affiche rien
- - modifier "type" sur la page 
+- modifier "type" sur la page 
  - faire en sorte que lorsque l'on fait une recherche pour graphique ça ne monte pas tout en haut
  - proposition de stations lorsque l'on fait une recherche 
  -->
@@ -47,7 +47,7 @@
 
         <ul style="list-style: none; padding: 0; margin-bottom: 30px;">
             <li><strong>Zone :</strong> <?= htmlspecialchars($stationDetails['zone']) ?></li>
-            <li><strong>Type :</strong> <?= htmlspecialchars($stationDetails['type']) ?></li>
+            <li><strong>Entité de classement :</strong> <?= htmlspecialchars($stationDetails['type']) ?></li>
         </ul>
     <?php endif; ?>
 
