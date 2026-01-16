@@ -25,8 +25,8 @@ class LieuSurveillanceRepository extends AbstractRepository
     {
         return [
             'id_lieu',
-            'nom_lieu',
-            'type_lieu',
+            'libelle_lieu',
+            'entite_classement',
             'id_zone'
         ];
     }
@@ -41,12 +41,11 @@ class LieuSurveillanceRepository extends AbstractRepository
 
         return new LieuSurveillance(
             $objetFormatTableau['id_lieu'],
-            $objetFormatTableau['nom_lieu'],
-            $objetFormatTableau['type_lieu'],
+            $objetFormatTableau['libelle_lieu'],
+            $objetFormatTableau['entite_classement'],
             $zone
         );
     }
-
 
     /* ================= PAGE STATION ================= */
 
@@ -84,7 +83,4 @@ class LieuSurveillanceRepository extends AbstractRepository
 
         return $stmt->fetchAll(\PDO::FETCH_ASSOC);
     }
-
-
-
 }

@@ -27,7 +27,6 @@ class Controller {
     public static function accueil() { $view = 'accueil'; $pagetitle = 'Accueil'; require_once __DIR__ . '/../View/view.php'; }
     public static function connexion() { $view = 'connexion'; $pagetitle = 'Connexion'; require_once __DIR__ . '/../View/view.php'; }
     public static function inscription() { $view = 'inscription'; $pagetitle = 'Inscription'; require_once __DIR__ . '/../View/view.php'; }
-    public static function station() {$view = 'station'; $pagetitle = 'Stations'; require_once __DIR__ . '/../View/view.php';}
     public static function contact_propos() { $view = 'contact_propos'; $pagetitle = 'À Propos & Contact'; require_once __DIR__ . '/../View/view.php'; }
     public static function quizz() { $view = 'quizz'; $pagetitle = 'Quizz'; require_once __DIR__ . '/../View/view.php'; }
     public static function graphique() { $view = 'graphique'; $pagetitle = 'Graphique'; require_once __DIR__ . '/../View/view.php'; }
@@ -35,6 +34,8 @@ class Controller {
         if (!isset($_SESSION['user_id'])) { header("Location: frontController.php?action=connexion"); exit(); }
         $view = 'dashboard'; $pagetitle = 'Tableau de Bord'; require_once __DIR__ . '/../View/view.php';
     }
+
+    public static function bilan_carbone(){ $view = 'bilan_carbone'; $pagetitle = 'Bilan Carbone'; require_once __DIR__ . '/../View/view.php';}
 
     public static function profil() {
         if (!isset($_SESSION['user_id'])) { header("Location: frontController.php?action=connexion"); exit(); }
@@ -381,5 +382,7 @@ class Controller {
         header("Location: FrontController.php?action=contact_propos");
         exit();
     }
+
+
    
 }

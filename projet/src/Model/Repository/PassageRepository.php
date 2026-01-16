@@ -51,4 +51,24 @@ class PassageRepository extends AbstractRepository
             $lieuSurveillance
         );
     }
+
+    /* ================= STATION ================= */
+
+    public function getCoordonneesPourLieu(int $idLieu): array
+    {
+        $sql = "
+            SELECT DISTINCT
+                (minx + maxx) / 2 AS lng,
+                (miny + maxy) / 2 AS lat
+            FROM passage
+            WHERE id_lieu = :id
+        ";
+
+        $pdo = DatabaseConnection::getPdo();
+        $stmt = $pdo->prepare($sql);
+        $stmt->execute(['id' => $idLieu]);
+
+        return $stmt->fetchAll(\PDO::FETCH_ASSOC);
+    }
+
 }
