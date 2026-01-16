@@ -2,7 +2,7 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <title>Connexion</title>
+    <title>Inscription</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <!-- CSS -->
     <link rel="stylesheet" href="assets/css/style.css">
@@ -14,8 +14,8 @@
     <div class="auth-container">
 
         <header class="auth-header">
-            <h2><i class="fas fa-sign-in-alt"></i> Connexion</h2>
-            <p>Heureux de vous revoir, connectez-vous pour accéder à votre espace.</p>
+            <h2><i class="fas fa-user-plus"></i> Inscription</h2>
+            <p>Créez votre compte pour accéder à la plateforme.</p>
         </header>
 
         <?php if (!empty($message_erreur)) : ?>
@@ -27,10 +27,18 @@
             <?php unset($_SESSION['message_flash']); ?>
         <?php endif; ?>
 
-        <form action="frontController.php?action=validerConnexion"
+        <form action="frontController.php?action=validerInscription"
               method="POST"
-              id="form"
               class="auth-form">
+
+            <div class="form-group">
+                <label for="username">Nom d'utilisateur</label>
+                <input type="text"
+                       id="username"
+                       name="username"
+                       placeholder="Votre pseudo"
+                       required>
+            </div>
 
             <div class="form-group">
                 <label for="email">Adresse email</label>
@@ -38,8 +46,7 @@
                        id="email"
                        name="email"
                        placeholder="votre@email.com"
-                       required
-                       autofocus>
+                       required>
             </div>
 
             <div class="form-group">
@@ -60,15 +67,24 @@
                 </div>
             </div>
 
+            <div class="form-group">
+                <label for="confirm_password">Confirmer le mot de passe</label>
+                <input type="password"
+                       id="confirm_password"
+                       name="confirm_password"
+                       placeholder="********"
+                       required>
+            </div>
+
             <button type="submit" class="btn-submit">
-                Se connecter
+                Créer mon compte
             </button>
         </form>
 
         <footer class="auth-footer">
             <p>
-                Pas encore de compte ?
-                <a href="frontController.php?action=inscription">S'inscrire gratuitement</a>
+                Déjà un compte ?
+                <a href="frontController.php?action=connexion">Se connecter</a>
             </p>
         </footer>
 
@@ -91,3 +107,4 @@ document.getElementById('togglePassword').addEventListener('click', function () 
 
 </body>
 </html>
+<?php
