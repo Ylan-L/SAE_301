@@ -282,9 +282,33 @@ class Controller {
             header("Location: FrontController.php?action=accueil");
             exit();
         }
+
         $users = UtilisateurRepository::getAllUsers();
+        $pdo = DatabaseConnection::getPdo();
+        
+        $logs = $pdo->query("
+            SELECT a.*, u.username as admin_name 
+            FROM audit_logs a 
+            LEFT JOIN utilisateurs u ON a.user_id = u.id_utilisateur 
+            ORDER BY action_date DESC 
+            LIMIT 50
+        ")->fetchAll(PDO::FETCH_ASSOC);
+
+        // Petit traitement pour rendre le JSON lisible
+        foreach ($logs as &$log) {
+            $old = json_decode($log['old_data'], true);
+            $new = json_decode($log['new_data'], true);
+            
+            // On crée une chaîne descriptive
+            if ($log['action_type'] === 'UPDATE') {
+                $log['details'] = "Rôle : " . ($old['role'] ?? '?') . " → " . ($new['role'] ?? '?');
+            } else {
+                $log['details'] = "Utilisateur supprimé : " . ($old['username'] ?? 'Inconnu');
+            }
+        }
+
         $view = 'admin_users'; 
-        $pagetitle = 'Liste des utilisateurs';
+        $pagetitle = 'Administration & Audit';
         require_once __DIR__ . '/../View/view.php';
     }
 

@@ -70,20 +70,20 @@
                     <tr>
                         <th>Date</th>
                         <th>Action</th>
-                        <th>Table</th>
-                        <th>Anciennes données</th>
-                        <th>Admin (ID)</th>
+                        <th>ID</th>
+                        <th>Détails</th>
+                        <th>Admin</th>
                     </tr>
                 </thead>
                 <tbody>
                     <?php if (!empty($logs)): ?>
                         <?php foreach ($logs as $log): ?>
                         <tr>
-                            <td><?= $log['created_at'] ?></td>
-                            <td><strong><?= $log['action_type'] ?></strong></td>
-                            <td><?= $log['table_name'] ?></td>
-                            <td><small><?= htmlspecialchars($log['old_data']) ?></small></td>
-                            <td><?= $log['user_id'] ?? 'Système' ?></td>
+                            <td><?= htmlspecialchars($log['action_date']) ?></td>
+                            <td><?= htmlspecialchars($log['action_type']) ?></td>
+                            <td>ID #<?= htmlspecialchars($log['record_id']) ?></td>
+                            <td><?= htmlspecialchars($log['details']) ?></td>
+                            <td><?= htmlspecialchars($log['admin_name'] ?? 'Système/Inconnu') ?></td>
                         </tr>
                         <?php endforeach; ?>
                     <?php else: ?>

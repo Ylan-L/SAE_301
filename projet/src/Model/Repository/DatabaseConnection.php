@@ -1,52 +1,55 @@
-<?php 
+<?php
 namespace App\Covoiturage\Model\Repository;
-// Conf est un raccourci pour App\Covoiturage\Config\Conf
-use App\Covoiturage\Config\Conf as Conf;
+
+use App\Covoiturage\Config\Conf;
 use PDO;
 
-
-
-
 class DatabaseConnection {
-    static $instance = null;
-    private string $hostname;
-    private string $databaseName;
-    private string $login;
-    private string $password;
 
-    private $pdo;
+    private static $instance = null;
+    private PDO $pdo;
 
-    public function __construct () {
-        $hostname =  Conf::getHostname();
+    private function __construct() {
+
+        $hostname     = Conf::getHostname();
         $databaseName = Conf::getDatabase();
-        $login =  Conf::getLogin();
-        $password = Conf::getPassword();
+        $login        = Conf::getLogin();
+        $password     = Conf::getPassword();
 
-        // Connexion à la base de données 
-        // Le dernier argument sert à ce que toutes les chaines de caractères 
-        // en entrée et sortie de MySql soit dans le codage UTF-8
-        $this->pdo = new PDO("mysql:host=$hostname;dbname=$databaseName", $login, $password, array(PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8")); 
-        // On active le mode d'affichage des erreurs, et le lancement d'exception 
-        // en cas d'erreur 
-        $this->pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    } 
+        // Connexion PDO
+        $this->pdo = new PDO(
+            "mysql:host=$hostname;dbname=$databaseName;charset=utf8",
+            $login,
+            $password,
+            [
+                PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION
+            ]
+        );
 
+        // ===== AUDIT LOG : utilisateur courant =====
+        if (session_status() === PHP_SESSION_NONE) {
+            session_start();
+        }
 
-    public static function getPdo() { 
-        return static::getInstance()->pdo;
-    } 
+        if (isset($_SESSION['user_id'])) {
+            $this->pdo->exec(
+                "SET @current_user_id = " . (int)$_SESSION['user_id']
+            );
+        } else {
+            $this->pdo->exec("SET @current_user_id = NULL");
+        }
+    }
 
-     // getInstance s'assure que le constructeur sera appelé une seule fois. 
-     // L'unique instance crée est stockée dans l'attribut $instance 
-    private static function getInstance() {
-         // L'attribut statique $pdo s'obtient avec la syntaxe static::$pdo // au lieu de $this->pdo pour un attribut non statique 
-        if (is_null(static::$instance))
-             // Appel du constructeur
-            static::$instance = new DatabaseConnection();
-            return static::$instance; 
-            
-        } 
+    // Accès public au PDO
+    public static function getPdo(): PDO {
+        return self::getInstance()->pdo;
+    }
+
+    // Singleton
+    private static function getInstance(): DatabaseConnection {
+        if (self::$instance === null) {
+            self::$instance = new DatabaseConnection();
+        }
+        return self::$instance;
+    }
 }
-
-?>
-
