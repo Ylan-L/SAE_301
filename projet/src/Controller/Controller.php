@@ -296,9 +296,8 @@ class Controller {
 
         // Petit traitement pour rendre le JSON lisible
         foreach ($logs as &$log) {
-            $old = json_decode(json: $log['old_data'], associative: true);
-            $new = json_decode(json: $log['new_data'], associative: true);
-
+            $old = json_decode($log['old_data'], true);
+            $new = json_decode($log['new_data'], true);
             
             // On crée une chaîne descriptive
             if ($log['action_type'] === 'UPDATE') {
