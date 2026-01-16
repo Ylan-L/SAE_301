@@ -294,10 +294,14 @@ class Controller {
             LIMIT 50
         ")->fetchAll(PDO::FETCH_ASSOC);
 
-        // Petit traitement pour rendre le JSON lisible
+        // Traitement corrigé pour PHP 8.1+
         foreach ($logs as &$log) {
-            $old = json_decode($log['old_data'], true);
-            $new = json_decode($log['new_data'], true);
+            // On s'assure de passer une chaîne vide "" au lieu de NULL
+            $oldData = $log['old_data'] ?? '';
+            $newData = $log['new_data'] ?? '';
+
+            $old = json_decode($oldData, true) ?? [];
+            $new = json_decode($newData, true) ?? [];
             
             // On crée une chaîne descriptive
             if ($log['action_type'] === 'UPDATE') {
@@ -311,49 +315,6 @@ class Controller {
         $pagetitle = 'Administration & Audit';
         require_once __DIR__ . '/../View/view.php';
     }
-
-    public static function supprimerUser() {
-        // Vérification sécurité Admin
-        if (!isset($_SESSION['user_role']) || $_SESSION['user_role'] !== 'admin') {
-            header("Location: FrontController.php?action=accueil");
-            exit();
-        }
-
-        $id = $_GET['id'] ?? null;
-        if ($id && $id != $_SESSION['user_id']) { // On ne peut pas se supprimer soi-même
-            UtilisateurRepository::supprimerUtilisateur($id);
-            $_SESSION['message_flash'] = "Utilisateur supprimé.";
-        }
-        
-        header("Location: FrontController.php?action=admin_users");
-        exit();
-    }
-
-    public static function changerRole(): void {
-    // Sécurité: admin only
-    if (!isset($_SESSION['user_role']) || $_SESSION['user_role'] !== 'admin') {
-        header("Location: frontController.php?action=accueil");
-        exit();
-    }
-
-    $id = $_GET['id'] ?? null;
-    if ((int)$id === (int)$_SESSION['user_id']) {
-        $_SESSION['message_flash'] = "Vous ne pouvez pas modifier votre propre rôle.";
-        header("Location: frontController.php?action=admin_users");
-        exit();
-    }
-
-    if (UtilisateurRepository::changeRole($id)) {
-        $_SESSION['message_flash'] = "Rôle mis à jour.";
-    } else {
-        $_SESSION['message_flash'] = "Erreur lors du changement de rôle.";
-    }
-
-    header("Location: frontController.php?action=admin_users");
-    exit();
-}
-
-
     // ==========================================
     //             LOGIQUE CONTACT
     // ==========================================
