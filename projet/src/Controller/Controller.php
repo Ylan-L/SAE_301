@@ -1,24 +1,23 @@
 <?php
 // Autoload Composer (PHPMailer)
 //require_once __DIR__ . '/../../vendor/autoload.php';
-
-// Chargement des classes du projet
-require_once __DIR__ . '/../Model/Repository/DatabaseConnection.php';
-require_once __DIR__ . '/../Model/DataObject/AbstractDataObject.php';
-require_once __DIR__ . '/../Model/DataObject/Utilisateur.php';
-require_once __DIR__ . '/../Model/Repository/AbstractRepository.php';
-require_once __DIR__ . '/../Model/Repository/UtilisateurRepository.php';
-require_once __DIR__ . '/../Model/Repository/ResultatRepository.php'; 
-require_once __DIR__ . '/../Config/Conf.php';
-
-
-
 use App\Covoiturage\Model\Repository\UtilisateurRepository;
+use App\Covoiturage\Model\Repository\ResultatRepository;
 use App\Covoiturage\Model\Repository\DatabaseConnection;
 use App\Covoiturage\Config\Conf;
 
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
+
+// ensuite seulement les require_once
+require_once __DIR__ . '/../Model/Repository/DatabaseConnection.php';
+require_once __DIR__ . '/../Model/DataObject/AbstractDataObject.php';
+require_once __DIR__ . '/../Model/DataObject/Utilisateur.php';
+require_once __DIR__ . '/../Model/Repository/AbstractRepository.php';
+require_once __DIR__ . '/../Model/Repository/UtilisateurRepository.php';
+require_once __DIR__ . '/../Model/Repository/ResultatRepository.php';
+require_once __DIR__ . '/../Config/Conf.php';
+
 
 class Controller {
 // ==========================================
@@ -372,8 +371,7 @@ class Controller {
     }
 
    
-    public static function export_csv()
-{
+    public static function export_csv(){
     if (!isset($_SESSION['user_id'])) {
         header("Location: frontController.php?action=connexion");
         exit();
