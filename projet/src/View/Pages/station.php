@@ -113,7 +113,24 @@
     stations.forEach(s => {
         if (!s.lat || !s.lng) return;
 
-        const marker = L.marker([s.lat, s.lng]).addTo(map);
+        const marker = L.circleMarker([station.lat, station.lng], {
+    radius: 6,
+    fillOpacity: 0.8
+}).addTo(map);
+
+// Au survol
+marker.bindTooltip(station.libelle_lieu, {
+    permanent: false,
+    direction: 'top'
+});
+
+// Au clic
+marker.bindPopup(`
+    <strong>${station.libelle_lieu}</strong><br>
+    Zone : ${station.zone}<br>
+    Classement : ${station.entite_classement}
+`);
+
         bounds.push([s.lat, s.lng]);
     });
 
