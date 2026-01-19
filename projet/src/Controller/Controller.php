@@ -8,6 +8,7 @@ require_once __DIR__ . '/../Model/DataObject/AbstractDataObject.php';
 require_once __DIR__ . '/../Model/DataObject/Utilisateur.php';
 require_once __DIR__ . '/../Model/Repository/AbstractRepository.php';
 require_once __DIR__ . '/../Model/Repository/UtilisateurRepository.php';
+require_once __DIR__ . '/../Model/Repository/ResultatRepository.php'; 
 require_once __DIR__ . '/../Config/Conf.php';
 
 
@@ -42,11 +43,7 @@ class Controller {
         $view = 'profil'; $pagetitle = 'Mon Profil'; require_once __DIR__ . '/../View/view.php';
     }
 
-    public static function export_csv() {
-        if (!isset($_SESSION['user_id'])) { header("Location: frontController.php?action=connexion"); exit(); }
-        $view = 'export_csv'; $pagetitle = 'Export CSV'; require_once __DIR__ . '/../View/view.php';
-    }
-
+ 
 
     // ==========================================
     //             LOGIQUE UTILISATEUR
@@ -375,20 +372,28 @@ class Controller {
     }
 
    
-    
-   public static function export_csv() {
-    die("EXPORT CSV OK");
+    public static function export_csv()
+{
     if (!isset($_SESSION['user_id'])) {
         header("Location: frontController.php?action=connexion");
         exit();
     }
 
-    $indicateur = $_GET['indicateur'] ?? '';
+    // Si l'utilisateur n'a pas encore choisi -> on affiche la page
+    if (empty($_GET['indicateur'])) {
+        $view = 'export_csv';
+        $pagetitle = 'Export CSV';
+        require_once __DIR__ . '/../View/view.php';
+        return;
+    }
+
+    // Sinon -> on génère le CSV
+    $indicateur = $_GET['indicateur'];
 
     $map = [
-        'temperature'     => "Température de l'eau",
-        'salinite'        => "Salinité",
-        'phytoplanctons'  => "Chlorophylle a"
+        'temperature'    => "Température de l'eau",
+        'salinite'       => "Salinité",
+        'phytoplanctons' => "Chlorophylle a",
     ];
 
     if (!isset($map[$indicateur])) {
@@ -397,13 +402,11 @@ class Controller {
         exit();
     }
 
-
     $libelleBD = $map[$indicateur];
 
-    // Récupère toutes les données
+    // IMPORTANT : cette méthode doit exister dans ResultatRepository
     $rows = ResultatRepository::getAllByIndicateur($libelleBD);
 
-    // IMPORTANT: aucun echo/HTML avant ça
     $filename = "donnees_" . $indicateur . ".csv";
 
     header('Content-Type: text/csv; charset=UTF-8');
@@ -415,6 +418,8 @@ class Controller {
     echo "\xEF\xBB\xBF";
 
     $out = fopen('php://output', 'w');
+
+    // entête
     fputcsv($out, ['date', 'zone', 'lieu', 'valeur'], ';');
 
     foreach ($rows as $r) {
@@ -428,7 +433,8 @@ class Controller {
 
     fclose($out);
     exit();
-    }
+}
+
 
    
 }
