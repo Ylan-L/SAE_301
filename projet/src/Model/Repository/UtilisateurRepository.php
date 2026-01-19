@@ -107,6 +107,7 @@ class UtilisateurRepository extends AbstractRepository{
     $sql = "UPDATE utilisateurs SET role = 'admin' WHERE id_utilisateur = ?";
     return DatabaseConnection::getPdo()->prepare($sql)->execute([$id_utilisateur]);
     }
+    
 
 
     
