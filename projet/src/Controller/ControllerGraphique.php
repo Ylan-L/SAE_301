@@ -20,16 +20,16 @@ class ControllerGraphique
         switch ($filtre) {
             case 'salinite':
                 $nomParametreBDD = 'Salinité';
-                $titreGraphique = 'Salinité (sans unité)';
+                $titreGraphique = 'Moyenne de Salinité (sans unité)';
                 break;
             case 'phytoplanctons':
                 $nomParametreBDD = 'Chlorophylle a';
-                $titreGraphique = 'Concentration en Chlorophylle a (µg/L)';
+                $titreGraphique = 'Moyenne de Chlorophylle a (µg/L)';
                 break;
             case 'temperature':
             default:
                 $nomParametreBDD = 'Température de l\'eau';
-                $titreGraphique = 'Température de l\'eau (°C)';
+                $titreGraphique = 'Température moyenne de l\'eau (°C)';
                 $filtre = 'temperature'; 
                 break;
         }
@@ -38,72 +38,53 @@ class ControllerGraphique
         $repository = new ResultatRepository();
         $donneesBrutes = $repository->selectDonneesGraphique($nomParametreBDD, $dateDebut, $dateFin);
 
-        // 4. Tri des données
-        $dataAtl = [];
-        $dataMed = [];
+        // 4. Calcul de la moyenne par STATION
+        $tempStations = [];
         $passages = [];
 
         foreach ($donneesBrutes as $ligne) {
             $point = ['x' => $ligne['date'], 'y' => $ligne['valeur']];
 
             // LOGIQUE INFAILLIBLE : On cherche "Manche"
-            if (strpos($ligne['nom_zone'], 'Manche') !== false) {
-                // C'est la Manche / Atlantique
-                $dataAtl[] = $point;
-            } else {
-                // Tout le reste, c'est la Méditerranée
-                $dataMed[] = $point;
-            }
+            $valeur = (float)$ligne['valeur'];
+            $nomLieu = $ligne['libelle_lieu'];
 
+             // Calcul Moyenne
+            if (!isset($tempStations[$nomLieu])) {
+                $tempStations[$nomLieu] = ['sum' => 0, 'count' => 0];
+            }
+            $tempStations[$nomLieu]['sum'] += $valeur;
+            $tempStations[$nomLieu]['count']++;
+
+            // Données Carte
             $idPassage = $ligne['id_passage'];
             if (!isset($passages[$idPassage])) {
-                $minx = (float)$ligne['minx'];
-                $maxx = (float)$ligne['maxx'];
-                $miny = (float)$ligne['miny'];
-                $maxy = (float)$ligne['maxy'];
-                $centerX = ($minx + $maxx) / 2;
-                $centerY = ($miny + $maxy) / 2;
-
                 $passages[$idPassage] = [
-                    'lat' => $centerY,
-                    'lng' => $centerX,
-                    'lieu' => $ligne['libelle_lieu'] ?? '',
-                    'zone' => $ligne['nom_zone'] ?? '',
-                    'sum' => (float)$ligne['valeur'],
-                    'count' => 1
+                    'lat' => ((float)$ligne['miny'] + (float)$ligne['maxy']) / 2,
+                    'lng' => ((float)$ligne['minx'] + (float)$ligne['maxx']) / 2,
+                    'label' => $nomLieu . " : " . $valeur
                 ];
-            } else {
-                $passages[$idPassage]['sum'] += (float)$ligne['valeur'];
-                $passages[$idPassage]['count'] += 1;
             }
         }
 
-        // 5. Envoi à la vue
-        $jsonAtl = json_encode($dataAtl);
-        $jsonMed = json_encode($dataMed);
+        // 5. Préparation pour Chart.js
+        $labelsStations = [];
+        $dataStations = [];
 
-        $passagesForJson = [];
-        foreach ($passages as $passage) {
-            $labelParts = [];
-            if (!empty($passage['lieu'])) {
-                $labelParts[] = $passage['lieu'];
-            }
-            if (!empty($passage['zone'])) {
-                $labelParts[] = $passage['zone'];
-            }
-            if ($passage['count'] > 0) {
-                $average = $passage['sum'] / $passage['count'];
-                $labelParts[] = 'Valeur: ' . round($average, 2);
-            }
+        ksort($tempStations); // On trie les stations par ordre alphabétique
 
-            $passagesForJson[] = [
-                'lat' => $passage['lat'],
-                'lng' => $passage['lng'],
-                'label' => implode(' - ', $labelParts)
-            ];
+        ksort($tempStations); // On trie les stations par ordre alphabétique
+        
+        foreach ($tempStations as $lieu => $stats) {
+            $labelsStations[] = $lieu;
+            // On arrondit à 2 chiffres après la virgule
+            $dataStations[] = round($stats['sum'] / $stats['count'], 2);
         }
 
-        $jsonPassages = json_encode($passagesForJson);
+        // Encodage JSON
+        $jsonLabels = json_encode($labelsStations);
+        $jsonData = json_encode($dataStations);
+        $jsonPassages = json_encode(array_values($passages));
         
         $pagetitle = "Graphique - " . $titreGraphique;
         $view = "graphique"; 
@@ -111,7 +92,7 @@ class ControllerGraphique
         require __DIR__ . "/../View/view.php";
     }
 
-   public static function export_csv(){
+    public static function export_csv(){
     if (!isset($_SESSION['user_id'])) {
         header("Location: frontController.php?action=connexion");
         exit();
