@@ -43,7 +43,7 @@
                                         Supprimer
                                     </a>
 
-                                    <?php if (($u['role'] ?? 'user') !== 'admin'): ?>
+                                    <?php if (($u['role'] ?? 'user') !== 'super_admin'): ?>
                                         <a href="frontController.php?action=changerRole&id=<?= $u['id_utilisateur'] ?>"
                                            class="btn-edit"
                                            onclick="return confirm('Rendre <?= addslashes(htmlspecialchars($u['username'])) ?> administrateur ?')">
