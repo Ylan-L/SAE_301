@@ -2,7 +2,6 @@
     <h1>Télécharger un indicateur (CSV)</h1>
 
     <form method="GET" action="frontController.php">
-        <!-- action cachée -->
         <input type="hidden" name="action" value="export_csv">
 
         <label for="indicateur">Choisir un indicateur :</label>
