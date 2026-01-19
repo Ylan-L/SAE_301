@@ -368,21 +368,7 @@ class Controller {
         exit();
     }
 
-    public static function export_csv(){
-    
-    if (!isset($_SESSION['user_id'])) {
-        header("Location: frontController.php?action=connexion");
-        exit();
-    }
-
-    
-    $view = 'export_csv';
-    $pagetitle = 'Exporter un indicateur (CSV)';
-
-    require_once __DIR__ . '/../View/view.php';
-    }
-
-
+   
 
    
 }

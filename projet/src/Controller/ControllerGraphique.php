@@ -165,6 +165,13 @@ class ControllerGraphique
 
     fclose($out);
     exit();
+
+    $view = 'export_csv';
+    $pagetitle = 'Exporter un indicateur (CSV)';
+
+    require_once __DIR__ . '/../View/view.php';
     }
+
+
 
 }
