@@ -1,0 +1,18 @@
+<div class="container-page">
+    <h1>Télécharger un indicateur (CSV)</h1>
+
+    <form method="GET" action="download_csv.php">
+        <label for="indicateur">Choisir un indicateur :</label>
+
+        <select name="indicateur" id="indicateur" required>
+            <option value="">-- Sélectionner --</option>
+            <option value="temperature">Température</option>
+            <option value="salinite">Salinité</option>
+            <option value="phytoplanctons">Phytoplanctons</option>
+        </select>
+
+        <button type="submit" class="btn-primary">
+            Télécharger le CSV
+        </button>
+    </form>
+</div>

@@ -127,3 +127,6 @@
     .btn-graph { padding: 8px 15px; margin: 0 5px; cursor: pointer; border: 1px solid #ccc; background: white; border-radius: 4px; }
     .btn-graph:hover { background: #eee; }
 </style>
+
+<a href="frontController.php?action=export_csv">Export CSV</a>
+
