@@ -22,6 +22,7 @@ class ControllerStation
         $dateDebut = $_GET['dateDebut'] ?? '2021-01-01';
         $dateFin = $_GET['dateFin'] ?? '2022-01-01';
 
+        
         // --------------------
         // CAS 1 : aucune recherche
         // --------------------
@@ -58,10 +59,26 @@ class ControllerStation
         }
 
         // --------------------
-        // Carte (station seule)
-        // --------------------
-        $coords = $passageRepo->getCoordonneesPourLieu($station->getIdLieu());
-        $jsonStations = json_encode($coords);
+    // Carte (station seule) — STRUCTURE UNIFIÉE
+    // --------------------
+    $coords = $passageRepo->getCoordonneesPourLieu($station->getIdLieu());
+
+    // on calcule un centre (au cas où plusieurs passages)
+    $lat = null;
+    $lng = null;
+
+    if (!empty($coords)) {
+        $lat = $coords[0]['lat'];
+        $lng = $coords[0]['lng'];
+    }
+
+    $jsonStations = json_encode([[
+        'libelle_lieu' => $station->getNomLieu(),
+        'entite_classement' => $station->getTypeLieu(),
+        'lat' => $lat,
+        'lng' => $lng
+    ]]);
+
 
         // --------------------
         // Graphique

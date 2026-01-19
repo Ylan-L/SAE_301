@@ -8,6 +8,7 @@
 /** @var string $dateFin */
 ?>
 <!-- CHOSES A AMELIORER MARIAM
+ - VOIR AVANT DERNIER MSG CHATGPT
  - mettre le nom des stations sur la carte comme dans graphique
  - avoir une partie qui montre directement les données disponibles pour une station donnée 
     pour ne pas que ça n'affiche rien
@@ -110,32 +111,36 @@
 
     const bounds = [];
 
-    stations.forEach(s => {
-        if (!s.lat || !s.lng) return;
+    stations.forEach(station => {
 
-        const marker = L.circleMarker([station.lat, station.lng], {
-    radius: 6,
-    fillOpacity: 0.8
-}).addTo(map);
+    if (!Number.isFinite(station.lat) || !Number.isFinite(station.lng)) {
+        return; // on ignore la station
+    }
 
-// Au survol
-marker.bindTooltip(station.libelle_lieu, {
-    permanent: false,
-    direction: 'top'
-});
+    const marker = L.circleMarker([station.lat, station.lng], {
+        radius: 6,
+        fillOpacity: 0.8
+    }).addTo(map);
 
-// Au clic
-marker.bindPopup(`
-    <strong>${station.libelle_lieu}</strong><br>
-    Zone : ${station.zone}<br>
-    Classement : ${station.entite_classement}
-`);
-
-        bounds.push([s.lat, s.lng]);
+    marker.bindTooltip(station.libelle_lieu, {
+        direction: 'top'
     });
 
+    marker.bindPopup(`
+        <strong>${station.libelle_lieu}</strong><br>
+        Classement : ${station.entite_classement}
+    `);
+});
+
+
     if (bounds.length > 0) {
-        map.fitBounds(bounds, {padding: [20, 20], maxZoom: 7});
+        const boundsAtlantique = L.latLngBounds(
+            [43.2, -6], // sud-ouest
+            [51.5, 2]   // nord-est
+        );
+
+        map.fitBounds(boundsAtlantique);
+
     }
 
     window.addEventListener('load', () => map.invalidateSize());

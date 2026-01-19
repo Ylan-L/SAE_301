@@ -72,10 +72,14 @@ class LieuSurveillanceRepository extends AbstractRepository
             SELECT DISTINCT
                 l.id_lieu,
                 l.libelle_lieu,
+                l.entite_classement,
                 (p.minx + p.maxx) / 2 AS lng,
                 (p.miny + p.maxy) / 2 AS lat
             FROM lieu_surveillance l
             JOIN passage p ON l.id_lieu = p.id_lieu
+            JOIN zone z ON l.id_zone = z.id_zone
+            WHERE l.id_zone = 2
+
         ";
 
         $pdo = DatabaseConnection::getPdo();
