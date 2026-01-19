@@ -370,6 +370,10 @@ class Controller {
         exit();
     }
 
+    // ==========================================
+    //             FONCTIONNALITES
+    // ==========================================
+
    
     public static function export_csv(){
     if (!isset($_SESSION['user_id'])) {
