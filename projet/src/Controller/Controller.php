@@ -42,6 +42,12 @@ class Controller {
         $view = 'profil'; $pagetitle = 'Mon Profil'; require_once __DIR__ . '/../View/view.php';
     }
 
+    public static function export_csv() {
+        if (!isset($_SESSION['user_id'])) { header("Location: frontController.php?action=connexion"); exit(); }
+        $view = 'export_csv'; $pagetitle = 'Export CSV'; require_once __DIR__ . '/../View/view.php';
+    }
+
+
     // ==========================================
     //             LOGIQUE UTILISATEUR
     // ==========================================
