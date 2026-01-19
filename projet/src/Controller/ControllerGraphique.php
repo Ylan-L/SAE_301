@@ -92,34 +92,32 @@ class ControllerGraphique
         require __DIR__ . "/../View/view.php";
     }
 
-    public static function export_csv(){
+   public static function export_csv() {
     if (!isset($_SESSION['user_id'])) {
         header("Location: frontController.php?action=connexion");
         exit();
     }
 
-    // 1) Récupère le choix
     $indicateur = $_GET['indicateur'] ?? '';
 
-    // 2) Map indicateur -> libellé BD
     $map = [
-        'temperature' => "Température de l'eau",
-        'salinite' => "Salinité",
-        'phytoplanctons' => "Chlorophylle a"
+        'temperature'     => "Température de l'eau",
+        'salinite'        => "Salinité",
+        'phytoplanctons'  => "Chlorophylle a"
     ];
 
     if (!isset($map[$indicateur])) {
         $_SESSION['message_flash'] = "Indicateur invalide.";
-        header("Location: frontController.php?action=graphique");
+        header("Location: frontController.php?action=export_csv");
         exit();
     }
 
     $libelleBD = $map[$indicateur];
 
-    // 3) Récupérer toutes les données
+    // Récupère toutes les données
     $rows = ResultatRepository::getAllByIndicateur($libelleBD);
 
-    // 4) Préparer téléchargement CSV
+    // IMPORTANT: aucun echo/HTML avant ça
     $filename = "donnees_" . $indicateur . ".csv";
 
     header('Content-Type: text/csv; charset=UTF-8');
@@ -127,12 +125,10 @@ class ControllerGraphique
     header('Pragma: no-cache');
     header('Expires: 0');
 
-    // BOM UTF-8 (Excel)
+    // BOM UTF-8 pour Excel
     echo "\xEF\xBB\xBF";
 
     $out = fopen('php://output', 'w');
-
-    // En-têtes CSV
     fputcsv($out, ['date', 'zone', 'lieu', 'valeur'], ';');
 
     foreach ($rows as $r) {
@@ -147,6 +143,7 @@ class ControllerGraphique
     fclose($out);
     exit();
     }
+
 
 
 }
