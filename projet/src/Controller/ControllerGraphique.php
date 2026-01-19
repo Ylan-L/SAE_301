@@ -111,7 +111,7 @@ class ControllerGraphique
         require __DIR__ . "/../View/view.php";
     }
 
-    public static function export_csv() {
+   public static function export_csv(){
     if (!isset($_SESSION['user_id'])) {
         header("Location: frontController.php?action=connexion");
         exit();
@@ -146,12 +146,12 @@ class ControllerGraphique
     header('Pragma: no-cache');
     header('Expires: 0');
 
-    
+    // BOM UTF-8 (Excel)
     echo "\xEF\xBB\xBF";
 
     $out = fopen('php://output', 'w');
 
-    
+    // En-têtes CSV
     fputcsv($out, ['date', 'zone', 'lieu', 'valeur'], ';');
 
     foreach ($rows as $r) {
@@ -165,13 +165,7 @@ class ControllerGraphique
 
     fclose($out);
     exit();
-
-    $view = 'export_csv';
-    $pagetitle = 'Exporter un indicateur (CSV)';
-
-    require_once __DIR__ . '/../View/view.php';
     }
-
 
 
 }
