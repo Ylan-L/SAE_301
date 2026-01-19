@@ -19,15 +19,21 @@
         </header>
 
         <?php if (!empty($message_erreur)) : ?>
-            <div class="alert alert-error"><?= htmlspecialchars($message_erreur) ?></div>
-        <?php endif; ?>
+    <div class="alert alert-error">
+        <?= htmlspecialchars($message_erreur) ?>
+    </div>
+    <?php endif; ?>
 
-        <?php if (!empty($_SESSION['message_flash'])) : ?>
-            <div class="alert alert-success"><?= htmlspecialchars($_SESSION['message_flash']) ?></div>
-            <?php unset($_SESSION['message_flash']); ?>
-        <?php endif; ?>
 
-        <form action="frontController.php?action=validerInscription"
+       <?php if (!empty($_SESSION['message_flash'])) : ?>
+    <div class="alert alert-success">
+        <?= htmlspecialchars($_SESSION['message_flash']) ?>
+    </div>
+    <?php unset($_SESSION['message_flash']); ?>
+<?php endif; ?>
+
+
+        <form action="frontController.php>?action=validerInscription"
               method="POST"
               class="auth-form">
 
@@ -84,7 +90,7 @@
         <footer class="auth-footer">
             <p>
                 Déjà un compte ?
-                <a href="frontController.php?action=connexion">Se connecter</a>
+                <a href="frontController.php>?action=connexion">Se connecter</a>
             </p>
         </footer>
 
@@ -107,4 +113,3 @@ document.getElementById('togglePassword').addEventListener('click', function () 
 
 </body>
 </html>
-<?php
