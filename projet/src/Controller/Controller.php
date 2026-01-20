@@ -322,14 +322,12 @@ class Controller {
             exit();
         }
 
-        // 2. Récupérer l'ID de l'utilisateur à promouvoir
         $id = $_GET['id'] ?? null;
 
         if ($id) {
             UtilisateurRepository::changerole($id);
         }
 
-    
         header("Location: frontController.php?action=admin_users");
         exit();
     }

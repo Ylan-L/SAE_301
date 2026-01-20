@@ -78,36 +78,45 @@ class UtilisateurRepository extends AbstractRepository{
     }
 
     public static function creerResetMdp($id_utilisateur, $token_hash, $expires_at) {
-    $sql = "INSERT INTO password_resets (id_utilisateur, token_hash, expires_at)
-            VALUES (?, ?, ?)";
-    return DatabaseConnection::getPdo()->prepare($sql)->execute([$id_utilisateur, $token_hash, $expires_at]);
+        $sql = "INSERT INTO password_resets (id_utilisateur, token_hash, expires_at)
+                VALUES (?, ?, ?)";
+        return DatabaseConnection::getPdo()->prepare($sql)->execute([$id_utilisateur, $token_hash, $expires_at]);
     }
 
     public static function getDernierResetValide($id_utilisateur) {
-    $sql = "SELECT * FROM password_resets
-            WHERE id_utilisateur = ? AND used_at IS NULL
-            ORDER BY created_at DESC
-            LIMIT 1";
-    $stmt = DatabaseConnection::getPdo()->prepare($sql);
-    $stmt->execute([$id_utilisateur]);
-    return $stmt->fetch(PDO::FETCH_ASSOC);
+        $sql = "SELECT * FROM password_resets
+                WHERE id_utilisateur = ? AND used_at IS NULL
+                ORDER BY created_at DESC
+                LIMIT 1";
+        $stmt = DatabaseConnection::getPdo()->prepare($sql);
+        $stmt->execute([$id_utilisateur]);
+        return $stmt->fetch(PDO::FETCH_ASSOC);
     }
 
     public static function marquerResetUtilise($reset_id) {
-    $sql = "UPDATE password_resets SET used_at = NOW() WHERE id = ?";
-    return DatabaseConnection::getPdo()->prepare($sql)->execute([$reset_id]);
+        $sql = "UPDATE password_resets SET used_at = NOW() WHERE id = ?";
+        return DatabaseConnection::getPdo()->prepare($sql)->execute([$reset_id]);
     }
 
     public static function updatePasswordHash($id_utilisateur, $password_hash) {
-    $sql = "UPDATE utilisateurs SET password_hash = ? WHERE id_utilisateur = ?";
-    return DatabaseConnection::getPdo()->prepare($sql)->execute([$password_hash, $id_utilisateur]);
+        $sql = "UPDATE utilisateurs SET password_hash = ? WHERE id_utilisateur = ?";
+        return DatabaseConnection::getPdo()->prepare($sql)->execute([$password_hash, $id_utilisateur]);
     }
 
-   public static function changerole($id_utilisateur) {
-    $sql = "UPDATE utilisateurs SET role = 'admin' WHERE id_utilisateur = ?";
-    return DatabaseConnection::getPdo()->prepare($sql)->execute([$id_utilisateur]);
+    public static function changerole($id_utilisateur): bool {
+        $sqlSelect = "SELECT role FROM utilisateurs WHERE id_utilisateur = ?";
+        $stmt = DatabaseConnection::getPdo()->prepare($sqlSelect);
+        $stmt->execute([$id_utilisateur]);
+        $user = $stmt->fetch();
+
+        if ($user) {
+            $nouveauRole = ($user['role'] === 'admin') ? 'user' : 'admin';
+
+            $sqlUpdate = "UPDATE utilisateurs SET role = ? WHERE id_utilisateur = ?";
+            return DatabaseConnection::getPdo()->prepare($sqlUpdate)->execute([$nouveauRole, $id_utilisateur]);
+        }
+        return false;
     }
-    
 
 
     
