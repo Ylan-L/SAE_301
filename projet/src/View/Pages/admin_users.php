@@ -35,8 +35,11 @@
                             </td>
                             <td>
                                 <?php 
-                                $session_id = $_SESSION['user_id'] ?? null;
-                                if ($u['id_utilisateur'] != $session_id): ?>
+                                $role_session = $_SESSION['user_role'] ?? '';
+                                if (
+                                    ($role_session === 'super_admin' && $u['id_utilisateur'] != $session_id) || 
+                                    ($role_session === 'admin' && ($u['role'] ?? 'user') === 'user')
+                                ): ?>
                                     <a href="frontController.php?action=supprimerUser&id=<?= $u['id_utilisateur'] ?>" 
                                        class="btn-delete"
                                        onclick="return confirm('Supprimer l\'utilisateur <?= addslashes(htmlspecialchars($u['username'])) ?> ?')">
