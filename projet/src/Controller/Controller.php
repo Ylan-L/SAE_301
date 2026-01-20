@@ -317,36 +317,36 @@ class Controller {
         require_once __DIR__ . '/../View/view.php';
     }
     public static function changerRole(): void {
-    if (($_SESSION['user_role'] ?? '') !== 'super_admin') {
-        header("Location: frontController.php?action=accueil");
+        if (($_SESSION['user_role'] ?? '') !== 'super_admin') {
+            header("Location: frontController.php?action=accueil");
+            exit();
+        }
+
+        // 2. Récupérer l'ID de l'utilisateur à promouvoir
+        $id = $_GET['id'] ?? null;
+
+        if ($id) {
+            UtilisateurRepository::changerole($id);
+        }
+
+    
+        header("Location: frontController.php?action=admin_users");
         exit();
-    }
-
-    // 2. Récupérer l'ID de l'utilisateur à promouvoir
-    $id = $_GET['id'] ?? null;
-
-    if ($id) {
-        UtilisateurRepository::changerole($id);
-    }
-
-  
-    header("Location: frontController.php?action=admin_users");
-    exit();
     }
     public static function supprimerUser(): void {
-    if (!isset($_SESSION['user_role']) || !in_array($_SESSION['user_role'], ['admin', 'super_admin'])) {
-        header("Location: FrontController.php?action=accueil");
+        if (!isset($_SESSION['user_role']) || !in_array($_SESSION['user_role'], ['admin', 'super_admin'])) {
+            header("Location: FrontController.php?action=accueil");
+            exit();
+        }
+
+        $id = $_GET['id'] ?? null;
+
+        if ($id) {
+            UtilisateurRepository::supprimerUtilisateur($id);
+        }
+
+        header("Location: FrontController.php?action=admin_users");
         exit();
-    }
-
-    $id = $_GET['id'] ?? null;
-
-    if ($id) {
-        UtilisateurRepository::supprimerUtilisateur($id);
-    }
-
-    header("Location: FrontController.php?action=admin_users");
-    exit();
     }
     // ==========================================
     //             LOGIQUE CONTACT
