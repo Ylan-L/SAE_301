@@ -45,7 +45,7 @@
 
                                     <?php if (($_SESSION['user_role'] ?? '') === 'super_admin' && ($u['role'] ?? 'user') === 'user'): ?>
                                         <a href="frontController.php?action=changerRole&id=<?= $u['id_utilisateur'] ?>"
-                                           class="btn-edit"
+                                           class="btn-delete"
                                            onclick="return confirm('Rendre <?= addslashes(htmlspecialchars($u['username'])) ?> administrateur ?')">
                                             Rendre Admin
                                         </a>
