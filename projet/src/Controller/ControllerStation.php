@@ -21,6 +21,7 @@ class ControllerStation
         $filtre = $_GET['filtre'] ?? 'temperature';
         $dateDebut = $_GET['dateDebut'] ?? '2021-01-01';
         $dateFin = $_GET['dateFin'] ?? '2022-01-01';
+        $listeStations = $lieuRepo->getStationsAvecCoordonnees();
 
         
         // --------------------
@@ -59,25 +60,25 @@ class ControllerStation
         }
 
         // --------------------
-    // Carte (station seule) — STRUCTURE UNIFIÉE
-    // --------------------
-    $coords = $passageRepo->getCoordonneesPourLieu($station->getIdLieu());
+        // Carte (station seule) — STRUCTURE UNIFIÉE
+        // --------------------
+        $coords = $passageRepo->getCoordonneesPourLieu($station->getIdLieu());
 
-    // on calcule un centre (au cas où plusieurs passages)
-    $lat = null;
-    $lng = null;
+        // on calcule un centre (au cas où plusieurs passages)
+        $lat = null;
+        $lng = null;
 
-    if (!empty($coords)) {
-        $lat = $coords[0]['lat'];
-        $lng = $coords[0]['lng'];
-    }
+        if (!empty($coords)) {
+            $lat = $coords[0]['lat'];
+            $lng = $coords[0]['lng'];
+        }
 
-    $jsonStations = json_encode([[
-        'libelle_lieu' => $station->getNomLieu(),
-        'entite_classement' => $station->getTypeLieu(),
-        'lat' => $lat,
-        'lng' => $lng
-    ]]);
+        $jsonStations = json_encode([[
+            'libelle_lieu' => $station->getNomLieu(),
+            'entite_classement' => $station->getTypeLieu(),
+            'lat' => $lat,
+            'lng' => $lng
+        ]]);
 
 
         // --------------------

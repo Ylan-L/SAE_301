@@ -9,10 +9,8 @@
 ?>
 <!-- CHOSES A AMELIORER MARIAM
  - VOIR AVANT DERNIER MSG CHATGPT
- - mettre le nom des stations sur la carte comme dans graphique
  - avoir une partie qui montre directement les données disponibles pour une station donnée 
     pour ne pas que ça n'affiche rien
-- modifier "type" sur la page 
  - faire en sorte que lorsque l'on fait une recherche pour graphique ça ne monte pas tout en haut
  - proposition de stations lorsque l'on fait une recherche 
  -->
@@ -20,7 +18,7 @@
 <div class="station-container" style="max-width: 1000px; margin: 20px auto;">
 
     <!-- ================= RECHERCHE ================= -->
-    <h2>&#128269; Rechercher une station</h2>
+    <h2>🔍 Rechercher une station</h2>
 
     <form method="GET" action="frontController.php" style="margin-bottom: 20px;">
         <input type="hidden" name="action" value="station">
@@ -28,21 +26,38 @@
         <input
             type="text"
             name="station"
+            id="station-input"               
+            list="liste-stations"             
             placeholder="Nom de la station"
             value="<?= htmlspecialchars($stationRecherchee ?? '') ?>"
             required
             style="padding: 8px; width: 60%;"
         >
+        <datalist id="liste-stations">
+            <?php foreach ($listeStations as $s): ?>
+                <option value="<?= htmlspecialchars($s['libelle_lieu']) ?>">
+            <?php endforeach; ?>
+        </datalist>
+
 
         <button type="submit" style="padding: 8px 15px;">Rechercher</button>
     </form>
+
+    <!-- ✅ AJOUT : AUTOCOMPLETE -->
+    <datalist id="liste-stations">
+        <?php foreach ($listeStations as $s): ?>
+            <option value="<?= htmlspecialchars($s['libelle_lieu']) ?>">
+        <?php endforeach; ?>
+    </datalist>
+
 
     <!-- ================= CARTE ================= -->
     <div class="map-container">
         <div id="stationMap"></div>
     </div>
-
+    
     <!-- ================= INFOS STATION ================= -->
+    <a id="graphique"></a>
     <?php if ($stationDetails !== null): ?>
         <h3><?= htmlspecialchars($stationDetails['nom']) ?></h3>
 
@@ -53,8 +68,9 @@
     <?php endif; ?>
 
     <!-- ================= FILTRES GRAPHIQUE ================= -->
+
     <?php if ($stationDetails !== null): ?>
-        <form method="GET" action="frontController.php"
+        <form method="GET" action="frontController.php#graphique"
               style="background: #f8f9fa; padding: 15px; border-radius: 8px; margin-bottom: 20px;">
 
             <input type="hidden" name="action" value="station">
@@ -129,9 +145,12 @@
     marker.bindPopup(`
         <strong>${station.libelle_lieu}</strong><br>
         Classement : ${station.entite_classement}
+        <button onclick="selectionnerStation('${station.libelle_lieu.replace(/'/g, "\\'")}')">
+            Voir cette station
+        </button>
     `);
-});
 
+});
 
     if (bounds.length > 0) {
         const boundsAtlantique = L.latLngBounds(
@@ -145,6 +164,19 @@
 
     window.addEventListener('load', () => map.invalidateSize());
 </script>
+
+<script>
+    function selectionnerStation(nomStation) {
+        const input = document.getElementById('station-input');
+        if (!input) return;
+
+        input.value = nomStation;
+
+        // on soumet le formulaire automatiquement
+        input.form.submit();
+    }
+</script>
+
 
 <!-- ================= GRAPHIQUE ================= -->
 <?php if ($jsonStationData !== null): ?>
