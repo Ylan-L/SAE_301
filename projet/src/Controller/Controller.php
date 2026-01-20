@@ -280,9 +280,9 @@ class Controller {
     // ==========================================
 
     public static function admin_users() {
-        if (!isset($_SESSION['user_role']) || $_SESSION['user_role'] !== 'admin') {
-            header("Location: FrontController.php?action=accueil");
-            exit();
+        if (!isset($_SESSION['user_role']) || !in_array($_SESSION['user_role'], ['admin', 'super_admin'], true)) {
+        header("Location: FrontController.php?action=accueil");
+        exit();
         }
 
         $users = UtilisateurRepository::getAllUsers();
