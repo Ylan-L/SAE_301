@@ -59,10 +59,9 @@
                                         <?= ($u['role'] === 'admin') ? 'Rendre User' : 'Rendre Admin' ?>
                                         </a>
                                     <?php endif; ?>
-
-                                <?php else: ?>
-                                    <span class="me-label">(Moi)</span>
-                                <?php endif; ?>
+                                    <?php else: ?>
+                                        <span class="me-label">(Moi)</span>
+                                    <?php endif; ?>
                             </td>
                         </tr>
                         <?php endforeach; ?>
