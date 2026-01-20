@@ -296,9 +296,8 @@ class Controller {
             LIMIT 50
         ")->fetchAll(PDO::FETCH_ASSOC);
 
-        // Traitement corrigé pour PHP 8.1+
         foreach ($logs as &$log) {
-            // On s'assure de passer une chaîne vide "" au lieu de NULL
+        
             $oldData = $log['old_data'] ?? '';
             $newData = $log['new_data'] ?? '';
 
@@ -319,21 +318,17 @@ class Controller {
     }
 
     public static function supprimerUser(): void {
-    // 1. Sécurité : on vérifie que c'est bien un admin qui demande la suppression
     if (!isset($_SESSION['user_role']) || !in_array($_SESSION['user_role'], ['admin', 'super_admin'])) {
         header("Location: FrontController.php?action=accueil");
         exit();
     }
 
-    // 2. On récupère l'ID envoyé dans l'URL (ex: &id=5)
     $id = $_GET['id'] ?? null;
 
     if ($id) {
-        // 3. C'EST ICI qu'on utilise votre code de l'image 1
         UtilisateurRepository::supprimerUtilisateur($id);
     }
 
-    // 4. On redirige vers la table pour voir que l'utilisateur a disparu
     header("Location: FrontController.php?action=admin_users");
     exit();
     }
