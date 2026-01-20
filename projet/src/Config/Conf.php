@@ -7,7 +7,7 @@ class Conf {
         'hostname' => 'localhost',
         'database' => 'sae3_01',
         'login'    => 'root',
-        'password' => 'vboxuser'
+        'password' => 'julia'
     ];
 
     // Ajout pour le mail
