@@ -1,23 +1,23 @@
 <?php
 // Autoload Composer (PHPMailer)
 //require_once __DIR__ . '/../../vendor/autoload.php';
-
-// Chargement des classes du projet
-require_once __DIR__ . '/../Model/Repository/DatabaseConnection.php';
-require_once __DIR__ . '/../Model/DataObject/AbstractDataObject.php';
-require_once __DIR__ . '/../Model/DataObject/Utilisateur.php';
-require_once __DIR__ . '/../Model/Repository/AbstractRepository.php';
-require_once __DIR__ . '/../Model/Repository/UtilisateurRepository.php';
-require_once __DIR__ . '/../Config/Conf.php';
-
-
-
 use App\Covoiturage\Model\Repository\UtilisateurRepository;
+use App\Covoiturage\Model\Repository\ResultatRepository;
 use App\Covoiturage\Model\Repository\DatabaseConnection;
 use App\Covoiturage\Config\Conf;
 
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
+
+// ensuite seulement les require_once
+require_once __DIR__ . '/../Model/Repository/DatabaseConnection.php';
+require_once __DIR__ . '/../Model/DataObject/AbstractDataObject.php';
+require_once __DIR__ . '/../Model/DataObject/Utilisateur.php';
+require_once __DIR__ . '/../Model/Repository/AbstractRepository.php';
+require_once __DIR__ . '/../Model/Repository/UtilisateurRepository.php';
+require_once __DIR__ . '/../Model/Repository/ResultatRepository.php';
+require_once __DIR__ . '/../Config/Conf.php';
+
 
 class Controller {
 // ==========================================
@@ -41,6 +41,8 @@ class Controller {
         if (!isset($_SESSION['user_id'])) { header("Location: frontController.php?action=connexion"); exit(); }
         $view = 'profil'; $pagetitle = 'Mon Profil'; require_once __DIR__ . '/../View/view.php';
     }
+
+ 
 
     // ==========================================
     //             LOGIQUE UTILISATEUR
@@ -278,9 +280,9 @@ class Controller {
     // ==========================================
 
     public static function admin_users() {
-        if (!isset($_SESSION['user_role']) || $_SESSION['user_role'] !== 'admin') {
-            header("Location: FrontController.php?action=accueil");
-            exit();
+        if (!isset($_SESSION['user_role']) || !in_array($_SESSION['user_role'], ['admin', 'super_admin'], true)) {
+        header("Location: FrontController.php?action=accueil");
+        exit();
         }
 
         $users = UtilisateurRepository::getAllUsers();
@@ -294,9 +296,8 @@ class Controller {
             LIMIT 50
         ")->fetchAll(PDO::FETCH_ASSOC);
 
-        // Traitement corrigé pour PHP 8.1+
         foreach ($logs as &$log) {
-            // On s'assure de passer une chaîne vide "" au lieu de NULL
+        
             $oldData = $log['old_data'] ?? '';
             $newData = $log['new_data'] ?? '';
 
@@ -314,6 +315,36 @@ class Controller {
         $view = 'admin_users'; 
         $pagetitle = 'Administration & Audit';
         require_once __DIR__ . '/../View/view.php';
+    }
+    public static function changerRole(): void {
+        if (($_SESSION['user_role'] ?? '') !== 'super_admin') {
+            header("Location: frontController.php?action=accueil");
+            exit();
+        }
+
+        $id = $_GET['id'] ?? null;
+
+        if ($id) {
+            UtilisateurRepository::changerole($id);
+        }
+
+        header("Location: frontController.php?action=admin_users");
+        exit();
+    }
+    public static function supprimerUser(): void {
+        if (!isset($_SESSION['user_role']) || !in_array($_SESSION['user_role'], ['admin', 'super_admin'])) {
+            header("Location: FrontController.php?action=accueil");
+            exit();
+        }
+
+        $id = $_GET['id'] ?? null;
+
+        if ($id) {
+            UtilisateurRepository::supprimerUtilisateur($id);
+        }
+
+        header("Location: FrontController.php?action=admin_users");
+        exit();
     }
     // ==========================================
     //             LOGIQUE CONTACT
@@ -368,7 +399,73 @@ class Controller {
         exit();
     }
 
+    // ==========================================
+    //             FONCTIONNALITES
+    // ==========================================
+
    
+    public static function export_csv(){
+    if (!isset($_SESSION['user_id'])) {
+        header("Location: frontController.php?action=connexion");
+        exit();
+    }
+
+    // Si l'utilisateur n'a pas encore choisi -> on affiche la page
+    if (empty($_GET['indicateur'])) {
+        $view = 'export_csv';
+        $pagetitle = 'Export CSV';
+        require_once __DIR__ . '/../View/view.php';
+        return;
+    }
+
+    // Sinon -> on génère le CSV
+    $indicateur = $_GET['indicateur'];
+
+    $map = [
+        'temperature'    => "Température de l'eau",
+        'salinite'       => "Salinité",
+        'phytoplanctons' => "Chlorophylle a",
+    ];
+
+    if (!isset($map[$indicateur])) {
+        $_SESSION['message_flash'] = "Indicateur invalide.";
+        header("Location: frontController.php?action=export_csv");
+        exit();
+    }
+
+    $libelleBD = $map[$indicateur];
+
+    // IMPORTANT : cette méthode doit exister dans ResultatRepository
+    $rows = ResultatRepository::getAllByIndicateur($libelleBD);
+
+    $filename = "donnees_" . $indicateur . ".csv";
+
+    header('Content-Type: text/csv; charset=UTF-8');
+    header('Content-Disposition: attachment; filename="' . $filename . '"');
+    header('Pragma: no-cache');
+    header('Expires: 0');
+
+    // BOM UTF-8 pour Excel
+    echo "\xEF\xBB\xBF";
+
+    $out = fopen('php://output', 'w');
+
+    // entête
+    fputcsv($out, ['date', 'zone', 'lieu', 'valeur'], ';');
+
+    foreach ($rows as $r) {
+        fputcsv($out, [
+            $r['date'] ?? '',
+            $r['nom_zone'] ?? '',
+            $r['libelle_lieu'] ?? '',
+            $r['valeur'] ?? ''
+        ], ';');
+    }
+
+    fclose($out);
+    exit();
+}
+
 
    
 }

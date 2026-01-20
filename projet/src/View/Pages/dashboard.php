@@ -36,7 +36,7 @@
                 <i class="fas fa-user-edit"></i> Modifier mon profil
             </a>
 
-            <?php if (isset($_SESSION['user_role']) && $_SESSION['user_role'] === 'admin'): ?>
+            <?php if (isset($_SESSION['user_role']) && in_array($_SESSION['user_role'], ['admin', 'super_admin'])): ?>
                 <a href="frontController.php?action=admin_users" class="button btn-admin">
                     <i class="fas fa-users-cog"></i> Administration
                 </a>

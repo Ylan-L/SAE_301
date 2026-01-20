@@ -33,7 +33,7 @@
 <?php endif; ?>
 
 
-        <form action="frontController.php>?action=validerInscription"
+        <form action="frontController.php?action=validerInscription"
               method="POST"
               class="auth-form">
 
@@ -90,7 +90,7 @@
         <footer class="auth-footer">
             <p>
                 Déjà un compte ?
-                <a href="frontController.php>?action=connexion">Se connecter</a>
+                <a href="frontController.php?action=connexion">Se connecter</a>
             </p>
         </footer>
 
