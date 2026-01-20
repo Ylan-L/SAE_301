@@ -35,25 +35,31 @@
                             </td>
                             <td>
                                 <?php 
+                                $session_id = $_SESSION['user_id'] ?? null;
                                 $role_session = $_SESSION['user_role'] ?? '';
-                                if (
-                                    ($role_session === 'super_admin' && $u['id_utilisateur'] != $session_id) || 
-                                    ($role_session === 'admin' && ($u['role'] ?? 'user') === 'user')
-                                ): ?>
-                                    <a href="frontController.php?action=supprimerUser&id=<?= $u['id_utilisateur'] ?>" 
-                                       class="btn-delete"
-                                       onclick="return confirm('Supprimer l\'utilisateur <?= addslashes(htmlspecialchars($u['username'])) ?> ?')">
-                                        Supprimer
-                                    </a>
 
-                                    <?php if (($_SESSION['user_role'] ?? '') === 'super_admin' && ($u['role'] ?? 'user') !== 'super_admin'): ?>
+    
+                                if ($u['id_utilisateur'] != $session_id): ?>  
+                                    <?php 
+                                    // Bouton Supprimer : Super_admin voit tout, Admin voit uniquement les User
+                                    if ($role_session === 'super_admin' || ($role_session === 'admin' && ($u['role'] ?? 'user') === 'user')): ?>
+                                        <a href="frontController.php?action=supprimerUser&id=<?= $u['id_utilisateur'] ?>" 
+                                        class="btn-delete"
+                                        onclick="return confirm('Supprimer l\'utilisateur <?= addslashes(htmlspecialchars((string)$u['username'])) ?> ?')">
+                                        Supprimer
+                                        </a>
+                                    <?php endif; ?>
+
+                                    <?php 
+                                    // Bouton Rendre Admin/User : Uniquement pour le Super_admin
+                                    if ($role_session === 'super_admin'): ?>
                                         <a href="frontController.php?action=changerRole&id=<?= $u['id_utilisateur'] ?>" 
-                                        class="btn-delete" 
-                                        onclick="return confirm('Changer le rôle de <?= addslashes(htmlspecialchars($u['username'])) ?> ?')">
-                                        
+                                        class="btn-delete"
+                                        onclick="return confirm('Changer le rôle de <?= addslashes(htmlspecialchars((string)$u['username'])) ?> ?')">
                                         <?= ($u['role'] === 'admin') ? 'Rendre User' : 'Rendre Admin' ?>
                                         </a>
                                     <?php endif; ?>
+
                                 <?php else: ?>
                                     <span class="me-label">(Moi)</span>
                                 <?php endif; ?>
