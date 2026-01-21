@@ -76,11 +76,17 @@ class ResultatRepository extends AbstractRepository
             ORDER BY p.date_passage
         ";
 
+        $mapParametres = [
+            'temperature'     => "Température de l'eau",
+            'salinite'        => "Salinité",
+            'phytoplanctons'  => "Chlorophylle a"
+        ];
+
         $pdo = DatabaseConnection::getPdo();
         $stmt = $pdo->prepare($sql);
         $stmt->execute([
             'idLieu' => $idLieu,
-            'param'  => ucfirst($parametre),
+            'param'  => $mapParametres[$parametre] ?? null,
             'debut'  => $dateDebut,
             'fin'    => $dateFin
         ]);

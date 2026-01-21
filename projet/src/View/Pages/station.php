@@ -8,7 +8,8 @@
 /** @var string $dateFin */
 ?>
 <!-- CHOSES A AMELIORER MARIAM
-
+    - le signet sur la carte station
+    - une couleur grisé lorsque ce n'est pas l'indicateur en qst
  -->
 
 <div class="station-container" style="max-width: 1000px; margin: 20px auto;">
