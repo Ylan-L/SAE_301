@@ -55,6 +55,11 @@ h1 {
     max-width: 1200px;
     margin: 0 auto 50px;
     padding: 0 20px;
+    background-image: url("../images/océan-min.jpeg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 300px;
 }
 
 /* --- CONTENEUR BLANC (STYLE GLASSMORPHISM LÉGER) --- */
