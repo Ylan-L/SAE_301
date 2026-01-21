@@ -1,3 +1,12 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="utf-8" />
+    <title>Mon profil</title>
+    </head>
+<body class="connexion">
+
+<body class="connexion">
 <div class="container-page"> <div class="profile-container container-blanc">
         
         <header class="profile-header">
