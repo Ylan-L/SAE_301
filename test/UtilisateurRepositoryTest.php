@@ -5,7 +5,7 @@ use App\Covoiturage\Model\Repository\UtilisateurRepository;
 
 class UtilisateurRepositoryTest extends TestCase
 {
-    // Test de l'inscription (Noyau applicatif)
+    // Test de l'inscription 
     public function testInscrireRenvoieBool()
     {
         // On tente d'inscrire un utilisateur de test
@@ -14,7 +14,7 @@ class UtilisateurRepositoryTest extends TestCase
         $this->assertIsBool($resultat);
     }
 
-    // Test de la récupération (Authentification)
+    // Test de la récupération 
     public function testGetByEmail()
     {
         $resultat = UtilisateurRepository::getByEmail("email_inexistant@test.com");
@@ -22,7 +22,7 @@ class UtilisateurRepositoryTest extends TestCase
         $this->assertFalse($resultat);
     }
 
-    // Test du changement de rôle (Exigence spécifique Parcours C)
+    // Test du changement de rôle 
     public function testChangerRoleBasculeCorrectement()
     {
         // On teste sur un ID qui n'existe pas pour vérifier la robustesse
@@ -30,7 +30,7 @@ class UtilisateurRepositoryTest extends TestCase
         $this->assertFalse($resultat, "La méthode doit renvoyer false pour un utilisateur inexistant");
     }
 
-    // Test de la suppression (Gestion administrative)
+    // Test de la suppression 
     public function testSupprimerUtilisateur()
     {
         $resultat = UtilisateurRepository::supprimerUtilisateur(999999);
@@ -38,7 +38,7 @@ class UtilisateurRepositoryTest extends TestCase
         $this->assertIsBool($resultat);
     }
 
-    // Test de l'Audit (Enregistrement de logs - Parcours C)
+    // Test de l'Audit
     public function testEnregistrerLog()
     {
         $resultat = UtilisateurRepository::enregistrerLog(1, "test@test.com", "127.0.0.1", true);
