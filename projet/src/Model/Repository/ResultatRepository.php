@@ -88,8 +88,7 @@ class ResultatRepository extends AbstractRepository
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
-    /* ================= METHODE STATION ================= */
-    public function getDisponibilitesStation(int $idLieu): array
+    public function selectMoyennesParStation(string $libelleParametre, string $dateDebut, string $dateFin): array
     {
         // Calcule la moyenne de la valeur et la position moyenne de la station
         $sql = "SELECT ls.libelle_lieu, 
