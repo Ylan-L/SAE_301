@@ -116,6 +116,27 @@ class ResultatRepository extends AbstractRepository
         return $stmt->fetchAll();
     }
 
+     public static function getAllByIndicateur(string $libelleParametre): array {
+        $sql = "SELECT 
+                    p.date_passage AS date,
+                    z.nom_zone,
+                    ls.libelle_lieu,
+                    r.valeur
+                FROM resultat r
+                JOIN echantillon e ON r.id_echantillon = e.id_echantillon
+                JOIN prelevement pr ON e.id_prelevement = pr.id_prelevement
+                JOIN passage p ON pr.id_passage = p.id_passage
+                JOIN lieu_surveillance ls ON p.id_lieu = ls.id_lieu
+                JOIN zone z ON ls.id_zone = z.id_zone
+                WHERE r.libelle_parametre = :libelle
+                ORDER BY p.date_passage ASC";
+
+        $stmt = DatabaseConnection::getPdo()->prepare($sql);
+        $stmt->execute(['libelle' => $libelleParametre]);
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+
         /* ================= METHODE STATION ================= */
     public function getDisponibilitesStation(int $idLieu): array
     {
