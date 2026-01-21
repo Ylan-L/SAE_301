@@ -27,7 +27,6 @@ class Conf {
         'name' => 'PHPSESSID',
         'lifetime' => 0,
         'path' => '/',
-        'domain' => '',
         'secure' => false,
         'httponly' => true,
         'samesite' => 'Lax'
