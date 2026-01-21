@@ -136,5 +136,30 @@ class ResultatRepository extends AbstractRepository
     return $stmt->fetchAll(PDO::FETCH_ASSOC);
 }
 
+    /* ================= METHODE STATION ================= */
+    public function getDisponibilitesStation(int $idLieu): array
+    {
+        $sql = "
+            SELECT
+                r.libelle_parametre AS indicateur,
+                MIN(p.date_passage) AS date_debut,
+                MAX(p.date_passage) AS date_fin,
+                COUNT(*) AS nb_valeurs
+            FROM resultat r
+            JOIN echantillon e ON r.id_echantillon = e.id_echantillon
+            JOIN prelevement pr ON e.id_prelevement = pr.id_prelevement
+            JOIN passage p ON pr.id_passage = p.id_passage
+            WHERE p.id_lieu = :id_lieu
+            GROUP BY r.libelle_parametre
+            ORDER BY r.libelle_parametre
+        ";
+
+        $pdo = DatabaseConnection::getPdo();
+        $stmt = $pdo->prepare($sql);
+        $stmt->execute(['id_lieu' => $idLieu]);
+
+        return $stmt->fetchAll(\PDO::FETCH_ASSOC);
+    }
+
 
 }

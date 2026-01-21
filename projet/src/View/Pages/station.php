@@ -8,11 +8,7 @@
 /** @var string $dateFin */
 ?>
 <!-- CHOSES A AMELIORER MARIAM
- - VOIR AVANT DERNIER MSG CHATGPT
- - avoir une partie qui montre directement les données disponibles pour une station donnée 
-    pour ne pas que ça n'affiche rien
- - faire en sorte que lorsque l'on fait une recherche pour graphique ça ne monte pas tout en haut
- - proposition de stations lorsque l'on fait une recherche 
+
  -->
 
 <div class="station-container" style="max-width: 1000px; margin: 20px auto;">
@@ -43,7 +39,7 @@
         <button type="submit" style="padding: 8px 15px;">Rechercher</button>
     </form>
 
-    <!-- ✅ AJOUT : AUTOCOMPLETE -->
+    <!-- AUTOCOMPLETE -->
     <datalist id="liste-stations">
         <?php foreach ($listeStations as $s): ?>
             <option value="<?= htmlspecialchars($s['libelle_lieu']) ?>">
@@ -67,6 +63,38 @@
         </ul>
     <?php endif; ?>
 
+
+    <?php if ($stationDetails !== null): ?>
+    <section style="margin-top: 30px; padding: 15px; border: 1px solid #ddd;">
+        <h4>📊 Données disponibles pour cette station</h4>
+
+        <?php if (empty($disponibilites)): ?>
+            <p>Aucune donnée n’est disponible pour cette station.</p>
+        <?php else: ?>
+            <ul>
+                <?php
+                    $indicateursAutorises = [
+                        'Température de l\'eau' => 'Température de l’eau',
+                        'Salinité' => 'Salinité',
+                        'Chlorophylle a' => 'Phytoplanctons'
+                    ];
+                ?>
+                <?php foreach ($disponibilites as $d): ?>
+                    <?php if (!array_key_exists($d['indicateur'], $indicateursAutorises)) continue; ?>
+
+                    <strong><?= $indicateursAutorises[$d['indicateur']] ?></strong> :
+                    du <?= htmlspecialchars($d['date_debut']) ?>
+                    au <?= htmlspecialchars($d['date_fin']) ?>
+                    (<?= (int)$d['nb_valeurs'] ?> mesures) <br>
+                <?php endforeach; ?>
+
+            </ul>
+        <?php endif; ?>
+    </section>
+<?php endif; ?>
+
+
+
     <!-- ================= FILTRES GRAPHIQUE ================= -->
 
     <?php if ($stationDetails !== null): ?>
@@ -75,12 +103,14 @@
 
             <input type="hidden" name="action" value="station">
             <input type="hidden" name="station" value="<?= htmlspecialchars($stationRecherchee) ?>">
+            <input type="hidden" name="filtre" value="<?= htmlspecialchars($filtre) ?>">
+
 
             <div style="margin-bottom: 10px;">
                 <label>Indicateur :</label>
-                <button type="submit" name="filtre" value="temperature">Température</button>
-                <button type="submit" name="filtre" value="salinite">Salinité</button>
-                <button type="submit" name="filtre" value="phytoplanctons">Phytoplanctons</button>
+                <button type="submit" name="filtre" value="temperature">Température (°C)</button>
+                <button type="submit" name="filtre" value="salinite">Salinité (sans unité)</button>
+                <button type="submit" name="filtre" value="phytoplanctons">Phytoplanctons (µg.l-1)</button>
             </div>
 
             <div>
@@ -200,8 +230,15 @@
             scales: {
                 x: {
                     type: 'time',
-                    time: {unit: 'month'},
-                    title: {display: true, text: 'Date'}
+                    min: '<?= $dateDebut ?>',
+                    max: '<?= $dateFin ?>',
+                    time: {
+                        unit: 'month'
+                    },
+                    title: {
+                        display: true,
+                        text: 'Date'
+                    }
                 },
                 y: {
                     title: {display: true, text: 'Valeur'}
