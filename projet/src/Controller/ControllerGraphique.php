@@ -34,65 +34,38 @@ class ControllerGraphique
                 break;
         }
 
-        // 3. Récupération des données
+        // 3. Récupération des données OPTIMISÉE
         $repository = new ResultatRepository();
-        $donneesBrutes = $repository->selectDonneesGraphique($nomParametreBDD, $dateDebut, $dateFin);
+        $donneesAgregees = $repository->selectMoyennesParStation($nomParametreBDD, $dateDebut, $dateFin);
 
-        // 4. Calcul de la moyenne par STATION
-        $tempStations = [];
-        $passages = [];
+        // 4. Préparation simple pour la Vue
+        $labelsStations = [];
+        $dataStations = [];
+        $passages = []; 
 
-        foreach ($donneesBrutes as $ligne) {
-            $point = ['x' => $ligne['date'], 'y' => $ligne['valeur']];
+        foreach ($donneesAgregees as $ligne) {
+            // A. Pour le Graphique (Barres)
+            $labelsStations[] = $ligne['libelle_lieu'];
+            $dataStations[] = round((float)$ligne['moyenne'], 2);
 
-            // LOGIQUE INFAILLIBLE : On cherche "Manche"
-            $valeur = (float)$ligne['valeur'];
-            $nomLieu = $ligne['libelle_lieu'];
-
-             // Calcul Moyenne
-            if (!isset($tempStations[$nomLieu])) {
-                $tempStations[$nomLieu] = ['sum' => 0, 'count' => 0];
-            }
-            $tempStations[$nomLieu]['sum'] += $valeur;
-            $tempStations[$nomLieu]['count']++;
-
-            // Données Carte
-            $idPassage = $ligne['id_passage'];
-            if (!isset($passages[$idPassage])) {
-                $passages[$idPassage] = [
-                    'lat' => ((float)$ligne['miny'] + (float)$ligne['maxy']) / 2,
-                    'lng' => ((float)$ligne['minx'] + (float)$ligne['maxx']) / 2,
-                    'label' => $nomLieu . " : " . $valeur
+            // B. Pour la Carte (Un seul point par station)
+            if ($ligne['lat'] !== null && $ligne['lng'] !== null) {
+                $passages[] = [
+                    'lat' => (float)$ligne['lat'],
+                    'lng' => (float)$ligne['lng'],
+                    'label' => $ligne['libelle_lieu'] . " : " . round((float)$ligne['moyenne'], 2)
                 ];
             }
         }
 
-        // 5. Préparation pour Chart.js
-        $labelsStations = [];
-        $dataStations = [];
-
-        ksort($tempStations); // On trie les stations par ordre alphabétique
-
-        ksort($tempStations); // On trie les stations par ordre alphabétique
-        
-        foreach ($tempStations as $lieu => $stats) {
-            $labelsStations[] = $lieu;
-            // On arrondit à 2 chiffres après la virgule
-            $dataStations[] = round($stats['sum'] / $stats['count'], 2);
-        }
-
-        // Encodage JSON
+        // 5. Encodage JSON (Inchangé)
         $jsonLabels = json_encode($labelsStations);
         $jsonData = json_encode($dataStations);
-        $jsonPassages = json_encode(array_values($passages));
+        $jsonPassages = json_encode($passages);
         
         $pagetitle = "Graphique - " . $titreGraphique;
         $view = "graphique"; 
 
         require __DIR__ . "/../View/view.php";
     }
-
-
-
-
 }
