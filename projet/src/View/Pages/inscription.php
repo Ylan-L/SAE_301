@@ -7,7 +7,6 @@
     <!-- CSS -->
     <link rel="stylesheet" href="assets/css/style.css">
 </head>
-
 <body class="connexion">
 
 <div class="auth-page-wrapper">

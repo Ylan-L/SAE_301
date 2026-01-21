@@ -6,7 +6,6 @@
     </head>
 <body class="connexion">
 
-<body class="connexion">
 <div class="container-page"> <div class="profile-container container-blanc">
         
         <header class="profile-header">
@@ -51,3 +50,5 @@
         </form>
     </div>
 </div>
+</body>
+</html>

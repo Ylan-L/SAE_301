@@ -5,6 +5,7 @@
     <title>Quizz Océanographique</title>
     </head>
 <body class="connexion">
+    
 <?php
 // On définit les bonnes réponses
 $reponses_correctes = [

@@ -5,6 +5,7 @@
     <title>Quizz Océanographique</title>
     </head>
 <body class="accueil">
+    
 <div class="accueil-layout">
     <h1 class="titre-accueil">Bienvenue sur OcéanScope !</h1>
     <div class="accueil-info">
