@@ -149,7 +149,6 @@
 
 <!-- ================= CARTE ================= -->
 <script>
-    const disponibilites = <?= $jsonDisponibilites ?? '{}' ?>;
     const stations = <?= $jsonStations ?? '[]' ?>;
 
     const map = L.map('stationMap').setView([46.5, 2.5], 5);
@@ -167,10 +166,8 @@
         return; // on ignore la station
     }
 
-    const marker = L.circleMarker([station.lat, station.lng], {
-        radius: 6,
-        fillOpacity: 0.8
-    }).addTo(map);
+    const marker = L.marker([station.lat, station.lng]).addTo(map);
+
 
     marker.bindTooltip(station.libelle_lieu, {
         direction: 'top'
@@ -200,6 +197,7 @@
 </script>
 
 <script>
+    const disponibilites = <?= $jsonDisponibilites ?? '{}' ?>;
     function selectionnerStation(nomStation) {
         const input = document.getElementById('station-input');
         if (!input) return;
