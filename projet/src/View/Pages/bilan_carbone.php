@@ -193,6 +193,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     </form>
 
     <p class="note">
-        Estimation simplifiee a but pedagogique. Les facteurs utilises sont approximatifs.
+        Estimation simplifié a but pedagogique. Les facteurs utilises sont approximatifs.
     </p>
-</div>
+    </div>
