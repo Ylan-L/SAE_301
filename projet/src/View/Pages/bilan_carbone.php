@@ -106,7 +106,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     <?php if ($results): ?>
         <div class="result-box correct">
-            <h3>Resultat estime</h3>
+            <h3>Résultat estimé</h3>
             <p><strong>Total :</strong> <?= number_format($results['total'] / 1000, 2) ?> tCO2e / an</p>
             <ul>
                 <li>Transport : <?= number_format($results['transport'], 0) ?> kgCO2e</li>
@@ -160,7 +160,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         </div>
 
         <div class="form-group">
-            <label for="electricity_kwh_month">Electricite (kWh par mois)</label>
+            <label for="electricity_kwh_month">Électricité (kWh par mois)</label>
             <input type="number" step="0.1" min="0" name="electricity_kwh_month" id="electricity_kwh_month" value="<?= h($values['electricity_kwh_month']) ?>" required>
         </div>
 
@@ -180,11 +180,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         </div>
 
         <div class="form-group">
-            <label for="diet">Regime alimentaire</label>
+            <label for="diet">Régime alimentaire</label>
             <select name="diet" id="diet" required>
                 <option value="omnivore" <?= $values['diet'] === 'omnivore' ? 'selected' : '' ?>>Omnivore</option>
                 <option value="flexi" <?= $values['diet'] === 'flexi' ? 'selected' : '' ?>>Peu de viande</option>
-                <option value="vegetarian" <?= $values['diet'] === 'vegetarian' ? 'selected' : '' ?>>Vegetarien</option>
+                <option value="vegetarian" <?= $values['diet'] === 'vegetarian' ? 'selected' : '' ?>>Végétarien</option>
                 <option value="vegan" <?= $values['diet'] === 'vegan' ? 'selected' : '' ?>>Vegan</option>
             </select>
         </div>
@@ -193,6 +193,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     </form>
 
     <p class="note">
-        Estimation simplifié a but pedagogique. Les facteurs utilises sont approximatifs.
+        Estimation simplifiée à but pédagogique. Les facteurs utilisés sont approximatifs.
     </p>
     </div>
