@@ -1,0 +1,1 @@
+Bonjour l'équipe ici faudra faire la connexion a la bd dans un premier temps, et ensuite on mettra les fichiers contenant les requêtes sql 

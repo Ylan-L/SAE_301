@@ -1,0 +1,56 @@
+const form = document.getElementById('form');
+const username = document.getElementById('username');
+const email = document.getElementById('email');
+const password = document.getElementById('password');
+const errorElement = document.getElementById('error');
+
+// On vérifie que le formulaire existe sur la page actuelle
+if (form) {
+    form.addEventListener('submit', (e) => {
+        let messages = [];
+
+        // Validation Nom d'utilisateur
+        if (username) {
+            if (username.value === '' || username.value == null) {
+                messages.push('Le nom est requis');
+            }
+        }
+
+        // Validation Email
+        if (email) {
+            if (email.value === '' || email.value == null) {
+                messages.push('L\'email est requis');
+            } else if (!ValidateEmailFormat(email.value)) {
+                messages.push('L\'adresse email n\'est pas valide');
+            }
+        }
+
+        // Validation Mot de passe
+        if (password) {
+            if (password.value === '' || password.value == null) {
+                messages.push('Le mot de passe est requis');
+            } else if (password.value.length < 8) {
+                messages.push('Le mot de passe doit faire au moins 8 caractères');
+            }
+        }
+
+        // Affichage des erreurs
+        if (messages.length > 0) {
+            e.preventDefault();
+            errorElement.innerText = messages.join(', ');
+            // On ajoute un petit style rouge via JS pour l'erreur
+            errorElement.style.color = "#ef4444";
+            errorElement.style.marginBottom = "15px";
+        }
+    });
+}
+
+// Ta fonction de validation Regex
+function ValidateEmailFormat(mail) {
+    var validRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+    if (mail.match(validRegex)) {
+        return true;
+    } else {
+        return false;
+    }
+}
