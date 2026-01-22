@@ -114,6 +114,38 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <li>Alimentation : <?= number_format($results['diet'], 0) ?> kgCO2e</li>
             </ul>
         </div>
+
+        <div class="result-box initiatives">
+            <h3>Initiatives pour réduire votre empreinte carbone</h3>
+            <?php
+            $totalTons = $results['total'] / 1000;
+            if ($totalTons < 5) {
+                echo '<p>Votre empreinte carbone est faible ! Continuez sur cette voie avec ces initiatives :</p>';
+                echo '<ul>';
+                echo '<li>Privilégiez les transports en commun ou le vélo pour vos déplacements quotidiens.</li>';
+                echo '<li>Adoptez une alimentation plus végétale pour réduire encore votre impact.</li>';
+                echo '<li>Investissez dans des appareils électroménagers éco-énergétiques.</li>';
+                echo '</ul>';
+            } elseif ($totalTons < 10) {
+                echo '<p>Votre empreinte carbone est moyenne. Voici des initiatives pour l\'améliorer :</p>';
+                echo '<ul>';
+                echo '<li>Réduisez vos déplacements en voiture en optant pour le covoiturage ou les transports publics.</li>';
+                echo '<li>Améliorez l\'isolation de votre logement pour diminuer la consommation d\'énergie.</li>';
+                echo '<li>Limitez les vols aériens et privilégiez les alternatives terrestres pour les voyages.</li>';
+                echo '<li>Adoptez un régime alimentaire avec moins de produits animaux.</li>';
+                echo '</ul>';
+            } else {
+                echo '<p>Votre empreinte carbone est élevée. Voici des initiatives prioritaires pour la réduire :</p>';
+                echo '<ul>';
+                echo '<li>Envisagez de changer de véhicule pour un modèle électrique ou hybride.</li>';
+                echo '<li>Réduisez drastiquement vos vols aériens et optez pour des voyages en train.</li>';
+                echo '<li>Installez des panneaux solaires pour produire votre propre électricité.</li>';
+                echo '<li>Adoptez un régime végétarien ou vegan pour diminuer l\'impact de l\'alimentation.</li>';
+                echo '<li>Compensez vos émissions restantes en investissant dans des projets carbone.</li>';
+                echo '</ul>';
+            }
+            ?>
+        </div>
     <?php endif; ?>
 
     <form method="post" class="contact-form">
