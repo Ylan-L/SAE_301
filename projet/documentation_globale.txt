@@ -1,3 +1,0 @@
-Bonjour les gens, j'ai fait "le squelette" de l'arborescence du projet. Tout est vide car c'est à remplir bien sur je me suis inspiré des TP PHP pour faire une bonne architecture MVC. 
-
-Vous trouverez dans la plupart des dossiers un fichier text "doc", c'est en gros une documentation que j'ai écrite vite fait de ce qu'on doit faire à peut près
