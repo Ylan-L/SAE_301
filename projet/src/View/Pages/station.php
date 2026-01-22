@@ -109,9 +109,11 @@
 
             <div style="margin-bottom: 10px;">
                 <label>Indicateur :</label>
-                <button type="submit" name="filtre" value="temperature">Température (°C)</button>
-                <button type="submit" name="filtre" value="salinite">Salinité (sans unité)</button>
-                <button type="submit" name="filtre" value="phytoplanctons">Phytoplanctons (µg.l-1)</button>
+                <button type="submit" onclick="changerIndicateur('temperature')" id="btn-temperature">Température (°C)</button>
+                <button type="submit" onclick="changerIndicateur('salinite')" id="btn-salinite">Salinité (sans unité)</button>
+                <button type="submit" onclick="changerIndicateur('phytoplanctons')" id="btn-phytoplanctons">Phytoplanctons (µg.l-1)</button>
+
+                <input type="hidden" name="filtre" id="filtre-input" value="<?= $filtre ?>">
             </div>
 
             <div>
@@ -147,6 +149,7 @@
 
 <!-- ================= CARTE ================= -->
 <script>
+    const disponibilites = <?= $jsonDisponibilites ?? '{}' ?>;
     const stations = <?= $jsonStations ?? '[]' ?>;
 
     const map = L.map('stationMap').setView([46.5, 2.5], 5);
@@ -270,3 +273,36 @@
         cursor: pointer;
     }
 </style>
+
+<!-- ================= Fonctions pour le graphique ================= -->
+<script>
+    function changerIndicateur(indicateur) {
+        document.getElementById('filtre-input').value = indicateur;
+
+        if (disponibilites[indicateur]) {
+            document.querySelector('input[name="dateDebut"]').value =
+                disponibilites[indicateur].dateDebut;
+            document.querySelector('input[name="dateFin"]').value =
+                disponibilites[indicateur].dateFin;
+        }
+
+        mettreEnEvidence(indicateur);
+    }
+
+    function mettreEnEvidence(indicateurActif) {
+        ['temperature', 'salinite', 'phytoplanctons'].forEach(ind => {
+            const btn = document.getElementById('btn-' + ind);
+            if (!btn) return;
+
+            btn.style.backgroundColor =
+                (ind === indicateurActif) ? '#007bff' : '#e0e0e0';
+            btn.style.color =
+                (ind === indicateurActif) ? 'white' : 'black';
+        });
+    }
+
+    // Mise en évidence automatique au chargement
+    window.addEventListener('load', () => {
+        mettreEnEvidence("<?= $filtre ?>");
+    });
+</script>
