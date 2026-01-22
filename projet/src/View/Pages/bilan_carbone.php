@@ -106,45 +106,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     <?php if ($results): ?>
         <div class="result-box correct">
-            <h3>Résultat estimé</h3>
+            <h3>Resultat estime</h3>
             <p><strong>Total :</strong> <?= number_format($results['total'] / 1000, 2) ?> tCO2e / an</p>
             <ul>
                 <li>Transport : <?= number_format($results['transport'], 0) ?> kgCO2e</li>
                 <li>Logement : <?= number_format($results['home'], 0) ?> kgCO2e</li>
                 <li>Alimentation : <?= number_format($results['diet'], 0) ?> kgCO2e</li>
             </ul>
-        </div>
-
-        <div class="result-box initiatives">
-            <h3>Initiatives pour réduire votre empreinte carbone</h3>
-            <?php
-            $totalTons = $results['total'] / 1000;
-            if ($totalTons < 5) {
-                echo '<p>Votre empreinte carbone est faible ! Continuez sur cette voie avec ces initiatives :</p>';
-                echo '<ul>';
-                echo '<li>Privilégiez les transports en commun ou le vélo pour vos déplacements quotidiens.</li>';
-                echo '<li>Adoptez une alimentation plus végétale pour réduire encore votre impact.</li>';
-                echo '<li>Investissez dans des appareils électroménagers éco-énergétiques.</li>';
-                echo '</ul>';
-            } elseif ($totalTons < 10) {
-                echo '<p>Votre empreinte carbone est moyenne. Voici des initiatives pour l\'améliorer :</p>';
-                echo '<ul>';
-                echo '<li>Réduisez vos déplacements en voiture en optant pour le covoiturage ou les transports publics.</li>';
-                echo '<li>Améliorez l\'isolation de votre logement pour diminuer la consommation d\'énergie.</li>';
-                echo '<li>Limitez les vols aériens et privilégiez les alternatives terrestres pour les voyages.</li>';
-                echo '<li>Adoptez un régime alimentaire avec moins de produits animaux.</li>';
-                echo '</ul>';
-            } else {
-                echo '<p>Votre empreinte carbone est élevée. Voici des initiatives prioritaires pour la réduire :</p>';
-                echo '<ul>';
-                echo '<li>Envisagez de changer de véhicule pour un modèle électrique ou hybride.</li>';
-                echo '<li>Réduisez drastiquement vos vols aériens et optez pour des voyages en train.</li>';
-                echo '<li>Installez des panneaux solaires pour produire votre propre électricité.</li>';
-                echo '<li>Adoptez un régime végétarien ou vegan pour diminuer l\'impact de l\'alimentation.</li>';
-                echo '<li>Compensez vos émissions restantes en investissant dans des projets carbone.</li>';
-                echo '</ul>';
-            }
-            ?>
         </div>
     <?php endif; ?>
 
@@ -160,7 +128,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         </div>
 
         <div class="form-group">
-            <label for="electricity_kwh_month">Électricité (kWh par mois)</label>
+            <label for="electricity_kwh_month">Electricite (kWh par mois)</label>
             <input type="number" step="0.1" min="0" name="electricity_kwh_month" id="electricity_kwh_month" value="<?= h($values['electricity_kwh_month']) ?>" required>
         </div>
 
@@ -180,11 +148,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         </div>
 
         <div class="form-group">
-            <label for="diet">Régime alimentaire</label>
+            <label for="diet">Regime alimentaire</label>
             <select name="diet" id="diet" required>
                 <option value="omnivore" <?= $values['diet'] === 'omnivore' ? 'selected' : '' ?>>Omnivore</option>
                 <option value="flexi" <?= $values['diet'] === 'flexi' ? 'selected' : '' ?>>Peu de viande</option>
-                <option value="vegetarian" <?= $values['diet'] === 'vegetarian' ? 'selected' : '' ?>>Végétarien</option>
+                <option value="vegetarian" <?= $values['diet'] === 'vegetarian' ? 'selected' : '' ?>>Vegetarien</option>
                 <option value="vegan" <?= $values['diet'] === 'vegan' ? 'selected' : '' ?>>Vegan</option>
             </select>
         </div>
@@ -193,6 +161,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     </form>
 
     <p class="note">
-        Estimation simplifiée à but pédagogique. Les facteurs utilisés sont approximatifs.
+        Estimation simplifiee a but pedagogique. Les facteurs utilises sont approximatifs.
     </p>
-    </div>
+</div>

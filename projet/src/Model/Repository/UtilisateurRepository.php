@@ -29,7 +29,7 @@ class UtilisateurRepository extends AbstractRepository{
     }
 
     protected function getNomTable():string{
-      return "utilisateurs";
+      return "utilisateur";
     }
 
     protected function getNomClePrimaire(): string{

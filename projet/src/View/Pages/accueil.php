@@ -1,18 +1,23 @@
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-    <meta charset="utf-8" />
-    <title>Quizz Océanographique</title>
-    </head>
-<body class="accueil">
-    
+<h1>Bienvenue sur OcéanScope !</h1>
+
 <div class="accueil-layout">
-    <h1 class="titre-accueil">Bienvenue sur OcéanScope !</h1>
-    <div class="accueil-info">
+    <div class="accueil-texte">
+
         <p>
            Sur ce site, il est possible de consulter des données océanographiques relatives à la salinité, à la biomasse du phytoplancton et à la température.
         </p>
-   
+
+        <h2>L'impact du réchauffement climatique </h2>
+
+        <p>
+            Le réchauffement climatique est l’augmentation de la température de la Terre due aux gaz à effet de serre produits par les activités humaines. 
+            Il provoque la fonte des glaces, la disparition d’espèces et la sécheresse dans certaines régions.
+            À l’avenir, il pourrait entraîner des inondations, de fortes vagues de chaleur et un manque d’eau.
+            Comprendre ces effets est important pour mieux agir.
+        </p>
+        <p>
+            Grâce aux différentes vidéos, vous pourrez comprendre ses impacts sur la salinité, la biomasse du phytoplancton et la température.
+        </p>
     </div>
 
  
@@ -44,5 +49,3 @@
     </div>
 
 </div>
-</body>
-</html>

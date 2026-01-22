@@ -1,11 +1,3 @@
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-    <meta charset="utf-8" />
-    <title>Contact</title>
-    </head>
-    <body class="connexion">
-        
 <div class="contact-page-wrapper">
     <div class="contact-container">
         
@@ -61,5 +53,3 @@
 
     </div>
 </div>
-</body>
-</html>

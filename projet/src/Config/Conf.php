@@ -7,7 +7,7 @@ class Conf {
         'hostname' => 'localhost',
         'database' => 'sae3_01',
         'login'    => 'root',
-        'password' => 'vitrygtr',
+        'password' => 'you_are_rainbow'
     ];
 
     // Ajout pour le mail
@@ -27,6 +27,7 @@ class Conf {
         'name' => 'PHPSESSID',
         'lifetime' => 0,
         'path' => '/',
+        'domain' => '',
         'secure' => false,
         'httponly' => true,
         'samesite' => 'Lax'
