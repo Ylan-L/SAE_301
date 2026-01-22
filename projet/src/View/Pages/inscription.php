@@ -7,7 +7,8 @@
     <!-- CSS -->
     <link rel="stylesheet" href="assets/css/style.css">
 </head>
-<body class="connexion">
+
+<body>
 
 <div class="auth-page-wrapper">
     <div class="auth-container">
@@ -63,10 +64,12 @@
                            name="password"
                            placeholder="********"
                            required>
-                
-                    <button class="butt" type="button"
+
+                    <button type="button"
                             id="togglePassword"
-                            class="toggle-password">Afficher</button>
+                            class="toggle-password">
+                        Afficher
+                    </button>
                 </div>
             </div>
 

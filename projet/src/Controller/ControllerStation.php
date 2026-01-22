@@ -94,13 +94,6 @@ class ControllerStation
         $jsonStationData = json_encode($donneesGraph);
 
         // --------------------
-        // Disponibilité des données
-        // --------------------
-        $disponibilites = $resultatRepo->getDisponibilitesStation(
-        idLieu: $station->getIdLieu()
-        );
-
-        // --------------------
         // Infos station
         // --------------------
         $stationDetails = [
