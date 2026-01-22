@@ -94,6 +94,33 @@ class ControllerStation
         $jsonStationData = json_encode($donneesGraph);
 
         // --------------------
+        // Disponibilité des données
+        // --------------------
+        $disponibilites = $resultatRepo->getDisponibilitesStation(
+        idLieu: $station->getIdLieu()
+        );
+
+        $disposParIndicateur = [];
+
+        foreach ($disponibilites as $d) {
+            $indicateur = match ($d['indicateur']) {
+                "Température de l'eau" => "temperature",
+                "Salinité" => "salinite",
+                "Chlorophylle a" => "phytoplanctons",
+                default => null
+            };
+
+            if ($indicateur !== null) {
+                $disposParIndicateur[$indicateur] = [
+                    'dateDebut' => $d['date_debut'],
+                    'dateFin'   => $d['date_fin']
+                ];
+            }
+        }
+        $jsonStations = json_encode($disposParIndicateur);
+
+
+        // --------------------
         // Infos station
         // --------------------
         $stationDetails = [
