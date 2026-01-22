@@ -1,3 +1,10 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="utf-8" />
+    <title>Connexion</title>
+    </head>
+<body class="connexion">
 <div class="auth-page-wrapper">
 <div class="auth-container">
 
