@@ -3,16 +3,19 @@
 namespace App\Covoiturage\Controller;
 
 use App\Covoiturage\Model\Repository\LieuSurveillanceRepository;
-use App\Covoiturage\Model\Repository\PassageRepository;
 use App\Covoiturage\Model\Repository\ResultatRepository;
 
 class ControllerStation
 {
     public static function station(): void
     {
-        $lieuRepo = new \App\Covoiturage\Model\Repository\LieuSurveillanceRepository();
-        $passageRepo = new \App\Covoiturage\Model\Repository\PassageRepository();
-        $resultatRepo = new \App\Covoiturage\Model\Repository\ResultatRepository();
+        $lieuRepo = new LieuSurveillanceRepository();
+        $resultatRepo = new ResultatRepository();
+
+        // --------------------
+        // Données carte (TOUJOURS les mêmes)
+        // --------------------
+        $stationsCarte = $lieuRepo->getStationsAvecCoordonnees();
 
         // --------------------
         // Paramètres GET
@@ -21,21 +24,22 @@ class ControllerStation
         $filtre = $_GET['filtre'] ?? 'temperature';
         $dateDebut = $_GET['dateDebut'] ?? '2021-01-01';
         $dateFin = $_GET['dateFin'] ?? '2022-01-01';
-        $listeStations = $lieuRepo->getStationsAvecCoordonnees();
 
-        
+        // Pour l'autocomplete
+        $listeStations = $stationsCarte;
+
         // --------------------
         // CAS 1 : aucune recherche
         // --------------------
         if ($stationRecherchee === null || trim($stationRecherchee) === '') {
 
-            $stations = $lieuRepo->getStationsAvecCoordonnees();
-            $jsonStations = json_encode($stations);
+            $jsonStations = json_encode($stationsCarte);
 
             $stationDetails = null;
             $jsonStationData = null;
+            $disponibilites = [];
 
-            $view = 'station'; 
+            $view = 'station';
             $pagetitle = 'Station';
             require __DIR__ . '/../View/view.php';
             return;
@@ -47,36 +51,27 @@ class ControllerStation
         $station = $lieuRepo->rechercherParNom($stationRecherchee);
 
         if ($station === null) {
-            $stations = $lieuRepo->getStationsAvecCoordonnees();
-            $jsonStations = json_encode($stations);
+            $jsonStations = json_encode($stationsCarte);
 
             $stationDetails = null;
             $jsonStationData = null;
+            $disponibilites = [];
 
-            $view = 'station'; 
+            $view = 'station';
             $pagetitle = 'Station';
             require __DIR__ . '/../View/view.php';
             return;
         }
 
         // --------------------
-        // Carte (station seule) — STRUCTURE UNIFIÉE
+        // Carte : UNE SEULE station (filtrage PHP)
         // --------------------
-        $coords = $passageRepo->getCoordonneesPourLieu($station->getIdLieu());
+        $stationsFiltrees = array_filter(
+            $stationsCarte,
+            fn($s) => (int)$s['id_lieu'] === $station->getIdLieu()
+        );
 
-        if (empty($coords)) {
-            // aucune coordonnée → on n’affiche rien sur la carte
-            $jsonStations = json_encode([]);
-        } else {
-            $jsonStations = json_encode([[
-                'libelle_lieu' => $station->getNomLieu(),
-                'entite_classement' => $station->getTypeLieu(),
-                'lat' => (float)$coords[0]['lat'],
-                'lng' => (float)$coords[0]['lng']
-            ]]);
-        }
-
-
+        $jsonStations = json_encode(array_values($stationsFiltrees));
 
         // --------------------
         // Graphique
@@ -91,13 +86,25 @@ class ControllerStation
         $jsonStationData = json_encode($donneesGraph);
 
         // --------------------
-        // Disponibilité des données
+        // Disponibilités des données
         // --------------------
         $disponibilites = $resultatRepo->getDisponibilitesStation(
-        idLieu: $station->getIdLieu()
+            idLieu: $station->getIdLieu()
         );
 
-        $disposParIndicateur = [];
+        $dateMin = null;
+        $dateMax = null;
+
+        foreach ($disponibilites as $d) {
+            if ($dateMin === null || $d['date_debut'] < $dateMin) {
+                $dateMin = $d['date_debut'];
+            }
+            if ($dateMax === null || $d['date_fin'] > $dateMax) {
+                $dateMax = $d['date_fin'];
+            }
+        }
+
+        $indicateursDisponibles = [];
 
         foreach ($disponibilites as $d) {
             $indicateur = match ($d['indicateur']) {
@@ -107,14 +114,10 @@ class ControllerStation
                 default => null
             };
 
-            if ($indicateur !== null) {
-                $disposParIndicateur[$indicateur] = [
-                    'dateDebut' => $d['date_debut'],
-                    'dateFin'   => $d['date_fin']
-                ];
+            if ($indicateur !== null && $d['nb_valeurs'] > 0) {
+                $indicateursDisponibles[] = $indicateur;
             }
         }
-        $jsonStations = json_encode($disposParIndicateur);
 
 
         // --------------------
@@ -126,7 +129,7 @@ class ControllerStation
             'type' => $station->getTypeLieu()
         ];
 
-        $view = 'station'; 
+        $view = 'station';
         $pagetitle = 'Station';
         require __DIR__ . '/../View/view.php';
     }
