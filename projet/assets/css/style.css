@@ -1506,7 +1506,7 @@ h2[style*="margin-top: 40px"] {
 
 
 .container-page {
-    
+    background-color:rgba(0, 212, 255, 0.05); ;
     padding: 20px; /* Réduit pour laisser le titre monter */
     border-radius: 30px;
     border: 7px solid #ffffff;
