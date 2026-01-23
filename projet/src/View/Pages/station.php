@@ -101,31 +101,57 @@
 
     <!-- ================= FILTRES GRAPHIQUE ================= -->
 
+    <?php
+        function boutonIndicateur(string $cle, string $label, array $indicateursDisponibles, string $filtre) {
+            $disabled = !in_array($cle, $indicateursDisponibles);
+            $active = ($filtre === $cle);
+
+            echo '<button
+                type="submit"
+                name="filtre"
+                value="'.$cle.'"
+                '.($disabled ? 'disabled' : '').'
+                style="
+                    padding: 6px 12px;
+                    margin-right: 6px;
+                    border-radius: 5px;
+                    border: 1px solid #ccc;
+                    background: '.($active ? '#0d6efd' : '#e9ecef').';
+                    color: '.($active ? 'white' : 'black').';
+                    opacity: '.($disabled ? '0.4' : '1').';
+                    cursor: '.($disabled ? 'not-allowed' : 'pointer').';
+                ">
+                '.$label.'
+            </button>';
+        }
+    ?>
+
     <?php if ($stationDetails !== null): ?>
         <form method="GET" action="frontController.php#graphique"
               style="background: #f8f9fa; padding: 15px; border-radius: 8px; margin-bottom: 20px;">
 
             <input type="hidden" name="action" value="station">
             <input type="hidden" name="station" value="<?= htmlspecialchars($stationRecherchee) ?>">
-            <input type="hidden" name="filtre" value="<?= htmlspecialchars($filtre) ?>">
 
             <div style="margin-bottom: 10px;">
                 <label>Indicateur :</label>
-                <button type="submit" onclick="changerIndicateur('temperature')" id="btn-temperature">Température (°C)</button>
-                <button type="submit" onclick="changerIndicateur('salinite')" id="btn-salinite">Salinité (sans unité)</button>
-                <button type="submit" onclick="changerIndicateur('phytoplanctons')" id="btn-phytoplanctons">Phytoplanctons (µg.l-1)</button>
 
-                <input type="hidden" name="filtre" id="filtre-input" value="<?= $filtre ?>">
+                <?php
+                boutonIndicateur('temperature', 'Température (°C)', $indicateursDisponibles, $filtre);
+                boutonIndicateur('salinite', 'Salinité', $indicateursDisponibles, $filtre);
+                boutonIndicateur('phytoplanctons', 'Phytoplanctons (µg·L⁻¹)', $indicateursDisponibles, $filtre);
+                ?>
             </div>
+
 
             <div>
                 <label>
                     Du :
-                    <input type="date" name="dateDebut" value="<?= $dateDebut ?>" required>
+                    <input type="date" name="dateDebut" value="<?= $dateDebut ?>" min="<?= $dateMin ?>"  max="<?= $dateMax ?>" required >
                 </label>
                 <label>
                     au :
-                    <input type="date" name="dateFin" value="<?= $dateFin ?>" required>
+                   <input type="date" name="dateFin" value="<?= $dateFin ?>" min="<?= $dateMin ?>"  max="<?= $dateMax ?>" required >
                 </label>
 
                 <button type="submit">Actualiser</button>

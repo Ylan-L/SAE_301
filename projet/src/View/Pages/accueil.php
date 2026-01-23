@@ -35,7 +35,7 @@
         </iframe>
 
         <iframe 
-            src="https://www.youtube.com/embed/KCScTgtajhs"
+            src="https://youtu.be/IwvSAqY0iP4"
             title="YouTube video player"
             frameborder="0"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
