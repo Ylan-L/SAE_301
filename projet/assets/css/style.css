@@ -1506,7 +1506,7 @@ h2[style*="margin-top: 40px"] {
 
 
 .container-page {
-    background: linear-gradient(135deg, rgb(3, 50, 85) 0%, rgb(2, 30, 50) 100%);
+    
     padding: 20px; /* Réduit pour laisser le titre monter */
     border-radius: 30px;
     border: 7px solid #ffffff;
