@@ -1236,6 +1236,8 @@ input:focus, select:focus {
     margin-top: 40px;
 }
 
+
+
 /* --- Header de la zone Admin --- */
 .admin-header {
     display: flex;
