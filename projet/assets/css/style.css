@@ -1511,3 +1511,33 @@ body.export-csv .container-page form{
   align-items: center;
   gap: 15px;
 }
+
+/* ===== PAGE EXPORT CSV ===== */
+
+.export-csv .container-page {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 40px; /* espace sous la navbar */
+}
+
+/* Titre en haut */
+.export-csv .container-page h1 {
+    margin: 0 0 20px 0;
+    font-size: 2.2rem;
+    color: white;
+}
+
+/* Formulaire juste sous le titre */
+.export-csv .container-page form {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+/* Label */
+.export-csv .container-page label {
+    color: white;
+    font-size: 1rem;
+}
+
