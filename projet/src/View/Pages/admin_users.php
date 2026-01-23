@@ -1,10 +1,17 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="utf-8" />
+    <title>Connexion</title>
+    </head>
+<body class="connexion"></body>
 <div class="container-page">
-    <h1>Administration</h1>
+    
 
     <div class="admin-container container-blanc">
         <header class="admin-header">
             <div>
-                <h2>Gestion des Utilisateurs</h2>
+                <h1>Administration</h1>
                 <p>Interface de modération sécurisée pour les administrateurs.</p>
             </div>
             <a href="frontController.php?action=dashboard" class="btn-back">← Retour au Dashboard</a>
