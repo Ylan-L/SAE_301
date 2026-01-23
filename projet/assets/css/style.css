@@ -1493,35 +1493,23 @@ h2[style*="margin-top: 40px"] {
 
 
 
-
-
-
-
-
-
-
-
-
 /*page export csv*/
 
-
 .container-page {
-    height: 100vh;
     display: flex;
     flex-direction: column;
-    justify-content: space-between; /* espace haut / bas */
     align-items: center;
-    padding: 60px 0;
+    padding-top: 60px;
 }
 
-/* Titre en haut */
+/* Titre */
 .container-page h1 {
     color: white;
     font-size: 2.5rem;
-    margin: 0;
+    margin-bottom: 40px; /* espace sous le titre */
 }
 
-/* Formulaire en bas */
+/* Formulaire sous le titre */
 .container-page form {
     display: flex;
     align-items: center;
