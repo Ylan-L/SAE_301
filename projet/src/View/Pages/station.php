@@ -1,3 +1,10 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="utf-8" />
+    <title>Connexion</title>
+    </head>
+<body class="connexion">
 <?php
 /** @var string|null $jsonStations */
 /** @var array|null $stationDetails */
@@ -266,3 +273,6 @@
         mettreEnEvidence("<?= $filtre ?>");
     });
 </script>
+</body>
+</html>
+

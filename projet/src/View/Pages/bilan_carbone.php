@@ -1,3 +1,10 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="utf-8" />
+    <title>Bilan carbonne</title>
+    </head>
+<body class="connexion">
 <?php
 $results = null;
 $errors = [];
@@ -196,3 +203,5 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         Estimation simplifiee a but pedagogique. Les facteurs utilisés sont approximatifs.
     </p>
 </div>
+</body>
+</html>
