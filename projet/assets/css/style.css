@@ -920,7 +920,7 @@ button[type="submit"]:not(.btn-graph):hover {
 }
 
 #monGraphique {
-    background: rgba(255, 255, 255, 0.03);
+    background: rgb(255, 255, 255);
     border-radius: 15px;
     padding: 15px;
 }
@@ -940,6 +940,17 @@ a[href*="export_csv"]:hover {
     border-bottom: 2px solid #ffb703;
     letter-spacing: 1px;
 }
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -1187,6 +1198,7 @@ input:focus, select:focus {
 
 #stationGraphique {
     padding: 20px;
+    background-color: white;
 }
 
 /* --- Détails de la Station (Style Carte d'identité) --- */
