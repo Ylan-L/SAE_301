@@ -5,7 +5,7 @@
   <title>Export CSV</title>
 </head>
 
-<body class="connexion">
+<body class="connexion export-csv">
   <div class="container-page">
     <h1>Télécharger un indicateur (CSV)</h1>
 

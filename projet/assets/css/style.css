@@ -1496,68 +1496,17 @@ h2[style*="margin-top: 40px"] {
 
 
 /*page export csv*/
-
-.container-page {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-top: 40px; /* espace sous la navbar */
-}
-
-/* Titre */
-.container-page h1 {
-    color: white;
-    font-size: 2.5rem;
-    margin-bottom: 30px;
-}
-
-/* Formulaire sous le titre */
-.container-page form {
-    display: flex;
-    align-items: center;
-    gap: 15px;
-}
-
-/* Label */
-.container-page label {
-    color: white;
-    font-size: 1.1rem;
-}
-
-/* Select */
-.container-page select {
-    padding: 8px 12px;
-    border-radius: 6px;
-    border: none;
-    font-size: 1rem;
-}
-
-/* Bouton */
-.btn-primary {
-    background-color: #ffb703;
-    color: #003049;
-    border: none;
-    padding: 10px 18px;
-    border-radius: 20px;
-    font-weight: bold;
-    cursor: pointer;
-}
-
-.btn-primary:hover {
-    background-color: #ffa500;
-}
-
-.connexion{
-  display: block; /* enlève le centrage flex */
-}
-
-.container-page{
-  margin-top: -270px;   /* espace sous la navbar */
+/* ===== Page export CSV uniquement ===== */
+body.export-csv .container-page{
+  margin-top: 40px;
   text-align: center;
 }
 
-.container-page form{
-  margin-top: 25px;
+body.export-csv .container-page h1{
+  margin: 0 0 25px 0;
+}
+
+body.export-csv .container-page form{
   display: inline-flex;
   align-items: center;
   gap: 15px;
