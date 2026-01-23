@@ -1505,3 +1505,20 @@ h2[style*="margin-top: 40px"] {
 /*page export csv*/
 
 
+.container-page {
+    background: linear-gradient(135deg, rgb(3, 50, 85) 0%, rgb(2, 30, 50) 100%);
+    padding: 20px; /* Réduit pour laisser le titre monter */
+    border-radius: 30px;
+    border: 7px solid #ffffff;
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5);
+    color: white;
+    max-width: 700px;
+    min-height: 500px; /* Donne de la hauteur pour voir le centrage */
+    margin: 40px auto;
+   
+    /* Flexbox pour organiser le titre en haut et le reste au milieu */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
