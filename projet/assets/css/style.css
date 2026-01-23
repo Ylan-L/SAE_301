@@ -1552,7 +1552,7 @@ h2[style*="margin-top: 40px"] {
 }
 
 .container-page{
-  margin-top: 40px;   /* espace sous la navbar */
+  margin-top: -270px;   /* espace sous la navbar */
   text-align: center;
 }
 
