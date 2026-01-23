@@ -10,8 +10,7 @@
         <header>
     <nav class="navigation">
         <ul>
-            <img class="logo" src="../../assets/images/OceanScope.png" alt="Logo" width="30" height="20
-            ">
+          <img src="../assets/images/OceanScope.png" alt="Logo" class="logo" width="90" height="68">
 
             <?php if (empty($_SESSION['user_id'])): ?>
             <!-- Utilisateur NON connecté -->
