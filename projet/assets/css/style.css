@@ -1505,8 +1505,9 @@ h2[style*="margin-top: 40px"] {
 /*page export csv*/
 
 
+/* --- Conteneur Principal --- */
 .container-page {
-    background-color:rgba(0, 212, 255, 0.05); ;
+    background: linear-gradient(135deg, rgb(3, 50, 85) 0%,rgb(3, 50, 85); 100%);
     padding: 20px; /* Réduit pour laisser le titre monter */
     border-radius: 30px;
     border: 7px solid #ffffff;
@@ -1515,10 +1516,64 @@ h2[style*="margin-top: 40px"] {
     max-width: 700px;
     min-height: 500px; /* Donne de la hauteur pour voir le centrage */
     margin: 40px auto;
-   
     /* Flexbox pour organiser le titre en haut et le reste au milieu */
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    justify-content: space-between; 
     align-items: center;
+}
+ 
+/* --- Titre (Collé en haut) --- */
+.container-page h1 {
+    color: #f6f8f8;
+    text-transform: uppercase;
+    font-weight: 900;
+    margin-top: 10px; /* Espace minimal avec le bord blanc */
+    text-shadow: 0 0 15px rgba(0, 212, 255, 0.6);
+    font-size: 28px;
+}
+ 
+/* --- Formulaire (Centré au milieu) --- */
+.container-page form {
+    flex-grow: 1; /* Prend l'espace disponible */
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Centre le contenu du formulaire verticalement */
+    align-items: center;
+    gap: 25px;
+    width: 100%;
+}
+ 
+/* --- Label et Select --- */
+.container-page label {
+    font-weight: bold;
+    font-size: 1.2rem;
+    color: #00d4ff; /* Rappel du bleu néon */
+}
+ 
+#indicateur {
+    background: rgba(255, 255, 255, 0.1);
+    border: 2px solid #ffffff;
+    border-radius: 12px;
+    color: white;
+    padding: 12px 25px;
+    width: 300px;
+    text-align: center;
+}
+ 
+/* --- Bouton --- */
+.btn-primary {
+    background: #ffb703 !important;
+    color: #033255 !important;
+    font-weight: 900 !important;
+    padding: 15px 40px !important;
+    border-radius: 50px !important;
+    border: none !important;
+    cursor: pointer;
+    transition: 0.3s;
+}
+ 
+.btn-primary:hover {
+    box-shadow: 0 0 20px #ffb703;
+    transform: scale(1.05);
 }
