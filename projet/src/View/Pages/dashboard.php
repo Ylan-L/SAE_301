@@ -1,3 +1,10 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="utf-8" />
+    <title>dashboard</title>
+    </head>
+<body class="connexion">
 <div class="container">
     <div class="dashboard-header">
         <h2><i class="fas fa-tachometer-alt"></i> Tableau de Bord</h2>
@@ -9,7 +16,7 @@
                 Bienvenue, <?= htmlspecialchars($_SESSION['username'] ?? 'Utilisateur') ?> !
             </h3>
             <p>
-                Heureux de vous revoir sur la plateforme <strong>SAE 301</strong>.
+                Heureux de vous revoir sur la plateforme <strong>OcéanScope</strong>.
             </p>
         </div>
 
@@ -48,3 +55,5 @@
         </div>
     </div>
 </div>
+</body>
+</html>

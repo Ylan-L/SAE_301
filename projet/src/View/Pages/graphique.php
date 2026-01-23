@@ -1,3 +1,10 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="utf-8" />
+    <title>Graphique</title>
+    </head>
+<body class="connexion">
 <div class="graph-container" style="max-width: 1000px; margin: 20px auto; text-align: center;">
     
     <h2><?php echo $titreGraphique; ?></h2>
@@ -104,3 +111,5 @@
 
 <a href="frontController.php?action=export_csv">Export CSV</a>
 
+</body>
+</html>

@@ -1,3 +1,10 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="utf-8" />
+    <title>Quizz Océanographique</title>
+    </head>
+<body class="connexion">
 <?php
 // On définit les bonnes réponses
 $reponses_correctes = [
