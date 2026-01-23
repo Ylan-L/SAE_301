@@ -554,9 +554,8 @@ body.connexion {
 
 
 
+/*page profil*/
 
-
-/* Style global de la page profil */
 .container-page {
     min-height: 100vh;
     padding: 40px 20px;
@@ -564,7 +563,7 @@ body.connexion {
     justify-content: center;
     align-items: center;
 }
-
+ 
 /* La carte de profil (même style que Dashboard/Quizz) */
 .profile-container {
     background-color: rgb(3, 50, 85);
@@ -576,38 +575,38 @@ body.connexion {
     box-shadow: 0 10px 30px rgba(0,0,0,0.5);
     color: white;
 }
-
+ 
 /* En-tête */
 .profile-header {
     text-align: center;
     margin-bottom: 30px;
 }
-
+ 
 .profile-header h2 {
     color: #00d4ff; /* Ton bleu d'accentuation */
     font-size: 28px;
     margin-bottom: 10px;
 }
-
+ 
 .profile-header p {
     font-style: italic;
     font-size: 14px;
     opacity: 0.8;
 }
-
+ 
 /* Formulaire */
 .form-group {
     margin-bottom: 25px;
     display: flex;
     flex-direction: column;
 }
-
+ 
 .form-group label {
     font-weight: bold;
     margin-bottom: 10px;
     font-size: 16px;
 }
-
+ 
 .form-group input {
     padding: 12px;
     border-radius: 10px;
@@ -616,7 +615,7 @@ body.connexion {
     color: white;
     font-size: 15px;
 }
-
+ 
 /* Style spécifique pour l'email bloqué */
 .input-disabled {
     background: rgba(0, 0, 0, 0.2) !important;
@@ -624,20 +623,20 @@ body.connexion {
     color: #aaa !important;
     cursor: not-allowed;
 }
-
+ 
 .helper-text {
     font-size: 12px;
     margin-top: 5px;
     color: #00d4ff;
 }
-
+ 
 /* Séparateur visuel */
 .separator {
     height: 1px;
     background: rgba(255, 255, 255, 0.2);
     margin: 30px 0;
 }
-
+ 
 /* Actions (Boutons) */
 .profile-actions {
     display: flex;
@@ -645,7 +644,7 @@ body.connexion {
     gap: 15px;
     margin-top: 30px;
 }
-
+ 
 .btn-save {
     background-color: #00d4ff;
     color: #033255;
@@ -657,9 +656,9 @@ body.connexion {
     transition: 0.3s;
     font-size: 16px;
 }
-
-
-
+ 
+ 
+ 
 .btn-back {
     text-align: center;
     text-decoration: none;
@@ -668,13 +667,13 @@ body.connexion {
     padding: 10px;
     border: 1px solid transparent;
 }
-
+ 
 .btn-back:hover {
     text-decoration: underline;
     color: #ff4b2b; /* Petit rappel de couleur danger/annuler */
 }
-
-
+ 
+ 
 /* Conteneur global centré */
 .contact-page-wrapper {
     display: flex;
@@ -683,6 +682,137 @@ body.connexion {
     padding: 60px 20px;
     min-height: 100vh;
 }
+ 
+ 
+.container-page {
+    min-height: 100vh;
+    padding: 40px 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+ 
+/* La carte de profil (même style que Dashboard/Quizz) */
+.profile-container {
+    background-color: rgb(3, 50, 85);
+    border: 3px solid #fffefe;
+    border-radius: 20px;
+    max-width: 600px;
+    width: 100%;
+    padding: 40px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    color: white;
+}
+ 
+/* En-tête */
+.profile-header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+ 
+.profile-header h2 {
+    color: #00d4ff; /* Ton bleu d'accentuation */
+    font-size: 28px;
+    margin-bottom: 10px;
+}
+ 
+.profile-header p {
+    font-style: italic;
+    font-size: 14px;
+    opacity: 0.8;
+}
+ 
+/* Formulaire */
+.form-group {
+    margin-bottom: 25px;
+    display: flex;
+    flex-direction: column;
+}
+ 
+.form-group label {
+    font-weight: bold;
+    margin-bottom: 10px;
+    font-size: 16px;
+}
+ 
+.form-group input {
+    padding: 12px;
+    border-radius: 10px;
+    border: 2px solid white;
+    background: rgba(255, 255, 255, 0.1); /* Effet verre */
+    color: white;
+    font-size: 15px;
+}
+ 
+/* Style spécifique pour l'email bloqué */
+.input-disabled {
+    background: rgba(0, 0, 0, 0.2) !important;
+    border-color: rgba(255, 255, 255, 0.3) !important;
+    color: #aaa !important;
+    cursor: not-allowed;
+}
+ 
+.helper-text {
+    font-size: 12px;
+    margin-top: 5px;
+    color: #00d4ff;
+}
+ 
+/* Séparateur visuel */
+.separator {
+    height: 1px;
+    background: rgba(255, 255, 255, 0.2);
+    margin: 30px 0;
+}
+ 
+/* Actions (Boutons) */
+.profile-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-top: 30px;
+}
+ 
+.btn-save {
+    background-color: #00d4ff;
+    color: #033255;
+    border: none;
+    padding: 15px;
+    font-weight: bold;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: 0.3s;
+    font-size: 16px;
+}
+ 
+ 
+ 
+.btn-back {
+    text-align: center;
+    text-decoration: none;
+    color: white;
+    font-size: 14px;
+    padding: 10px;
+    border: 1px solid transparent;
+}
+ 
+.btn-back:hover {
+    text-decoration: underline;
+    color: #ff4b2b; /* Petit rappel de couleur danger/annuler */
+}
+ 
+ 
+/* Conteneur global centré */
+.contact-page-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 60px 20px;
+    min-height: 100vh;
+}
+ 
+ 
+ 
 
 
 
