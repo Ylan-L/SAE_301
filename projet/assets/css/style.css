@@ -68,7 +68,7 @@ header {
     font-size: 16px !important;
     position: absolute;
     margin-top: -20px;
-    left:1300px ;
+    left:80% ;
     
 }
 
@@ -81,7 +81,7 @@ header {
     font-size: 16px !important;
     position: absolute;
     margin-top: -20px;
-    left:1150px ;
+    left:90% ;
     
 }
 
@@ -1326,6 +1326,7 @@ input:focus, select:focus {
 
 #stationGraphique {
     padding: 20px;
+    background-color: white;
 }
 
 /* --- Détails de la Station (Style Carte d'identité) --- */
