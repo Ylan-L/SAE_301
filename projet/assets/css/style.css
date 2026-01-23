@@ -1546,3 +1546,19 @@ h2[style*="margin-top: 40px"] {
 .btn-primary:hover {
     background-color: #ffa500;
 }
+
+.connexion{
+  display: block; /* enlève le centrage flex */
+}
+
+.container-page{
+  margin-top: 40px;   /* espace sous la navbar */
+  text-align: center;
+}
+
+.container-page form{
+  margin-top: 25px;
+  display: inline-flex;
+  align-items: center;
+  gap: 15px;
+}
