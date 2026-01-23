@@ -701,7 +701,7 @@ body.connexion {
     max-width: 700px;
     width: 100%;
     padding: 40px;
-    color: rgb(255, 255, 255);
+    color: white;
     box-shadow: 0 15px 40px rgba(0,0,0,0.6);
 }
 
@@ -837,7 +837,7 @@ body.connexion {
     border-radius: 30px;
     border: 7px solid #ffffff; /* Bordure signature */
     box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
-    color: rgb(255, 255, 255);
+    color: white;
     margin-top: 40px !important;
 }
 
@@ -956,7 +956,6 @@ a[href*="export_csv"]:hover {
 
 
 
-
 /* bilan carbonne*/ 
 
 /* --- Conteneur Principal --- */
@@ -975,11 +974,9 @@ a[href*="export_csv"]:hover {
     color: #e9eff0;
     font-size: 35px;
     text-transform: uppercase;
-     z-index: 0;
     text-align: center;
     margin-bottom: 10px;
     text-shadow: 0 0 10px rgba(0, 212, 255, 0.4);
-    
 }
 
 .dashboard-header p {
@@ -988,7 +985,6 @@ a[href*="export_csv"]:hover {
     color: rgba(255, 255, 255, 0.8);
     margin-bottom: 30px;
     font-size: 15px;
-    
 }
 
 /* --- Formulaire --- */
@@ -1218,133 +1214,4 @@ input:focus, select:focus {
     color: #ffb703;
     text-transform: uppercase;
     font-size: 0.9em;
-}
-
-
-
-
-/*page admin*/
-
-/* --- Conteneur Principal d'Administration --- */
-.admin-container {
-    background: linear-gradient(135deg, rgb(3, 50, 85) 0%, rgb(2, 30, 50) 100%);
-    padding: 40px;
-    border-radius: 30px;
-    border: 7px solid #ffffff; /* Signature visuelle de votre site */
-    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5);
-    color: white;
-    margin-top: 40px;
-}
-
-/* --- Header de la zone Admin --- */
-.admin-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    border-bottom: 2px solid rgba(0, 212, 255, 0.3);
-    padding-bottom: 20px;
-    margin-bottom: 30px;
-}
-
-.admin-header h2 {
-    color: #00d4ff; /* Cyan néon */
-    text-transform: uppercase;
-    font-weight: 900;
-    margin-bottom: 5px;
-    text-shadow: 0 0 10px rgba(0, 212, 255, 0.4);
-}
-
-.btn-back {
-    color: #ffffff;
-    text-decoration: none;
-    font-weight: bold;
-    border: 2px solid #ffffff;
-    padding: 8px 15px;
-    border-radius: 50px;
-    transition: 0.3s;
-}
-
-.btn-back:hover {
-    background: #ffffff;
-    color: #033255;
-}
-
-/* --- Tableaux Stylisés --- */
-.admin-table-wrapper {
-    background: rgba(255, 255, 255, 0.05); /* Effet verre */
-    border-radius: 15px;
-    padding: 10px;
-    overflow-x: auto;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 10px;
-    color: white;
-}
-
-th {
-    text-align: left;
-    padding: 15px;
-    border-bottom: 2px solid #00d4ff;
-    color: #00d4ff;
-    text-transform: uppercase;
-    font-size: 0.85rem;
-    letter-spacing: 1px;
-}
-
-td {
-    padding: 15px;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-    font-size: 0.95rem;
-}
-
-tr:hover {
-    background: rgba(0, 212, 255, 0.05);
-}
-
-/* --- Badges et Étiquettes --- */
-.role-badge {
-    background: #00d4ff;
-    color: #033255;
-    padding: 4px 10px;
-    border-radius: 6px;
-    font-weight: 800;
-    font-size: 0.75rem;
-}
-
-.me-label {
-    font-style: italic;
-    color: #ffb703; /* Orange pour se démarquer */
-    font-weight: bold;
-}
-
-/* --- Boutons d'Action (Néon) --- */
-.btn-delete {
-    display: inline-block;
-    padding: 6px 12px;
-    margin: 2px;
-    border: 2px solid #ffb703 !important; /* Orange néon */
-    background: transparent;
-    color: #ffb703 !important;
-    text-decoration: none;
-    border-radius: 8px;
-    font-weight: bold;
-    font-size: 0.8rem;
-    transition: all 0.3s ease;
-}
-
-.btn-delete:hover {
-    background: #ffb703 !important;
-    color: #033255 !important;
-    box-shadow: 0 0 15px rgba(255, 183, 3, 0.4);
-}
-
-/* --- Journal d'Audit spécifique --- */
-h2[style*="margin-top: 40px"] {
-    color: #ffb703; /* Différenciation pour les logs */
-    font-size: 1.5rem;
-    text-transform: uppercase;
 }
