@@ -64,21 +64,18 @@ class ControllerStation
         // --------------------
         $coords = $passageRepo->getCoordonneesPourLieu($station->getIdLieu());
 
-        // on calcule un centre (au cas où plusieurs passages)
-        $lat = null;
-        $lng = null;
-
-        if (!empty($coords)) {
-            $lat = $coords[0]['lat'];
-            $lng = $coords[0]['lng'];
+        if (empty($coords)) {
+            // aucune coordonnée → on n’affiche rien sur la carte
+            $jsonStations = json_encode([]);
+        } else {
+            $jsonStations = json_encode([[
+                'libelle_lieu' => $station->getNomLieu(),
+                'entite_classement' => $station->getTypeLieu(),
+                'lat' => (float)$coords[0]['lat'],
+                'lng' => (float)$coords[0]['lng']
+            ]]);
         }
 
-        $jsonStations = json_encode([[
-            'libelle_lieu' => $station->getNomLieu(),
-            'entite_classement' => $station->getTypeLieu(),
-            'lat' => $lat,
-            'lng' => $lng
-        ]]);
 
 
         // --------------------
