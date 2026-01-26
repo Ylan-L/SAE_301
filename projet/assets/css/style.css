@@ -58,6 +58,11 @@ header {
     text-shadow: 0 0 8px rgba(0, 212, 255, 0.6);
 }
 
+.navigation, 
+.navigation a {
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
 /* Boutons SPECIAUX */
 .spec {
     color: #ffb703 !important;
