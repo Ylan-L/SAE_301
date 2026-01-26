@@ -4,6 +4,15 @@
    background-color: rgb(197, 234, 255);
 }
 
+.accueil-texte p {
+    text-align: center;
+    line-height: 1.6;
+    margin-bottom: 15px;
+}
+
+
+
+
 /* --- Barre de Navigation --- */
 /* On ajoute la bordure autour de la barre */
 /* --- Barre de Navigation --- */
