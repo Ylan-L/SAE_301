@@ -22,7 +22,6 @@
             <!-- Utilisateur connecté -->
             <li><a href="frontController.php?action=quizz">Quizz</a></li>
             <li><a href="frontController.php?action=dashboard">Dashboard</a></li>
-            <li><a href="frontController.php?action=profil">Mon Profil</a></li>
             <li><a class="spec" href="frontController.php?action=deconnexion">Quitter</a></li>
              <li><a href="frontController.php?action=bilan_carbone">Bilan Carbone</a></li>
         <?php endif; ?>
