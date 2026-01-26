@@ -109,11 +109,10 @@
     .btn-graph:hover { background: #eee; }
 </style>
 
-<div class="container-page export-csv">
     <a href="frontController.php?action=export_csv" class="btn-export">
         Export CSV
     </a>
-</div>
+
 
 </body>
 </html>
