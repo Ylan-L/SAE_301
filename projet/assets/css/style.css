@@ -16,7 +16,7 @@
 /* --- Barre de Navigation --- */
 /* On ajoute la bordure autour de la barre */
 /* --- Barre de Navigation --- */
-header {
+header:not(.auth-header):not(.dashboard-header):not(.contact-header) {
     position: sticky;      /* Rend la barre collante */
     top: 0;                /* La bloque tout en haut de l'écran */
     z-index: 1000;         /* S'assure qu'elle passe au-dessus de tout le reste */
