@@ -4,6 +4,15 @@
    background-color: rgb(197, 234, 255);
 }
 
+.accueil-texte p {
+    text-align: center;
+    line-height: 1.6;
+    margin-bottom: 15px;
+}
+
+
+
+
 /* --- Barre de Navigation --- */
 /* On ajoute la bordure autour de la barre */
 /* --- Barre de Navigation --- */
@@ -56,6 +65,11 @@ header {
 .navigation a:hover:not(.spec) {
     color: #00d4ff;
     text-shadow: 0 0 8px rgba(0, 212, 255, 0.6);
+}
+
+.navigation, 
+.navigation a {
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
 
 /* Boutons SPECIAUX */
