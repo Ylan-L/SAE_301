@@ -1,10 +1,3 @@
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-    <meta charset="utf-8" />
-    <title>Connexion</title>
-    </head>
-<body class="connexion">
 <div class="auth-page-wrapper">
 
 
@@ -69,5 +62,9 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 });
 </script>
-</body>
-</html>
+<style>
+    /* Le fond bleu */
+    body {
+        background-color: rgb(197, 234, 255);
+    }
+</style>
