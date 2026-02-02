@@ -1,4 +1,8 @@
 /* --- Styles Généraux --- */
+html, body {
+    margin: 0;
+    padding: 0;
+}
 
 .accueil {
    background-color: rgb(197, 234, 255);
@@ -23,11 +27,17 @@ header:not(.auth-header):not(.dashboard-header):not(.contact-header) {
 }
 
 .navigation {
-    background-color: rgba(255, 255, 255, 0); /* Fond léger effet verre */
-    backdrop-filter: blur(10px);               /* Floute ce qu'il y a derrière */
-    border-bottom: 2px solid white;            /* Bordure blanche en bas */
+    background-color: rgba(255, 255, 255, 0);
+    backdrop-filter: blur(10px);
+    border-bottom: 2px solid white;
     background-color: #e9eff0;
     transition: all 0.3s ease;
+
+    height: 80px;          /* on met la hauteur ici */
+    margin: 0;
+    padding: 0;
+    display: flex;         
+    align-items: stretch;  
 }
 
 .navigation ul {
@@ -37,8 +47,13 @@ header:not(.auth-header):not(.dashboard-header):not(.contact-header) {
     gap: 5px;
     list-style-type: none;
     margin: 0;
-    padding: 15px 20px; /* Un peu moins de padding pour être plus fine au scroll */
+    padding: 0 20px; /* pas de padding vertical */
+
+    height: 100%;    /* remplit toute la nav */
+    width: 100%;
 }
+
+
 
 /* Ajout de petits séparateurs blancs entre les menus */
 .navigation ul li:not(:last-child):not(:has(.spec)) {
