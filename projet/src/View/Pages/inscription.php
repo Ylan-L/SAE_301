@@ -1,15 +1,3 @@
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <title>Inscription</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-    <!-- CSS -->
-    <link rel="stylesheet" href="assets/css/style.css">
-</head>
-
-<body class="connexion">
-
 <div class="auth-page-wrapper">
     <div class="auth-container">
 
@@ -108,6 +96,9 @@ document.getElementById('togglePassword').addEventListener('click', function () 
     }
 });
 </script>
-
-</body>
-</html>
+<style>
+    /* Le fond bleu */
+    body {
+        background-color: rgb(197, 234, 255);
+    }
+</style>
