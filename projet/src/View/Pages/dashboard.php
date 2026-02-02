@@ -1,10 +1,3 @@
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-    <meta charset="utf-8" />
-    <title>dashboard</title>
-    </head>
-<body class="connexion">
 <div class="container">
     <div class="dashboard-header">
         <h2><i class="fas fa-tachometer-alt"></i> Tableau de Bord</h2>
@@ -55,5 +48,9 @@
         </div>
     </div>
 </div>
-</body>
-</html>
+<style>
+    /* Le fond bleu */
+    body {
+        background-color: rgb(197, 234, 255);
+    }
+</style>
