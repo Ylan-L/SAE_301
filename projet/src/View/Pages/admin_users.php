@@ -1,10 +1,3 @@
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-    <meta charset="utf-8" />
-    <title>Connexion</title>
-    </head>
-<body class="connexion"></body>
 <div class="container-page">
     
 
@@ -110,3 +103,9 @@
         </div>
     </div>
 </div>
+<style>
+    /* Le fond bleu  */
+    body {
+        background-color: rgb(197, 234, 255);
+    }
+</style>
