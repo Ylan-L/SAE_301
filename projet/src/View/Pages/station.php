@@ -1,10 +1,3 @@
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-    <meta charset="utf-8" />
-    <title>Connexion</title>
-    </head>
-<body class="connexion">
 <?php
 /** @var string|null $jsonStations */
 /** @var array|null $stationDetails */
@@ -280,6 +273,9 @@
 
 <!-- ================= STYLE ================= -->
 <style>
+    body {
+        background-color: rgb(197, 234, 255); /* Le même bleu que l'accueil */
+    } 
     .map-container {
         height: 360px;
         margin-bottom: 20px;
@@ -331,6 +327,5 @@
         mettreEnEvidence("<?= $filtre ?>");
     });
 </script>
-</body>
-</html>
+
 

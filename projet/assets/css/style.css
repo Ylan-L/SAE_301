@@ -30,7 +30,6 @@ header:not(.auth-header):not(.dashboard-header):not(.contact-header) {
     background-color: rgba(255, 255, 255, 0);
     backdrop-filter: blur(10px);
     border-bottom: 2px solid white;
-    background-color: #e9eff0;
     transition: all 0.3s ease;
 
     height: 80px;          /* on met la hauteur ici */
