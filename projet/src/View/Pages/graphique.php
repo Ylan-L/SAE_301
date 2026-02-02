@@ -1,10 +1,3 @@
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-    <meta charset="utf-8" />
-    <title>Graphique</title>
-    </head>
-<body class="connexion">
 <div class="graph-container" style="max-width: 1000px; margin: 20px auto; text-align: center;">
     
     <h2><?php echo $titreGraphique; ?></h2>
@@ -103,6 +96,7 @@
 </script>
 
 <style>
+    body { background-color: rgb(197, 234, 255);}
     .map-container { height: 360px; margin-bottom: 20px; border: 1px solid #ddd; border-radius: 8px; }
     #passageMap { height: 100%; width: 100%; border-radius: 8px; }
     .btn-graph { padding: 8px 15px; margin: 0 5px; cursor: pointer; border: 1px solid #ccc; background: white; border-radius: 4px; }
@@ -113,6 +107,3 @@
         Export CSV
     </a>
 
-
-</body>
-</html>
