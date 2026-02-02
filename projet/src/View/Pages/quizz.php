@@ -1,10 +1,3 @@
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-    <meta charset="utf-8" />
-    <title>Quizz Océanographique</title>
-    </head>
-<body class="connexion">
 <?php
 // On définit les bonnes réponses
 $reponses_correctes = [
@@ -167,6 +160,9 @@ function afficherResultat($nomChamp, $correctValue, $lettreB) {
 
     </form>
 </div>
-
-</body>
-</html>
+<style>
+    /* Le fond bleu */
+    body {
+        background-color: rgb(197, 234, 255);
+    }
+</style>
