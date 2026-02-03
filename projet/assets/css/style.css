@@ -63,7 +63,13 @@ header:not(.auth-header):not(.dashboard-header):not(.contact-header) {
 
 .logo{
     position: absolute;
-    left:0px;
+    left: 20px;
+    top: 50%; /* Pour le centrer verticalement */
+    transform: translateY(-50%); /* Pour le centrer verticalement */
+
+    /* la taille  */
+    width: 65px;
+    height: 65px;
     
 }
 
