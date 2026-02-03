@@ -201,6 +201,16 @@ header:not(.auth-header):not(.dashboard-header):not(.contact-header) {
     text-decoration: underline;
 }
 
+/* --- AJOUTER CECI À LA SUITE DE TON CSS --- */
+
+/* Style des paragraphes pour l'alignement justifié */
+.accueil-texte p {
+    text-align: justify;       /* C'est LA commande magique pour aligner à gauche ET à droite */
+    line-height: 1.6;          /* Donne de l'air entre les lignes (plus lisible) */
+    margin-bottom: 15px;       /* Espace entre chaque paragraphe */
+    margin-top: 0;
+} 
+
 /* Colonne de vidéos à DROITE */
 .videos {
     display: flex;

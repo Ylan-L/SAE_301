@@ -12,18 +12,32 @@
            Sur ce site, il est possible de consulter des données océanographiques relatives à la salinité, à la biomasse du phytoplancton et à la température.
         </p>
         <div class="accueil-texte">
+            <h1>Le réchauffement climatique</h1>
 
-        <h1> Le rechauffement climatique</h1><br><br>
-            <p> Le réchauffement climatique est une phénomène lié à l’augmentation de<br> la température de la surface  terrestre à cause des émissions de gaz à <br>
-            
-            effet de serre.Cette émission est liée aux activités humaines et a <br> été plus importante à partir de la révolution industrielle.<br>
-                Le réchauffement climatique se  manifeste par d’importantes conséquences <br> telles que la fonte des glaces  et  la disparition  d’espèces marines<br>et l'assèchement de certaines zones.
-                Des prévisions plus dangereuses <br>pourront être manifestes comme l'inondation de villes qui pourront<br> plus être habités, de fortes vagues de chaleurs, un accès plus <br>restreint aux ressources d’eaux.
-                Connaître ses  conséquences est<br> essentiel afin de pouvoir mieux y remédier.
- Grâce aux différentes <br> vidéos vous pourrez comprendre les impacts du réchauffement climatiques <br> sur la salinité, la biomasse des phytoplanctons et la temperature.</p>
-   
-    </div>
+            <p>
+                Le réchauffement climatique est un phénomène lié à l’augmentation de la température 
+                de la surface terrestre, causée par les émissions de gaz à effet de serre. 
+                Ces émissions sont liées aux activités humaines et se sont intensifiées 
+                depuis la révolution industrielle.
+            </p>
 
+            <p>
+                Ce phénomène se manifeste par d’importantes conséquences telles que 
+                la fonte des glaces, la disparition d’espèces marines et l’assèchement de certaines zones. 
+                Des scénarios plus alarmants sont à craindre, comme l'inondation de villes 
+                devenant inhabitables, de fortes vagues de chaleur ou un accès plus restreint 
+                aux ressources en eau.
+            </p>
+
+            <p>
+                Connaître ces conséquences est essentiel afin de pouvoir mieux agir.
+            </p>
+
+            <p>
+                Grâce aux différentes vidéos, vous pourrez comprendre les impacts du réchauffement climatique 
+                sur la salinité, la biomasse du phytoplancton et la température.
+            </p>
+        </div>
  
     <div class="videos">
         <iframe 
