@@ -105,7 +105,7 @@
     #passageMap { height: 100%; width: 100%; border-radius: 8px; }
     .btn-graph { padding: 8px 15px; margin: 0 5px; cursor: pointer; border: 1px solid #ccc; background: white; border-radius: 4px; }
     .btn-graph:hover { background: #eee; }
-    .btn-export { font-size: 18px; font-weight: bold; text-decoration: none; border-bottom: 2px solid #033255; padding-bottom: 2px; transition: color 0.3s;
+    .btn-export { font-size: 23px; font-weight: bold; text-decoration: none; border-bottom: 2px solid #033255; padding-bottom: 2px; transition: color 0.3s;
     }
 </style>
 
