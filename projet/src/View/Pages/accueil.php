@@ -1,10 +1,3 @@
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-    <meta charset="utf-8" />
-    <title>Accueil</title>
-    </head>
-<body class="accueil">
 <div class="accueil-layout">
     <h1 class="titre-accueil">Bienvenue sur OcéanScope !</h1>
     <div class="accueil-info">
@@ -68,5 +61,9 @@
     </div>
 
 </div>
-</body>
-</html>
+<style>
+    /* La couleur de fond */
+    body {
+        background-color: rgb(197, 234, 255);
+    }
+</style>
