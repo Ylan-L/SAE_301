@@ -27,7 +27,7 @@ header:not(.auth-header):not(.dashboard-header):not(.contact-header) {
 }
 
 .navigation {
-    background-color: rgba(255, 255, 255, 0);
+    background-color: #e9eff0;
     backdrop-filter: blur(10px);
     border-bottom: 2px solid white;
     transition: all 0.3s ease;
@@ -1498,55 +1498,5 @@ h2[style*="margin-top: 40px"] {
     color: #ffb703; /* Différenciation pour les logs */
     font-size: 1.5rem;
     text-transform: uppercase;
-}
-
-
-
-
-
-/*page export csv*/
-/* ===== Page export CSV uniquement ===== */
-body.export-csv .container-page{
-  margin-top: 40px;
-  text-align: center;
-}
-
-body.export-csv .container-page h1{
-  margin: 0 0 25px 0;
-}
-
-body.export-csv .container-page form{
-  display: inline-flex;
-  align-items: center;
-  gap: 15px;
-}
-
-/* ===== PAGE EXPORT CSV ===== */
-
-.export-csv .container-page {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-top: 40px; /* espace sous la navbar */
-}
-
-/* Titre en haut */
-.export-csv .container-page h1 {
-    margin: 0 0 20px 0;
-    font-size: 2.2rem;
-    color: white;
-}
-
-/* Formulaire juste sous le titre */
-.export-csv .container-page form {
-    display: flex;
-    align-items: center;
-    gap: 15px;
-}
-
-/* Label */
-.export-csv .container-page label {
-    color: white;
-    font-size: 1rem;
 }
 
