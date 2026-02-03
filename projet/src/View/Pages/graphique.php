@@ -25,6 +25,10 @@
     <div style="position: relative; height: 50vh; width: 100%; margin-top: 30px;">
         <canvas id="monGraphique"></canvas>
     </div>
+
+    <a href="frontController.php?action=export_csv" class="btn-export">
+        Export CSV
+    </a>
 </div>
 
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
@@ -101,9 +105,8 @@
     #passageMap { height: 100%; width: 100%; border-radius: 8px; }
     .btn-graph { padding: 8px 15px; margin: 0 5px; cursor: pointer; border: 1px solid #ccc; background: white; border-radius: 4px; }
     .btn-graph:hover { background: #eee; }
+    .btn-export { font-size: 18px; font-weight: bold; text-decoration: none; border-bottom: 2px solid #033255; padding-bottom: 2px; transition: color 0.3s;
+    }
 </style>
 
-    <a href="frontController.php?action=export_csv" class="btn-export">
-        Export CSV
-    </a>
 
